@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
