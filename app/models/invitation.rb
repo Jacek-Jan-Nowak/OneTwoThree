@@ -1,5 +1,5 @@
 class Invitation < ApplicationRecord
   belongs_to :user
-  belongs_to :event, dependent: :destroy
+  belongs_to :event
   has_one :place, through: :event
 end
