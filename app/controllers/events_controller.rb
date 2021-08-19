@@ -1,9 +1,11 @@
 class EventsController < ApplicationController
+
   before_action :set_user
   before_action :set_place
 
   def index
-    @events = @place.events
+    @events = Event.all
+
   end
 
   def show
@@ -43,5 +45,4 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:type, :start_time, :place_id)
     end
-
 end
