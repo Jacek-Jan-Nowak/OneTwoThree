@@ -1,0 +1,6 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.association :place %>
+  <%= f.input :start_time %>
+    <%= f.input :event_type %>
+  <%= f.submit "Submit event", class: "btn btn-primary" %>
+<% end %>
