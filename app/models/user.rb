@@ -5,4 +5,8 @@ class User < ApplicationRecord
   has_many :invitations
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def to_label
+  "#{username}"
+  end
 end

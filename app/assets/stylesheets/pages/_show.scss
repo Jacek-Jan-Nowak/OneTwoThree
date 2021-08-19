@@ -1,0 +1,29 @@
+.show-container{
+    height: 80vh;
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+}
+
+.event-image{
+    height: 100%;
+    width: 50%;
+}
+.dance-img{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px 275px 5px;
+}
+.event-wrapper{
+    height:100%;
+    width:50%;
+}
+.event-info{
+    margin-left: 16px;
+    font-family: sans-serif;
+}
+
+.btn-container{
+    margin-left: 16px;
+    align-items: bottom;
+}

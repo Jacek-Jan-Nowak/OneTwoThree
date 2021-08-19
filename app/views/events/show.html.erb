@@ -1,11 +1,22 @@
-<h1>Events#show</h1>
-<br>
-<h3> name: <%= @event.name %> </h3>
-<p>event_type: <%= @event.event_type %></p>
-<p>place: <%= @event.place.address %></p>
-<p>starting at: <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
-<p>-----------</p>
+<div class="show-container">
+  <div class="event-image">
+    <img src="../../assets/dance.jpg" alt="" class="dance-img">
+  </div>
+  <div class="event-wrapper">
+    <br>
+      <div class="event-info">
+        <h1> name: <%= @event.name %> </h1>
+        <p>event_type: <%= @event.event_type %></p>
+        <p>place: <%= @event.place.address %></p>
+        <p>starting at: <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
+        <p>-----------</p>
+    </div>
+    <div class="btn-container">
+      <%= link_to "home", root_path, class:"btn btn-primary" %>
+      <%= link_to "all events", events_path, class:"btn btn-primary" %>
+      <%= link_to "invite a friend", new_event_invitation_path(@event), class:"btn btn-primary" %>
+    </div>
+  </div>
+</div>
 
-<%= link_to "home", root_path, class:"btn btn-primary" %>
-<%= link_to "all events", events_path, class:"btn btn-primary" %>
-<%= link_to 'Add an event', new_event_path,  class:"btn btn-primary"  %>
+
