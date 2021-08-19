@@ -1,11 +1,9 @@
 class EventsController < ApplicationController
 
   before_action :set_user
-  before_action :set_place
 
   def index
     @events = Event.all
-
   end
 
   def show
@@ -25,24 +23,24 @@ class EventsController < ApplicationController
     else
       render :new
     end
+  end
 
-    def destroy
-      @event.delete
-      rediret_to profile_path
+  def destroy
+    @event.delete
+    rediret_to profile_path
+  end
+
+  private
+
+
+
+  def set_user
+    if user_signed_in?
+      @user = current_user
     end
+  end
 
-    private
-
-    def set_place
-    @place = Place.find(params[:place_id])
-
-    def set_user
-      if user_signed_in?
-        @user = current_user
-      end
-    end
-
-    def event_params
-      params.require(:event).permit(:type, :start_time, :place_id)
-    end
+  def event_params
+    params.require(:event).permit(:event_type, :start_time, :place_id)
+  end
 end
