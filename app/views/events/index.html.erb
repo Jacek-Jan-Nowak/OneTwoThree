@@ -1,11 +1,14 @@
 <h1>Events#index</h1>
 <br>
-<% @events.each do |event| %>
-  <h3> name: <%= link_to event.name, event_path(event) %> </h3>
-  <p>event_type: <%= event.event_type %></p>
-  <p>place: <%= event.place %></p>
-  <p>starting at: <%= event.start_time.strftime("%B %d, %Y %A") %></p>
-  <p>-----------</p>
-<% end %>
+<div class="grid-container"></div>
+  <% @events.each do |event| %>
+    <div class = "user-card">
+      <h3> <%= link_to event.name, event_path(event) %> </h3>
+      <p>event_type: <%= event.event_type %></p>
+      <p>place: <%= event.place %></p>
+      <p>starting at: <%= event.start_time.strftime("%B %d, %Y %A") %></p>
+    </div>
+  <% end %>
+ </div>
 
 <%= link_to "back home!", root_path %>
