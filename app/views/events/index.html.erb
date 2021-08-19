@@ -1,4 +1,6 @@
 <h1>Events#index</h1>
+<%= link_to "back home!", root_path %>
+<%= link_to 'Add an event', new_event_path,  class:"btn btn-primary"  %>
 <br>
 <% @events.each do |event| %>
   <h3> name: <%= link_to event.name, event_path(event) %> </h3>
@@ -7,5 +9,3 @@
   <p>starting at: <%= event.start_time.strftime("%B %d, %Y %A") %></p>
   <p>-----------</p>
 <% end %>
-
-<%= link_to "back home!", root_path %>

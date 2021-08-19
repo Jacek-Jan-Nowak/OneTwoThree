@@ -5,7 +5,6 @@
 <p>place: <%= @event.place.address %></p>
 <p>starting at: <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
 <p>-----------</p>
-
 <%= link_to "home", root_path, class:"btn btn-primary" %>
 <%= link_to "all events", events_path, class:"btn btn-primary" %>
-<%= link_to 'Add an event', new_event_path,  class:"btn btn-primary"  %>
+<%= link_to "invite a friend", new_event_invitation_path(@event), class:"btn btn-primary" %>
