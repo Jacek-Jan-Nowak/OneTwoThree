@@ -1,14 +1,20 @@
-<h1>Events#index</h1>
 <br>
-<div class="grid-container"></div>
-  <% @events.each do |event| %>
-    <div class = "user-card">
-      <h3> <%= link_to event.name, event_path(event) %> </h3>
-      <p>event_type: <%= event.event_type %></p>
-      <p>place: <%= event.place %></p>
-      <p>starting at: <%= event.start_time.strftime("%B %d, %Y %A") %></p>
-    </div>
-  <% end %>
+<div class="grid-container">
+  <h3>EVENTS AVAILABLE</h3>
+</div>
+
+<div class="main-container">
+  <div class="grid-container">
+    <% @events.each do |event| %>
+      <div class = "event-card">
+        <img src="https://via.placeholder.com/250">
+        <h3> <strong> <%= link_to event.name.truncate(30, separator: ' '), event_path(event) %> </strong> </h3>
+        <p>Event Type: <%= event.event_type %></p>
+        <p>Place: <strong> <%= event.place.name.truncate(27, separator: ' ') %> </strong> </p>
+        starting at: <strong> <%= event.start_time.strftime("%B %d, %Y %A") %> </strong>
+      </div>
+    <% end %>
+  </div>
  </div>
 
 <%= link_to "back home!", root_path %>

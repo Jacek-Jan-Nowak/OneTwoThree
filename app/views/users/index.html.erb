@@ -1,9 +1,19 @@
-<h1>Users#index</h1>
 <br>
-<% @users.each do |user| %>
-  <h1>  username: <%= link_to user.username, user_path(user) %></h1>
-  <p>email: <%= user.email %></p>
-  <p>-----------</p>
-<% end %>
+
+<div class="grid-container">
+  <h3>BUDDIES AVAILABLE</h3>
+</div>
+
+<div class="main-container">
+  <div class="grid-container">
+    <% @users.each do |user| %>
+      <div class="user-card">
+        <img src="https://via.placeholder.com/370">
+        <h1> <%= link_to user.username, user_path(user) %></h1>
+        <p> <%= user.email %></p>
+      </div>
+    <% end %>
+  </div>
+</div>  
 
 <%= link_to "back home!", root_path %>
