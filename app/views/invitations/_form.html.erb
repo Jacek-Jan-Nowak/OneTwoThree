@@ -1,4 +1,4 @@
-<%= simple_form_for(@invitation) do |f| %>
+<%= simple_form_for[ @event, @invitation ] do |f| %>
   <%= f.association :user %>
   <%= f.submit "Submit invitation", class: "btn btn-primary" %>
 <% end %>

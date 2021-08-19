@@ -1,6 +1,11 @@
 class InvitationsController < ApplicationController
-  before_action :find_invitation, only [:edit, :update, :destroy]
+  before_action :find_invitation, only: [:edit, :update, :destroy]
   before_action :set_event, except: [:destroy]
+
+  def index
+    @invitations = Invitation.all
+
+  end
 
   def new
     @invitation = Invitation.new
@@ -14,6 +19,7 @@ class InvitationsController < ApplicationController
     else
       render :new
     end
+  end
 
     def edit
     end
@@ -45,6 +51,6 @@ class InvitationsController < ApplicationController
 
     def invitation_params
       params.require(:review).permit(:event_id, :user_id)
-
+    end
 
 end
