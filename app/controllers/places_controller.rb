@@ -29,7 +29,7 @@ class PlacesController < ApplicationController
 
   def destroy
    @place.delete
-   rediret_to place_path
+   redirect_to place_path
   end
 
   private
