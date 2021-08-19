@@ -50,7 +50,7 @@ class InvitationsController < ApplicationController
     end
 
     def invitation_params
-      params.require(:review).permit(:event_id, :user_id)
+      params.require(:invitation).permit(:event_id, :user_id)
     end
 
 end

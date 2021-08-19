@@ -2,7 +2,7 @@
 <br>
 <h3> name: <%= @event.name %> </h3>
 <p>event_type: <%= @event.event_type %></p>
-<p>place: <%= @event.place %></p>
+<p>place: <%= @event.place.address %></p>
 <p>starting at: <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
 <p>-----------</p>
 
