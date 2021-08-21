@@ -1,1 +1,23 @@
-<h1>Hello Romeo!</h1>
+<div class="cover mb-4 d-flex align-items-center justify-content-center">
+  <div class="text-center text-white">
+    <h1>Save any kind of places</h1>
+    <h3 class="typed- js"></h3>
+  </div>
+</div>
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="mb-0">My Places</h3>
+    <%= link_to 'Create a place list' , new_place_path, class: 'btn btn-flat' %>
+  </div>
+  <div class="row">
+    <% @places.each do |place| %>
+    <div class="co-12 colms-6 col-md-4">
+      <%= link_to place_path(place), class: 'text-decoration-none' do %>
+        <div class="card-category" data-aos="zoom-in">
+        <%= place.name %>
+      </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+</div>
