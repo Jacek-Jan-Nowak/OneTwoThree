@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @event.invitations = Invitation.all
   end
 
   def show
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.place = @place
     @event.user = @user
+    @event.invitation = @invitation
     if @event.save
       redirect_to profile_path
     else
