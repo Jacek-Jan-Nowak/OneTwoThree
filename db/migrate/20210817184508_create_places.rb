@@ -3,7 +3,7 @@ class CreatePlaces < ActiveRecord::Migration[6.0]
     create_table :places do |t|
       t.string :name
       t.string :address
-      # t.references :user, foreign_key: true
+      t.references :owner, index: true, foreign_key: { to_table: :users }
 
       t.timestamps
     end

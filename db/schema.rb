@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.bigint "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_places_on_owner_id"
   end
 
   create_table "user_events", force: :cascade do |t|
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
 
   add_foreign_key "events", "places"
   add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "places", "users", column: "owner_id"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "invites"
   add_foreign_key "user_events", "users", column: "dancer_id"

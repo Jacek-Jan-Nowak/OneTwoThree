@@ -1,8 +1,10 @@
 class Event < ApplicationRecord
   belongs_to :place
 
-  has_many :dancers, class_name: "User"
+  has_many :dancers, class_name: "User", through: :user_events
   belongs_to :host, class_name: "User"
+
+  has_many :user_events
 
   has_many :invites, dependent: :destroy, through: :user_events
   validates :start_time, presence: true

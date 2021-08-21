@@ -32,6 +32,7 @@ puts 'Creating 10 places...'
     name: Faker::Quote.robin,
     address: Faker::Address.street_address,
     # user: User.find_by(is_pro?: true),
+    owner: User.all.sample,
   )
 end
 puts '10 places created!'
