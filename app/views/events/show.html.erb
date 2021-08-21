@@ -5,17 +5,34 @@
   <div class="event-wrapper">
     <br>
       <div class="event-info">
-        <h1> name: <%= @event.name %> </h1>
-        <p>event_type: <%= @event.event_type %></p>
-        <p>place: <%= @event.place.address %></p>
-        <p>starting at: <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
-        <p>-----------</p>
+        <h1><%= @event.name %> </h1>
+        <p><strong>Event type: </strong> <%= @event.event_type %></p>
+        <p><strong>Place: </strong> <%= @event.place.address %></p>
+        <p><strong>Starting at: </strong> <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
+        <div class="align-items-center d-flex">
+          <div class="user-avatar">
+            <img src="../../assets/dance.jpg" alt="" class="avatar">
+          </div>
+        <p>Host <%= @event.user.username %></p>
+        </div>
+    </div>
+    <div>
+      <h1>participants</h1>
+        <% @event.invitations.each do |invite| %>
+          <div class="d-flex my-3 align-items-center">
+            <div class="user-avatar">
+              <img src="../../assets/dance.jpg" alt="" class="avatar">
+            </div>
+            <h5><%= invite.user.username %></h5>
+          </div>
+        <% end %>
     </div>
     <div class="btn-container">
       <%= link_to "home", root_path, class:"btn btn-primary" %>
       <%= link_to "all events", events_path, class:"btn btn-primary" %>
       <%= link_to "invite a friend", new_event_invitation_path(@event), class:"btn btn-primary" %>
     </div>
+      
   </div>
 </div>
 
