@@ -5,21 +5,22 @@ User.destroy_all
 
 
 
-puts 'Creating 1 test user... pass testing'
+# puts 'Creating 1 test user... pass testing'
 
-User.create!(
-  email: "testing@testing.com",
-  username: "testing",
-  password: "testing"
-)
-puts 'TEST users created!'
+# User.create!(
+#   email: "testing@testing.com",
+#   username: "testing",
+#   password: "testing"
+# )
+# puts 'TEST users created!'
 
 puts 'Creating 10 fake users...'
-10.times do
+5.times do
   User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.name,
-    password: "testing"
+    password: "testing",
+    is_pro?: [true, false].sample
   )
 end
 puts '10 users created!'
@@ -30,6 +31,7 @@ puts 'Creating 10 places...'
   Place.create!(
     name: Faker::Quote.robin,
     address: Faker::Address.street_address,
+    # user: User.find_by(is_pro?: true),
   )
 end
 puts '10 places created!'
@@ -39,7 +41,7 @@ puts 'Creating 10 events...'
   Event.create!(
     name: Faker::Music::Opera.rossini,
     event_type: ["Lesson", "Event", "Booking"].sample,
-    user: User.all.sample,
+    host: User.all.sample,
     place: Place.all.sample,
     start_time: DateTime.new
   )
