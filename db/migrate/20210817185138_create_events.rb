@@ -5,9 +5,9 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :name
       t.datetime :start_time
       t.references :place, null: false, foreign_key: true
-      t.references :host
+      t.references :host, index: true, foreign_key: { to_table: :users }
+
       t.timestamps
     end
-    add_foreign_key :events, :users, column: :host_id, primary_key: :id
   end
 end

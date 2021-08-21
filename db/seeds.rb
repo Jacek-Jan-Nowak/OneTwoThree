@@ -15,7 +15,7 @@ User.destroy_all
 # puts 'TEST users created!'
 
 puts 'Creating 10 fake users...'
-2.times do
+5.times do
   User.create!(
     email: Faker::Internet.email,
     username: Faker::Name.name,
@@ -41,7 +41,7 @@ puts 'Creating 10 events...'
   Event.create!(
     name: Faker::Music::Opera.rossini,
     event_type: ["Lesson", "Event", "Booking"].sample,
-    host: User.last,
+    host: User.all.sample,
     place: Place.all.sample,
     start_time: DateTime.new
   )

@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.bigint "place_id", null: false
-    t.bigint "user_id"
     t.string "event_type"
     t.string "name"
     t.datetime "start_time"
+    t.bigint "place_id", null: false
+    t.bigint "host_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["host_id"], name: "index_events_on_host_id"
     t.index ["place_id"], name: "index_events_on_place_id"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -36,22 +36,20 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_places_on_user_id"
   end
 
-  create_table "user_event", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "user_events", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "invite_id", null: false
     t.boolean "is_confirmed?"
+    t.bigint "dancer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_user_event_on_event_id"
-    t.index ["invite_id"], name: "index_user_event_on_invite_id"
-    t.index ["user_id"], name: "index_user_event_on_user_id"
+    t.index ["dancer_id"], name: "index_user_events_on_dancer_id"
+    t.index ["event_id"], name: "index_user_events_on_event_id"
+    t.index ["invite_id"], name: "index_user_events_on_invite_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,9 +67,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
   end
 
   add_foreign_key "events", "places"
-  add_foreign_key "events", "users"
-  add_foreign_key "places", "users"
-  add_foreign_key "user_event", "events"
-  add_foreign_key "user_event", "invites"
-  add_foreign_key "user_event", "users"
+  add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "user_events", "events"
+  add_foreign_key "user_events", "invites"
+  add_foreign_key "user_events", "users", column: "dancer_id"
 end
