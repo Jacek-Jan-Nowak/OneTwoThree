@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    @event.invitations = Invitation.all
   end
 
   def show
