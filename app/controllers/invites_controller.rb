@@ -49,7 +49,7 @@ class InvitesController < ApplicationController
     end
 
     def invite_params
-      params.require(:invite).permit(:event_id, :user_id)
+      params.require(:invite).permit(:event_id, :invite_id, :message, dancer_id: [])
     end
 
 end
