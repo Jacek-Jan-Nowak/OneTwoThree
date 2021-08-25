@@ -6,5 +6,9 @@
 <p>email: <%= @user.email %></p>
 
 <%= link_to "home", root_path, class:"btn btn-primary" %>
+<% if params.include?(:event_id) %>
+<%= link_to "back to buddies", event_users_path, class:"btn btn-primary"  %>
+<% else %>
 <%= link_to "all buddies", users_path, class:"btn btn-primary" %>
-<%= link_to "invite do dance", user_events_path(@user), class:"btn btn-danger" %>
+<% end %>
+<%= link_to "invite to dance", user_events_path(@user), class:"btn btn-danger" %>
