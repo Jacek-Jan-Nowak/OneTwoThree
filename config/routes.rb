@@ -9,11 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events do
-    resources :users, except: [:destroy] do
-      resources :invites, except: [:destroy]
-    end
+resources :events do
+  resources :users, except: [:destroy] do
+    resources :invites, except: [:destroy]
   end
+end
 
 
 
