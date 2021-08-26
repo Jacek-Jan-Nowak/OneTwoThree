@@ -1,6 +1,5 @@
 class InvitesController < ApplicationController
-  before_action :find_invite, only: [:edit, :update, :destroy]
-  before_action :set_event, except: [:destroy]
+  before_action :find_event, except: [:destroy]
 
   def index
     @invites = Invite.all
@@ -11,8 +10,9 @@ class InvitesController < ApplicationController
   end
 
   def create
+    @user_event = UserEvent.new
     @invite = Invite.create(invite_params)
-    @invite.event = @event
+    raise
     if @invite.save
       # redirect_to event_user_invites_path([ @event, @user, @invite ])
     else
@@ -26,7 +26,7 @@ class InvitesController < ApplicationController
     def update
       @invite.update(invite_params)
       if @Invite.save
-        redirect_to event_path(@event)
+        # redirect_to event_path(@event)
       else
         render :edit
       end
@@ -35,21 +35,18 @@ class InvitesController < ApplicationController
     def destroy
       @invite.delete
       @event = @invite.event
-      redirect_to event_path(@event)
+      # redirect_to event_path(@event)
     end
 
     private
 
-    def find_invite
-      @invite = Invite.find(params[:id])
-    end
 
-    def set_event
+    def find_event
       @event = Event.find(params[:event_id])
     end
 
     def invite_params
-      params.require(:invite).permit(:event_id, :invite_id, :message, dancer_id: [])
+      params.require(:invite).permit(:event_id, :message, dancer_id: [])
     end
 
 end

@@ -16,11 +16,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.place = @place
-    @event.user = @user
-    @event.invitation = @invitation
     if @event.save
-      redirect_to profile_path
+      # redirect_to profile_path
     else
       render :new
     end
@@ -42,6 +39,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:event_type, :start_time, :place_id)
+    params.require(:event).permit(:event_type, :start_time, :place_id, :host_id, dancer_id: [])
   end
 end

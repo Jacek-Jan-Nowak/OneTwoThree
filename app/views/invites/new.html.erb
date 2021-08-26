@@ -1,2 +1,4 @@
-<%= render "form", event: @event, dancer: @dancer, invite: @invite %>
-<%# <%= link_to "back to event", (@event), class:"btn btn-primary my-3"%> %>
+<%= simple_form_for @invite, url: event_user_invites_path, method: :post do |f| %>
+  <%= f.input :message, as: :text, input_html: {rows: 10, cols: 10} %>
+  <%= f.submit "Submit invite", class: "btn btn-primary" %>
+<% end %>
