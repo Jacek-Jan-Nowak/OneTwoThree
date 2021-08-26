@@ -1,5 +1,9 @@
 class UserEventsController < ApplicationController
 
+  def index
+    @user_events = UserEvent.all
+  end
+
   def new
     @user_event = UserEvent.new
   end
