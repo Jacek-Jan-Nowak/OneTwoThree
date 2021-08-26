@@ -3,22 +3,24 @@ Place.destroy_all
 Event.destroy_all
 User.destroy_all
 
+Faker::Config.locale 
 
 
-# puts 'Creating 1 test user... pass testing'
+puts 'Creating 1 test user... pass testing'
 
-# User.create!(
-#   email: "testing@testing.com",
-#   username: "testing",
-#   password: "testing"
-# )
-# puts 'TEST users created!'
+User.create!(
+  email: "testing@testing.com",
+  username: "testing",
+  password: "testing",
+  is_pro?: true
+)
+puts 'TEST users created!'
 
-puts 'Creating 10 fake users...'
-5.times do
+puts 'Creating 20 fake users...'
+20.times do
   User.create!(
     email: Faker::Internet.email,
-    username: Faker::Name.name,
+    username: Faker::Internet.username,
     password: "testing",
     is_pro?: [true, false].sample
   )
@@ -48,3 +50,24 @@ puts 'Creating 10 events...'
   )
 end
 puts '10 events created!'
+
+puts 'Creating invitations...'
+
+20.times do
+  Invite.create!(
+    message: Faker::Marketing.buzzwords
+  )
+end
+
+puts 'Invitations crated!'
+
+puts 'Creating user_events...'
+ 40.times do
+  UserEvent.create!(
+    event: Event.all.sample,
+    invite: Invite.all.sample,
+    is_confirmed?: [true, false].sample,
+    dancer: User.all.sample
+  )
+ end
+puts 'User_Events created!'
