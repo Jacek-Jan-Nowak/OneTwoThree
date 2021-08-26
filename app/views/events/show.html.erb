@@ -1,4 +1,4 @@
-<%= link_to "Create invitation", new_user_event_invite_path(@user, @event), class:"btn btn-danger" %>
+<%= link_to "Create invitation", new_user_event_invite_path(params[:user_id], params[:id]), class:"btn btn-danger" %>
 <div class="show-container">
   <div class="event-image">
     <img src="../../assets/dance.jpg" alt="" class="dance-img">
