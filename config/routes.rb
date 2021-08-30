@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   
   root to: 'pages#home'
 
-  resources :user_events, except: [:destroy]
-  get 'user_events/show', to: 'tasks#new', as: :new_task
-
-
+  
+  
   
   resources :users do
     resources :events, except: [:destroy] do
@@ -14,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :user_events, except: [:destroy]
 
 
 resources :events do

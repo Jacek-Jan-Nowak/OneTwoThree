@@ -18,7 +18,7 @@ class InvitesController < ApplicationController
     create_user_event(params[:event_id], current_user.id, @invite)
 
     if @invite.save && @user_event.save
-      redirect_to user_event_path(@user_event)
+      redirect_to root_path(@user_event)
     else
       render :new
     end
