@@ -6,19 +6,22 @@ class InvitesController < ApplicationController
 
   def new
     @invite = Invite.new
+
+  
   end
 
   def create
     @invite = Invite.create(invite_params)
 
-    #this will create user_event for the dancer
-    create_user_event(params[:event_id], params[:user_id], @invite)
+    #this will create events_user for the dancer
+    create_events_user(params[:event_id], params[:user_id], @invite)
 
-    #this will create user_event for the current user
-    create_user_event(params[:event_id], current_user.id, @invite)
+    #this will create events_user for the current user
+    create_events_user(params[:event_id], current_user.id, @invite)
 
-    if @invite.save && @user_event.save
-      redirect_to root_path(@user_event)
+
+    if @invite.save && @events_user.save
+      redirect_to root_path(@events_user)
     else
       render :new
     end
@@ -44,22 +47,22 @@ class InvitesController < ApplicationController
 
   private
   
-  def  create_user_event(event_id, user_id, invite)
-    @user_event = UserEvent.new
-    @user_event.invite = invite
-    @user_event.event = Event.find(event_id)
-    @user_event.dancer = User.find(user_id)
-    @user_event.save
+  def  create_events_user(user_id, event_id, invite)
+    @events_user = EventsUser.new
+    @events_user.invite = invite
+    @events_user.event = Event.find(event_id)
+    @events_user.dancer = User.find(user_id)
+    @events_user.save
   end
 
 
   # mike will work on this later on
-  # def  create_current_user_event
-  #   @user_event = UserEvent.new
-  #   @user_event.invite = @invite
-  #   @user_event.event = Event.find(params[:event_id])
-  #   @user_event.organiser = User.find(current_user)
-  #   @user_event.save
+  # def  create_current_events_user
+  #   @events_user = UserEvent.new
+  #   @events_user.invite = @invite
+  #   @events_user.event = Event.find(params[:event_id])
+  #   @events_user.organiser = User.find(current_user)
+  #   @events_user.save
   # end
   
 
