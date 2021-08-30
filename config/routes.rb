@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :user_events, except: [:destroy]
+  resources :events_users, except: [:destroy]
 
 
 resources :events do

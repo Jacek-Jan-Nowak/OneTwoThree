@@ -61,9 +61,9 @@ end
 
 puts 'Invitations crated!'
 
-puts 'Creating user_events...'
+puts 'Creating events_users...'
  40.times do
-  UserEvent.create!(
+  EventsUser.create!(
     event: Event.all.sample,
     invite: Invite.all.sample,
     is_confirmed?: [true, false].sample,

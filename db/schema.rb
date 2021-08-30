@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
     t.index ["place_id"], name: "index_events_on_place_id"
   end
 
+  create_table "events_users", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "invite_id", null: false
+    t.boolean "is_confirmed?"
+    t.bigint "dancer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dancer_id"], name: "index_events_users_on_dancer_id"
+    t.index ["event_id"], name: "index_events_users_on_event_id"
+    t.index ["invite_id"], name: "index_events_users_on_invite_id"
+  end
+
   create_table "invites", force: :cascade do |t|
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
@@ -40,18 +52,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_places_on_owner_id"
-  end
-
-  create_table "user_events", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "invite_id", null: false
-    t.boolean "is_confirmed?"
-    t.bigint "dancer_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["dancer_id"], name: "index_user_events_on_dancer_id"
-    t.index ["event_id"], name: "index_user_events_on_event_id"
-    t.index ["invite_id"], name: "index_user_events_on_invite_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
 
   add_foreign_key "events", "places"
   add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "events_users", "events"
+  add_foreign_key "events_users", "invites"
+  add_foreign_key "events_users", "users", column: "dancer_id"
   add_foreign_key "places", "users", column: "owner_id"
-  add_foreign_key "user_events", "events"
-  add_foreign_key "user_events", "invites"
-  add_foreign_key "user_events", "users", column: "dancer_id"
 end
