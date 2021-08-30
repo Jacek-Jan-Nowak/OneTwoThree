@@ -17,7 +17,7 @@ class InvitesController < ApplicationController
     create_events_user(params[:event_id], params[:user_id], @invite)
 
     #this will create events_user for the current user
-    create_events_user(params[:event_id], current_user.id, @invite)
+    # create_events_user(params[:event_id], current_user.id, @invite)
 
 
     if @invite.save && @events_user.save
@@ -49,7 +49,7 @@ class InvitesController < ApplicationController
   
   def  create_events_user(user_id, event_id, invite)
     @events_user = EventsUser.new
-    @events_user.invite = invite
+    @events_user.invite = @invite
     @events_user.event = Event.find(event_id)
     @events_user.dancer = User.find(user_id)
     @events_user.save
