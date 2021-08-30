@@ -8,6 +8,10 @@ class UserEventsController < ApplicationController
     @user_event = UserEvent.new
   end
   
+  def show
+    @user_event = UserEvent.find(params[:id])
+  end
+
   def create
     @user_event = UserEvent.new(user_events_params)
     # @invite = Invite.new(invite_params)
