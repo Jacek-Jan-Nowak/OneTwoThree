@@ -1,10 +1,10 @@
 class InvitesController < ApplicationController
-before_action :set_user
-before_action :set_event
-before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
+  before_action :set_event
+  before_action :set_invite, only: [:show, :edit, :update, :destroy]
 
   def index
-    @invites = Invite.all
+    @invites = @event.invites
     @events_users = EventsUser.all 
     @user = current_user
   end
