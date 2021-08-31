@@ -21,14 +21,14 @@
     </div>
     <div>
       <h1>participants</h1>
-       <%#  @event.invites.each do |invite| %>
+       <%  @event.events_users.each do |invite| %>
           <div class="d-flex my-3 align-items-center">
             <div class="user-avatar">
               <img src="../../assets/dance.jpg" alt="" class="avatar">
             </div>
-            <%# <h5><%= invite.user.username </h5> %>
+            <h5><%= invite.dancer.username %></h5> 
           </div>
-        <%#  <% end %>
+          <% end %>
     </div>
     <div class="btn-container">
       <%= link_to "home", root_path, class:"btn btn-primary" %>
