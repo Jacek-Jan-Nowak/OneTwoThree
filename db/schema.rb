@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 2021_08_26_202131) do
     t.bigint "host_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "latitude"
-    t.float "longitude"
     t.index ["host_id"], name: "index_events_on_host_id"
     t.index ["place_id"], name: "index_events_on_place_id"
   end

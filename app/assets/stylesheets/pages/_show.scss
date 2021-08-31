@@ -28,3 +28,15 @@
     position: absolute;
     bottom: 0;
 }
+
+.centered-container{
+    margin: 0 auto;
+    height: 80vh;
+    width: 80vw;
+    div{
+        text-align: center;
+        width: 60%;
+        height: 65%;
+        margin: 0 auto;
+    }
+}
