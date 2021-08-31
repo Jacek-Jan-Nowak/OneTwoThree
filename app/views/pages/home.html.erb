@@ -2,3 +2,12 @@
 <p>Find me in app/views/pages/home.html.erb</p>
 <%= link_to "find a buddie!", users_path, class:"btn btn-primary" %>
 <%= link_to "find events!", events_path, class:"btn btn-primary" %>
+<%= form_tag users_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Search here..."
+  %>
+  <%= select_tag "options", options_for_select(['Buddies', 'Events'], 'Buddies') %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>

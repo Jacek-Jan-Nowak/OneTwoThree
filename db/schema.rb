@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_201039) do
+ActiveRecord::Schema.define(version: 2021_08_26_202131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
     t.bigint "host_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["host_id"], name: "index_events_on_host_id"
     t.index ["place_id"], name: "index_events_on_place_id"
   end
@@ -39,6 +41,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
     t.bigint "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["owner_id"], name: "index_places_on_owner_id"
   end
 
@@ -64,6 +68,9 @@ ActiveRecord::Schema.define(version: 2021_08_17_201039) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.boolean "is_pro?", default: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
