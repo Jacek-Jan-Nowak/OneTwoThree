@@ -1,4 +1,12 @@
-<%= simple_form_for @invite, url: user_event_invites_path(params[:event_id], params[:user_id]), method: :post do |f| %>
-  <%= f.input :message, as: :text, input_html: {rows: 10, cols: 10} %>
-  <%= f.submit "Submit invite", class: "btn btn-primary" %>
-<% end %>
+<%= render 'form', user: @user, event: @event %>
+
+
+<%#= simple_form_for @invite, url: new_user_event_invites_path(params[:event_id], params[:user_id]), method: :post do |f| %>
+  <%#= f.input :message, as: :text, input_html: {rows: 10, cols: 10} %>
+  <%#= f.submit "Submit invite", class: "btn btn-primary" %>
+<%# end %>
+
+<%#= simple_form_for @invite, url:  new_event_user_invite_path(params[:event_id], params[:user_id]), method: :post do |f| %>
+  <%#= f.input :message, as: :text, input_html: {rows: 10, cols: 10} %>
+  <%#= f.submit "Submit invite", class: "btn btn-primary" %>
+<%# end %>
