@@ -11,4 +11,8 @@
 <% else %>
 <%= link_to "all buddies", users_path, class:"btn btn-primary" %>
 <% end %>
+<% if params[:event_id] %>
+<%= link_to "Invite to this event", new_event_user_invite_path( params[:event_id], params[:id]), class:"btn btn-danger" %>
+<% else %>
 <%= link_to "invite to dance", user_events_path(@user), class:"btn btn-danger" %>
+<% end%>

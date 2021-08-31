@@ -1,4 +1,6 @@
 class InvitesController < ApplicationController
+before_action :set_user
+before_action :set_event
 
   def index
     @invites = Invite.all
@@ -14,7 +16,7 @@ class InvitesController < ApplicationController
     @invite = Invite.create(invite_params)
 
     #this will create events_user for the dancer
-    create_events_user(params[:event_id], params[:user_id], @invite)
+    create_events_user(params[:user_id], params[:event_id], @invite)
 
     #this will create events_user for the current user
     # create_events_user(params[:event_id], current_user.id, @invite)
@@ -56,6 +58,13 @@ class InvitesController < ApplicationController
   end
 
 
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
   # mike will work on this later on
   # def  create_current_events_user
   #   @events_user = UserEvent.new
