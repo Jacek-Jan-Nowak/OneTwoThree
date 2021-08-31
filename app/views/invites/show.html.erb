@@ -1,4 +1,8 @@
-<%= @invite.id %>
-<% @invite.each do |invite| %>
-  <%= invite.dancer.name %>
+<p><%= @invite.id %></p>
+
+<h5><%= @invite.message %></h5> 
+<% @invite.events_users.each do |events_user| %>
+<%= link_to user_path(events_user.dancer) do %>
+    <p><%= events_user.dancer.username %></p>
+<% end %>
 <% end %>

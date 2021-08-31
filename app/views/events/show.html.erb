@@ -22,12 +22,14 @@
     <div>
       <h1>participants</h1>
        <%  @event.events_users.each do |invite| %>
+       <%= link_to user_path(invite.dancer) do %>
           <div class="d-flex my-3 align-items-center">
             <div class="user-avatar">
               <img src="../../assets/dance.jpg" alt="" class="avatar">
             </div>
             <h5><%= invite.dancer.username %></h5> 
           </div>
+          <% end %>
           <% end %>
     </div>
     <div class="btn-container">
@@ -38,6 +40,7 @@
         <%= link_to "all events", events_path, class:"btn btn-primary" %>
       <% end %>
       <%= link_to "invite a friend", event_users_path(@event), class:"btn btn-primary" %>
+      <%= link_to "all invitations for this event", user_event_invites_path(@user, @event), class:"btn btn-primary"  %>
     </div>
       
   </div>

@@ -1,0 +1,10 @@
+<h3>Note that this is a list of ALL INVITES for ALL EVENTS.</h3>
+<%  @invites.each do |invite| %>
+    <%#= if invite.events_users.event = @event_id %>
+  <%= link_to user_event_invite_path(@user, @event, invite) do %>
+    <div class="d-flex my-3 align-items-center">
+      <h5><%= invite.message %></h5> 
+    </div>
+   <% end %>
+<%# end %>
+<% end %>
