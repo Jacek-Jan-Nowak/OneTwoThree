@@ -1,15 +1,17 @@
 class InvitesController < ApplicationController
 before_action :set_user
 before_action :set_event
+before_action :set_invite, only: [:show, :edit, :update, :destroy]
 
   def index
     @invites = Invite.all
+    @events_users = EventsUser.all 
+    @user = current_user
   end
 
   def new
     @invite = Invite.new
 
-  
   end
 
   def create
@@ -30,6 +32,10 @@ before_action :set_event
   end
 
   def edit
+  end
+
+  def show
+    @user = current_user
   end
 
   def update
@@ -64,6 +70,10 @@ before_action :set_event
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_invite
+    @invite = Invite.find(params[:id])
   end
   # mike will work on this later on
   # def  create_current_events_user
