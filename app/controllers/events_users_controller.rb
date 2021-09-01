@@ -1,4 +1,4 @@
-class UserEventsController < ApplicationController
+class EventsUsersController < ApplicationController
 
 #   def index
 #     @user_events = UserEvent.all
