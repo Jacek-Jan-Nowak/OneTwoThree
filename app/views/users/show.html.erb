@@ -1,10 +1,13 @@
-<h1>Users#show</h1>
-
-<p>Find me in app/views/users/show.html.erb</p>
-
-<p>username: <%= @user.username %></p>
+<div class="centered-container">
+<div class="wrapper">
+<div class="user-card">
+<img src="../../assets/dance.jpg" alt="">
+</div>
+<div>
+<h1>Username: <%= @user.username %></h1>
 <p>email: <%= @user.email %></p>
-
+</div>
+<div>
 <%= link_to "home", root_path, class:"btn btn-primary" %>
 <% if params.include?(:event_id) %>
 <%= link_to "back to buddies", event_users_path, class:"btn btn-primary"  %>
@@ -16,3 +19,6 @@
 <% else %>
 <%= link_to "invite to dance", user_events_path(@user), class:"btn btn-danger" %>
 <% end%>
+</div>
+</div>
+</div>
