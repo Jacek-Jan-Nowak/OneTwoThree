@@ -12,7 +12,7 @@
 <div class="main-container">
   <div class="grid-container">
     <% @events.each do |event| %>
-      <div class = "event-card">
+      <div class = "event-card" data-tilt>
         <img src="https://via.placeholder.com/250">
         <%if params.include?(:user_id) %>
         <h3> <strong> <%= link_to event.name, user_event_path(params[:user_id], event) %></strong></h3>

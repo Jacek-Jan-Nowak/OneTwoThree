@@ -7,7 +7,7 @@ font-size: 12vmin;
 letter-spacing: 15px;
 font-family: Arial, Helvetica, sans-serif;
 outline: none;
-transform: translateZ(20px);
+transform: translateZ(50px);
 text-shadow:
 0 0 7px #fff,
 0 0 10px #fff,
@@ -50,6 +50,7 @@ transform: translateZ(20px)
   display: flex;
   align-items: center;
   justify-content: space-around;
+  transform-style: preserve-3d;
   transform: translateZ(20px)
 }
 
