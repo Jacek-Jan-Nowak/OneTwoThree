@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :events, class_name: "Event", foreign_key: "host_id"
   has_many :events_users, class_name: "EventUser", foreign_key: "dancer_id"
   has_many :places, class_name: "Place", foreign_key: "owner_id"
+  has_many :events, through: :events_users
 
 
   has_many :invites, through: :events_users
