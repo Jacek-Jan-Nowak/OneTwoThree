@@ -1,8 +1,12 @@
+<div class="container">
 <p><%= @invite.id %></p>
 
 <h5><%= @invite.message %></h5> 
 <% @invite.events_users.each do |events_user| %>
-<%= link_to user_path(events_user.dancer) do %>
-    <p><%= events_user.dancer.username %></p>
+  <%= link_to user_path(events_user.dancer) do %>
+    <p> dancer: <%= events_user.dancer.username %></p>
+  <% end %>
 <% end %>
-<% end %>
+    <%= link_to "back to invites", user_event_invites_path(@user, @event, @invite), class:"btn btn-primary" %>
+
+</div>

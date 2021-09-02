@@ -1,9 +1,16 @@
-<%  @invites.each do |invite| %>
-    <%#= if invite.events_users.event = @event_id %>
-  <%= link_to user_event_invite_path(@user, @event, invite) do %>
-    <div class="d-flex my-3 align-items-center">
-      <h5><%= invite.message %></h5> 
+<div class="invite-container">
+  <div>
+  <h1>Invitations:</h1>
+  </div>
+  <%  @invites.each do |invite| %>
+    <div class="invite-card">
+    <%= link_to user_event_invite_path(@user, @event, invite) do %>
+      <h4><%= invite.message %></h4> 
     </div>
-   <% end %>
-<%# end %>
-<% end %>
+    <% end %>
+  <% end %>
+  <div class="container">
+    <%= link_to "back home!", root_path, class:"btn btn-primary", style:"margin-right:30px" %>
+    <%= link_to 'back to users', users_path,  class:"btn btn-primary"  %>
+    </div>
+</div>
