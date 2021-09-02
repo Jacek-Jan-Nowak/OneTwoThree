@@ -12,7 +12,8 @@ User.create!(
   email: "testing@testing.com",
   username: "testing",
   password: "testing",
-  is_pro?: true
+  is_pro?: true,
+  role: ["lead", "follower", "lead/follower"].sample
 )
 puts 'TEST users created!'
 
@@ -22,7 +23,8 @@ puts 'Creating 20 fake users...'
     email: Faker::Internet.email,
     username: Faker::Internet.username,
     password: "testing",
-    is_pro?: [true, false].sample
+    is_pro?: [true, false].sample,
+    role: ["lead", "follower", "lead/follower"].sample
   )
 end
 puts '10 users created!'
@@ -46,7 +48,7 @@ puts 'Creating 10 events...'
     event_type: ["Lesson", "Event", "Booking"].sample,
     host: User.all.sample,
     place: Place.all.sample,
-    start_time: DateTime.new
+    start_time: rand(1..100).days.from_now
   )
 end
 puts '10 events created!'
@@ -62,7 +64,7 @@ end
 puts 'Invitations crated!'
 
 puts 'Creating events_users...'
- 40.times do
+ 20.times do
   EventsUser.create!(
     event: Event.all.sample,
     invite: Invite.all.sample,

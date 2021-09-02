@@ -1,2 +1,5 @@
-<%= render "form", event: @event, place: @place %>
-<%= link_to "back!", events_path %>
+<div class="container">
+  <%= render "form", event: @event, place: @place %>
+  <br>
+  <%= link_to "back!", events_path, class:"btn btn-primary" %>
+</div>

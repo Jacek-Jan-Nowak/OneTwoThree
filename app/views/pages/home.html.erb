@@ -1,18 +1,21 @@
 <div class="home-container">
   <div class="home-card">
     <div>
-      <h1 id="dancing_buddies">DANCING BUDDIES</h1>
+      <h1 id="dancing_buddies">Let's</h1>
+      <h1 id="dancing_buddies">dance?</h1>
     </div>
     <div class="home_search_bar">
+    
       <%= form_tag users_path, method: :get do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
             placeholder: "Search here..."
           %>
-          <%= select_tag "options", options_for_select(['Buddies', 'Events'], 'Buddies') %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
+          <%# <%= select_tag "options", options_for_select(['Buddies', 'Events'], 'Buddies') %>
+          <%#= submit_tag "Search", class: "btn btn-primary" %>
         <% end %>
+
     </div>
     <div class="home_buttons">
       <div class="main_BUDDY">

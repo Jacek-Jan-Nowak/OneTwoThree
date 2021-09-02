@@ -3,17 +3,31 @@
 <div class="grid-container">
   <h3>BUDDIES AVAILABLE</h3>
 </div>
+<div class="container d-flex", style="	justify-content: center; align-items: center">
+    <%= link_to "back home!", root_path, class:"btn btn-primary", style:"margin-right:30px" %>
+</div>
+
+
+
+
+
 <div class="main-container">
   <div class="grid-container">
     <% @users.each do |user| %>
       <div class="user-card" data-tilt>
         <img src="https://via.placeholder.com/370">
         <%if params.include?(:event_id)  %>
-        <h1> <%= link_to user.username, event_user_path(params[:event_id], user) %></h1>
+          <h1> <%= link_to user.username, event_user_path(params[:event_id], user) %></h1>
         <%else %>
-        <h1> <%= link_to user.username, user_path(user) %></h1>
+         <h1> <%= link_to user.username, user_path(user) %></h1>
         <%end  %>
         <p> <%= user.email %></p>
+
+        <% if user.role %>
+         <p>role: <%= user.role %> </p>
+        <% else %>
+          <p>role not specified</p>
+        <% end %>
       </div>
     <% end %>
   </div>
