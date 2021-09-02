@@ -1,9 +1,9 @@
-<% if params[:user_id] %>
-<%= link_to "Create invitation", new_user_event_invite_path(params[:user_id], params[:id]), class:"btn btn-danger" %>
-<% end%>
+
 <div class="show-container">
   <div class="event-image">
-    <img src="../../assets/dance.jpg" alt="" class="dance-img">
+    <img src="https://via.placeholder.com/750" alt="" class="dance-img">
+
+    
   </div>
   <div class="event-wrapper">
     <br>
@@ -19,8 +19,12 @@
         <%# <p>@event.dancer.username </p> %>
         </div>
     </div>
+      <% if params[:user_id] %>
+        <%= link_to "Create invitation", new_user_event_invite_path(params[:user_id], params[:id]), class:"btn btn-danger" %>
+      <% end%>
     <div>
-      <h1>participants</h1>
+      <br>
+      <h1>Participants</h1>
        <%  @event.events_users.each do |invite| %>
        <%= link_to user_path(invite.dancer) do %>
           <div class="d-flex my-3 align-items-center">

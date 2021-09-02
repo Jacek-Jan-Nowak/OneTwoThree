@@ -23,9 +23,8 @@ class InvitesController < ApplicationController
     #this will create events_user for the current user
     # create_events_user(params[:event_id], current_user.id, @invite)
 
-
-    if @invite.save && @events_user.save
-      redirect_to root_path(@events_user)
+    if @invite.save
+      redirect_to user_event_invites_path(@user, @event)
     else
       render :new
     end
