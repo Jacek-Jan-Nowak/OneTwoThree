@@ -3,11 +3,15 @@ class EventsController < ApplicationController
   before_action :set_user
 
   def index
-    if params[:query].present?
-      @events = Event.near(params[:query], 10)
-    else
-      @events = Event.all
+    # if params[:query].present?
+    #   @events = Event.near(params[:query], 10)
+    # else
+    #   @events = Event.all
+    # end
+    if params[:user].present?
+      @invitee = params[:user]
     end
+    @events = Event.all
   end
 
   def show
