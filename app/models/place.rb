@@ -5,4 +5,6 @@ class Place < ApplicationRecord
     belongs_to :owner, class_name: "User"
     validates :name, presence: true
     validates :address, presence: true
+    include PgSearch::Model
+    multisearchable against: [:address]
 end

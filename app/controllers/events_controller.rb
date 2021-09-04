@@ -3,11 +3,10 @@ class EventsController < ApplicationController
   before_action :set_user
 
   def index
-    # if params[:query].present?
-    #   @events = Event.near(params[:query], 10)
-    # else
-    #   @events = Event.all
-    # end
+    if params[:query].present?
+      @events = PgSearch.multisearch(params[:query])
+    else
+      @events = Event.all
     if params[:user].present?
       @invitee = params[:user]
     end

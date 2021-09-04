@@ -6,14 +6,18 @@
     </div>
     <div class="home_search_bar">
     
-      <%= form_tag users_path, method: :get do %>
+      <%= form_tag search_index_path, method: :get do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
             placeholder: "Search here..."
           %>
-          <%# <%= select_tag "options", options_for_select(['Buddies', 'Events'], 'Buddies') %>
-          <%#= submit_tag "Search", class: "btn btn-primary" %>
+          <%= select_tag "options", options_for_select(['Buddies', 'Events'], ''), class:"select-options"%>
+          <%= label_tag "Buddies" %>
+          <%# <%= check_box("Buddies", @user, {checked: false}) %>
+          <%# <%= label_tag "Events" %> 
+          <%#= check_box("events", @event, {checked: false}) %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
         <% end %>
 
     </div>
