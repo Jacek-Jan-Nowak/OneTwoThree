@@ -7,8 +7,13 @@ class User < ApplicationRecord
   has_many :events_users, class_name: "EventUser", foreign_key: "dancer_id"
   has_many :places, class_name: "Place", foreign_key: "owner_id"
   has_many :events, through: :events_users
-
-
+  include PgSearch::Model
+  pg_search_scope :search_by_address,
+    against: [ :address ],
+    using: {
+      tsearch: { prefix: true }
+    }
+  
   has_many :invites, through: :events_users
   # has_many :places, dependent: :destroy
   devise :database_authenticatable, :registerable,

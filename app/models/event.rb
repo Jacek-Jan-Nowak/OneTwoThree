@@ -3,7 +3,8 @@ class Event < ApplicationRecord
 
   has_many :dancers, class_name: "User", through: :events_users
   belongs_to :host, class_name: "User"
-
+  include PgSearch::Model
+  multisearchable against: [:address]
   has_many :events_users
 
   has_many :invites, dependent: :destroy, through: :events_users

@@ -1,10 +1,7 @@
 class UsersController < ApplicationController
   def index
     if params[:query].present?
-      if params[:options].include?('Events')
-        redirect_to events_path(params[:query])
-      end
-      @users = User.near(params[:query], 10)
+      @users = User.search_by_address(params[:query])
     else
       @users = User.all
     end

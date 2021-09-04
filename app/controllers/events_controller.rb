@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.near(params[:query], 10)
+      @events = PgSearch.multisearch(params[:query])
     else
       @events = Event.all
     end
