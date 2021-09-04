@@ -1,5 +1,7 @@
 class Invite < ApplicationRecord
-  has_many :dancers, class_name: "User", through: :events_users
-  has_many :events_users
-  has_many :events, through: :events_users
+  belongs_to :invitee, class_name: "User"
+  belongs_to :inviter, class_name: "User"
+  belongs_to :group
+
+  # has_many :events, through: :groups
 end

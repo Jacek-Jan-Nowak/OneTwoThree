@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_02_134656) do
+ActiveRecord::Schema.define(version: 2021_09_04_160133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,22 +27,25 @@ ActiveRecord::Schema.define(version: 2021_09_02_134656) do
     t.index ["place_id"], name: "index_events_on_place_id"
   end
 
-  create_table "events_users", force: :cascade do |t|
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
     t.bigint "event_id", null: false
-    t.bigint "invite_id", null: false
-    t.boolean "is_confirmed?"
-    t.bigint "dancer_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["dancer_id"], name: "index_events_users_on_dancer_id"
-    t.index ["event_id"], name: "index_events_users_on_event_id"
-    t.index ["invite_id"], name: "index_events_users_on_invite_id"
+    t.bigint "owner_id"
+    t.index ["event_id"], name: "index_groups_on_event_id"
+    t.index ["owner_id"], name: "index_groups_on_owner_id"
   end
 
   create_table "invites", force: :cascade do |t|
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "invitee_id"
+    t.bigint "inviter_id"
+    t.boolean "confirmed?", default: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_invites_on_group_id"
+    t.index ["invitee_id"], name: "index_invites_on_invitee_id"
+    t.index ["inviter_id"], name: "index_invites_on_inviter_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -76,8 +79,9 @@ ActiveRecord::Schema.define(version: 2021_09_02_134656) do
 
   add_foreign_key "events", "places"
   add_foreign_key "events", "users", column: "host_id"
-  add_foreign_key "events_users", "events"
-  add_foreign_key "events_users", "invites"
-  add_foreign_key "events_users", "users", column: "dancer_id"
+  add_foreign_key "groups", "events"
+  add_foreign_key "groups", "users", column: "owner_id"
+  add_foreign_key "invites", "users", column: "invitee_id"
+  add_foreign_key "invites", "users", column: "inviter_id"
   add_foreign_key "places", "users", column: "owner_id"
 end
