@@ -2,6 +2,9 @@ puts "Resetting database"
 Place.destroy_all
 Event.destroy_all
 User.destroy_all
+Invite.destroy_all
+Group.destroy_all
+
 
 Faker::Config.locale 
 
@@ -17,8 +20,8 @@ User.create!(
 )
 puts 'TEST users created!'
 
-puts 'Creating 20 fake users...'
-20.times do
+puts 'Creating 10 fake users...'
+10.times do
   User.create!(
     email: Faker::Internet.email,
     username: Faker::Internet.username,
@@ -45,7 +48,7 @@ puts 'Creating 10 events...'
 10.times do 
   Event.create!(
     name: Faker::Music::Opera.rossini,
-    event_type: ["Lesson", "Event", "Booking"].sample,
+    event_type: ["Lesson", "Event"].sample,
     host: User.all.sample,
     place: Place.all.sample,
     start_time: rand(1..100).days.from_now
@@ -53,23 +56,27 @@ puts 'Creating 10 events...'
 end
 puts '10 events created!'
 
+puts 'creating 10 groups!'
+10.times do
+  Group.create!(
+    name: Faker::Marketing.buzzwords,
+    event: Event.all.sample,
+    owner: User.all.sample,
+  )
+end
+
 puts 'Creating invitations...'
 
-20.times do
+
+10.times do
   Invite.create!(
+    inviter: User.all.sample,
+    invitee: User.all.sample,
+    confirmed?: true,
+    group: Group.all.sample,
     message: Faker::Marketing.buzzwords
   )
 end
 
-puts 'Invitations crated!'
-
-puts 'Creating events_users...'
- 20.times do
-  EventsUser.create!(
-    event: Event.all.sample,
-    invite: Invite.all.sample,
-    is_confirmed?: [true, false].sample,
-    dancer: User.all.sample
-  )
- end
-puts 'User_Events created!'
+puts 'invitations CREATED...'
+puts "ALL DONE"
