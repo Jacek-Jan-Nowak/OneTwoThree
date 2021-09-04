@@ -24,7 +24,6 @@ require("vanilla-tilt")
 
 // External imports
 import "bootstrap";
-import { searchparams } from "../search"
 
 
 
@@ -34,7 +33,6 @@ import { searchparams } from "../search"
 
 document.addEventListener('turbolinks:load', () => {
   particlesJS('particles-js', 'particlesjs-config.json');
-  searchparams();
   // Call your functions here, e.g:
   // initSelect2();
 });
