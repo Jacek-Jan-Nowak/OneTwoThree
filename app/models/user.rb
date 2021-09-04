@@ -6,11 +6,20 @@ class User < ApplicationRecord
   
   has_many :events, class_name: "Event", foreign_key: "host_id"
   has_many :places, class_name: "Place", foreign_key: "owner_id"
+
   has_many :groups, class_name: "Group", foreign_key: "owner_id"
 
   has_many :invites, class_name: "Invite", foreign_key: "inviter_id"
   has_many :invites, class_name: "Invite", foreign_key: "invitee_id"
 
+  include PgSearch::Model
+  pg_search_scope :search_by_address,
+    against: [ :address ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
+  # has_many :places, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
