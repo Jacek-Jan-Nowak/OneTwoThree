@@ -15,15 +15,8 @@
       <div class = "event-card" data-tilt>
         <img src="https://via.placeholder.com/250">
 
-        <%# <%if params.include?(:user_id) %> %>
-        <%# <h3> <strong> <%= link_to event.name, user_event_path(params[:user_id], event) %></strong></h3> %>
-        <%# <% else %> %>
-        <%# <h3> <strong> <%= link_to event.name.truncate(30, separator: ' '), event_path(event) %> </strong> </h3> %>
-        <%# <% end %> %>
-
-        <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
-
-        
+         <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
+     
         <p>Event Type: <%= event.event_type %></p>
         <p>Place: <strong> <%= event.place.name.truncate(27, separator: ' ') %> </strong> </p>
         starting at: <strong> <%= event.start_time.strftime("%B %d, %Y %A") %> </strong>

@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
-  before_action :set_user
-  before_action :set_event
+  # before_action :set_user
+  # before_action :set_event
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -16,15 +16,16 @@ class InvitesController < ApplicationController
 
   def create
     @invite = Invite.create(invite_params)
-
-    #this will create events_user for the dancer
-    create_events_user(params[:user_id], params[:event_id], @invite)
+    
+ 
+    # #this will create events_user for the dancer
+    # create_events_user(params[:user_id], params[:event_id], @invite)
 
     #this will create events_user for the current user
     # create_events_user(params[:event_id], current_user.id, @invite)
 
     if @invite.save
-      redirect_to user_event_invites_path(@user, @event)
+      redirect_to event_path(@user, @event)
     else
       render :new
     end
@@ -54,22 +55,22 @@ class InvitesController < ApplicationController
 
   private
   
-  def  create_events_user(user_id, event_id, invite)
-    @events_user = EventsUser.new
-    @events_user.invite = @invite
-    @events_user.event = Event.find(event_id)
-    @events_user.dancer = User.find(user_id)
-    @events_user.save
-  end
+  # def  create_events_user(user_id, event_id, invite)
+  #   @events_user = EventsUser.new
+  #   @events_user.invite = @invite
+  #   @events_user.event = Event.find(event_id)
+  #   @events_user.dancer = User.find(user_id)
+  #   @events_user.save
+  # end
 
 
-  def set_event
-    @event = Event.find(params[:event_id])
-  end
+  # def set_event
+  #   @event = Event.find(params[:event])
+  # end
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+  # def set_user
+  #   @user = User.find(params[:user])
+  # end
 
   def set_invite
     @invite = Invite.find(params[:id])
@@ -85,9 +86,8 @@ class InvitesController < ApplicationController
   
 
   def invite_params
-    params.require(:invite).permit(:event_id, :message, user_id: [])
+    params.require(:invite).permit(:message)
   end
 
- 
 
 end

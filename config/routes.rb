@@ -5,21 +5,27 @@ Rails.application.routes.draw do
 
   resources :search, only: [:index]  
   
+  resources :users 
+  resources :events
+  resources :invites
+  resources :groups
+  resources :places
+
   
-  resources :users do
-    resources :events, except: [:destroy] do
-      resources :invites, except: [:destroy]
-    end
-  end
+#   resources :users do
+#     resources :events, except: [:destroy] do
+#       resources :invites, except: [:destroy]
+#     end
+#   end
   
-  resources :events_users, except: [:destroy]
+#   resources :events_users, except: [:destroy]
 
 
-resources :events do
-  resources :users, except: [:destroy] do
-    resources :invites, except: [:destroy]
-  end
-end
+# resources :events do
+#   resources :users, except: [:destroy] do
+#     resources :invites, except: [:destroy]
+#   end
+# end
 
 
 
