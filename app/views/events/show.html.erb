@@ -20,7 +20,7 @@
         </div>
     </div>
       <% if params[:user] %>
-        <%= link_to "Create invitation", new_invite_path(event: @event.id, user: @user.id), class:"btn btn-danger" %>
+        <%= link_to "Create invitation", new_invite_path(event: @event.id, user: @user), class:"btn btn-danger" %>
         <% else %>
          <%= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
       <% end%>
