@@ -7,10 +7,11 @@ class EventsController < ApplicationController
       @events = PgSearch.multisearch(params[:query])
     else
       @events = Event.all
-    if params[:user].present?
-      @invitee = params[:user]
-    end
+      if params[:user].present?
+        @invitee = params[:user]
+      end
     @events = Event.all
+    end
   end
 
   def show

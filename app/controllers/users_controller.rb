@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
+  
+  
   def index
     if params[:query].present?
       @users = User.search_by_address(params[:query])
     else
       @users = User.all
+      if params[:event].present?
+        @event = params[:event]
+      end
+    @events = Event.all
     end
-
   end
 
   def show
