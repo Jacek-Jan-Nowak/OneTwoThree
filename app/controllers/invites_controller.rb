@@ -14,7 +14,7 @@ class InvitesController < ApplicationController
     @user = params[:user]
     @event = params[:event] 
     @current_user = current_user.id
-
+    @group = Group.new
   end
 
   def create
