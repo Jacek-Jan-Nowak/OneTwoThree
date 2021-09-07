@@ -25,7 +25,7 @@ class InvitesController < ApplicationController
     @group.owner = current_user
     @group.name = params[:group_name]
     @group.save
-
+    
     @invite = Invite.new
     @invite.inviter = current_user
     @invite.invitee = current_user

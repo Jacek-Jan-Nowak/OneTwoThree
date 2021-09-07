@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_160133) do
+ActiveRecord::Schema.define(version: 2021_09_07_164420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_chatrooms_on_group_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "event_type"
@@ -46,6 +54,18 @@ ActiveRecord::Schema.define(version: 2021_09_04_160133) do
     t.index ["group_id"], name: "index_invites_on_group_id"
     t.index ["invitee_id"], name: "index_invites_on_invitee_id"
     t.index ["inviter_id"], name: "index_invites_on_inviter_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -86,11 +106,15 @@ ActiveRecord::Schema.define(version: 2021_09_04_160133) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chatrooms", "groups"
   add_foreign_key "events", "places"
   add_foreign_key "events", "users", column: "host_id"
   add_foreign_key "groups", "events"
   add_foreign_key "groups", "users", column: "owner_id"
   add_foreign_key "invites", "users", column: "invitee_id"
   add_foreign_key "invites", "users", column: "inviter_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "users"
   add_foreign_key "places", "users", column: "owner_id"
 end

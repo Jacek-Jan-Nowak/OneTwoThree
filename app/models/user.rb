@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :invites, class_name: "Invite", foreign_key: "inviter_id"
   has_many :invites, class_name: "Invite", foreign_key: "invitee_id"
 
+  has_many :messages
+
   include PgSearch::Model
   pg_search_scope :search_by_address,
     against: [ :address ],
