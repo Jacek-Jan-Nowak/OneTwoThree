@@ -13,7 +13,8 @@
             placeholder: "Search here..."
           %>
           <%= select_tag "options", options_for_select(['Buddies', 'Events'], ''), class:"select-options"%>
-          <%= label_tag "Buddies" %>
+          <%= select_tag "radius", options_for_select([1, 2, 5, 10, 15, 25], ''), class:"select-radius"%>
+          <%#= label_tag "Buddies" %>
           <%# <%= check_box("Buddies", @user, {checked: false}) %>
           <%# <%= label_tag "Events" %> 
           <%#= check_box("events", @event, {checked: false}) %>

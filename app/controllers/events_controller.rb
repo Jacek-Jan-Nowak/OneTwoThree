@@ -3,16 +3,18 @@ class EventsController < ApplicationController
   before_action :set_user
 
   def index
+    @events = Event.all
     if params[:query].present?
-      @events = PgSearch.multisearch(params[:query])
+      #@event_ids = Place.near(params[:query], params[:radius]).collect{|a| a.event_ids}.uniq
+      #@events = Event.where('id in (?)', @event_ids)
+      #place = Place.near(params[:query], params[:radius])
+      #@events = Event.joins(:place).merge(place)
     else
       @events = Event.all
       if params[:user].present?
         @invitee = params[:user]
       end
-    @events = Event.all
     end
-    
     @markers = @events.map do |event|
       {
         lat: event.place.latitude,

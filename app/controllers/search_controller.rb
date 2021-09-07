@@ -12,6 +12,6 @@ class SearchController < ApplicationController
     end
 
    def strong_params
-    params.permit(:query, :options)
+    params.permit(:query, :options, :radius)
   end
 end
