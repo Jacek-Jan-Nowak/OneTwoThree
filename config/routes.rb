@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
   resources :places
 
+  get "groups/:id/chat", to: "chatrooms#chat", as: "chat"
+
 
   
 #   resources :users do

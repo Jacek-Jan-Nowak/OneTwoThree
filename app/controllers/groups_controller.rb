@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.event_id = @event
     @group.owner_id = @current_user
+    
     if @group.save
       # redirect_to profile_path
     else
