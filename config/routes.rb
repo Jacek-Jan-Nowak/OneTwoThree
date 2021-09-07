@@ -8,8 +8,14 @@ Rails.application.routes.draw do
   resources :users 
   resources :events
   resources :invites
-  resources :groups
+
+  resources :groups do
+    resources :chatrooms, only: :show do
+      resources :messages, only: :create
+    end
+  end
   resources :places
+
 
   
 #   resources :users do
