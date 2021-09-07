@@ -12,6 +12,13 @@ class EventsController < ApplicationController
       end
     @events = Event.all
     end
+    
+    @markers = @events.map do |event|
+      {
+        lat: event.place.latitude,
+        lng: event.place.longitude,
+      }
+    end
   end
 
   def show

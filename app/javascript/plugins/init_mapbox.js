@@ -16,7 +16,6 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v11',
     });
     navigator.geolocation.getCurrentPosition(position => {
-      console.log(position.coords)
       new mapboxgl.Marker({
         color: '#F84C4C' // color it red for user location marker
         }).setLngLat([position.coords.longitude, position.coords.latitude]).addTo(map)
