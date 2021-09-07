@@ -2,22 +2,40 @@ class InvitesController < ApplicationController
   # before_action :set_user
   # before_action :set_event
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  
 
   def index
     @invites = @event.invites
-    @events_users = EventsUser.all 
     @user = current_user
   end
 
   def new
     @invite = Invite.new
+    @user = params[:user]
+    @event = params[:event] 
+    @current_user = current_user.id
 
   end
 
   def create
-    @invite = Invite.create(invite_params)
     
- 
+    @group = Group.new
+    @group.event = @event
+    @group.owner = @current_user
+    @group.name = "TEST"
+    @group.save
+
+    @invite = Invite.new
+    @invite.inviter = @current_user
+    @invite.invitee = @current_user
+    @invite.group = @group
+    @invite.save
+
+    @invite = Invite.new
+    @invite.inviter = @current_user
+    @invite.invitee = @user
+    @invite.group = @group
+    @invite.save
     # #this will create events_user for the dancer
     # create_events_user(params[:user_id], params[:event_id], @invite)
 
@@ -54,7 +72,7 @@ class InvitesController < ApplicationController
   end
 
   private
-  
+
   # def  create_events_user(user_id, event_id, invite)
   #   @events_user = EventsUser.new
   #   @events_user.invite = @invite

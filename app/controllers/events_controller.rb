@@ -41,7 +41,7 @@ class EventsController < ApplicationController
 
   def set_user
     if user_signed_in?
-      @user = current_user
+      @current_user = current_user
     end
   end
 

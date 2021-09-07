@@ -21,7 +21,7 @@
     </div>
       <% if params[:user] %>
         <%= link_to "Create invitation", new_invite_path(event: @event.id, user: @user), class:"btn btn-danger" %>
-        <% else %>
+      <% else %>
          <%= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
       <% end%>
     <div>
@@ -29,29 +29,24 @@
       <h1>Participants</h1>
        <%  @event.groups.each do |group| %>
         <% group.invites.each do |invite| %>
-       <%= link_to user_path(invite.invitee) do %>
-          <div class="d-flex my-3 align-items-center">
-            <div class="user-avatar">
-              <img src="../../assets/dance.jpg" alt="" class="avatar">
+          <%= link_to user_path(invite.invitee) do %>
+            <div class="d-flex my-3 align-items-center">
+              <h5><%= invite.invitee.username %></h5> 
             </div>
-            <h5><%= invite.invitee.username %></h5> 
-          </div>
           <% end %>
-          <% end %>
-          <% end %>
+        <% end %>
+      <% end %>
     </div>
     <div class="btn-container">
       <%= link_to "home", root_path, class:"btn btn-primary" %>
-      <% if params.include?(:user_id)  %>
-        <%= link_to "all events", user_events_path, class:"btn btn-primary" %>
+      <% if params.include?(:user)  %>
+        <%= link_to "all events", events_path(user: @user), class:"btn btn-primary" %>
       <% else %>
         <%= link_to "all events", events_path, class:"btn btn-primary" %>
       <% end %>
+      <%= link_to "all groups for this event", groups_path(event: @event.id), class:"btn btn-primary"  %>
       
-      
-      <%= link_to "all invitations for this event", groups_path(@user, @event), class:"btn btn-primary"  %>
     </div>
-      
   </div>
 </div>
 

@@ -13,23 +13,26 @@
       <% else %>
         <p>role not specified</p>
       <% end %>
+      <h1>upcoming Events</h1>
+      <%  @user.invites.each do |invite| %>
+        <%= link_to event_path(invite.group.event.id) do %>
+          <p><%= invite.group.event.name %></p>
+        <% end %>
+      <% end %>
     </div>
     <div>
-    
-    <%= link_to "home", root_path, class:"btn btn-primary" %>
-      <% if params.include?(:event_id) %>
-      <%= link_to "back to buddies", event_users_path, class:"btn btn-primary"  %>
-    <% else %>
-      <%= link_to "all buddies", users_path, class:"btn btn-primary" %>
-    <% end %>
-
-    <% if params[:event] %>
-     <%= link_to "Invite to this event", new_invite_path(user: @user.id, event: @event), class:"btn btn-danger" %>
-    <% else %>
-      <%= link_to "invite to dance", events_path(user: @user.id), class:"btn btn-danger" %>
-      
-    <% end%>
-  </div>
+      <%= link_to "home", root_path, class:"btn btn-primary" %>
+        <% if params.include?(:event_id) %>
+        <%= link_to "back to buddies", event_users_path, class:"btn btn-primary"  %>
+      <% else %>
+        <%= link_to "all buddies", users_path, class:"btn btn-primary" %>
+      <% end %>
+      <% if params[:event] %>
+      <%= link_to "Invite to this event", new_invite_path(user: @user.id, event: @event), class:"btn btn-danger" %>
+      <% else %>
+        <%= link_to "invite to dance", events_path(user: @user.id), class:"btn btn-danger" %>
+      <% end%>
+    </div>
 </div>
 </div>
 

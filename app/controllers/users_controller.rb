@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  
-  
+
   def index
     if params[:query].present?
       @users = User.search_by_address(params[:query])
@@ -17,7 +16,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @event = params[:event]
     # session[:dancer_id] = @user.id
-    
   end
 
   def user_params
