@@ -13,27 +13,30 @@ class InvitesController < ApplicationController
     @invite = Invite.new
     @user = params[:user]
     @event = params[:event] 
-    @current_user = current_user.id
     @group = Group.new
   end
 
   def create
-    
+
+    @event = Event.find(params[:event])
+    @user = User.find(params[:user])
     @group = Group.new
     @group.event = @event
-    @group.owner = @current_user
-    @group.name = "TEST"
+    @group.owner = current_user
+    @group.name = params[:group_name]
     @group.save
 
     @invite = Invite.new
-    @invite.inviter = @current_user
-    @invite.invitee = @current_user
+    @invite.inviter = current_user
+    @invite.invitee = current_user
+    @invite.message = params[:message]
     @invite.group = @group
     @invite.save
 
     @invite = Invite.new
-    @invite.inviter = @current_user
+    @invite.inviter = current_user
     @invite.invitee = @user
+    @invite.message = params[:message]
     @invite.group = @group
     @invite.save
     # #this will create events_user for the dancer
@@ -43,7 +46,7 @@ class InvitesController < ApplicationController
     # create_events_user(params[:event_id], current_user.id, @invite)
 
     if @invite.save
-      redirect_to event_path(@user, @event)
+      redirect_to group_path(@group)
     else
       render :new
     end
@@ -104,7 +107,7 @@ class InvitesController < ApplicationController
   
 
   def invite_params
-    params.require(:invite).permit(:message)
+    params.require(:invite).permit(:message, :event, :user, :current_user)
   end
 
 
