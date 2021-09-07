@@ -24,7 +24,7 @@ require("vanilla-tilt")
 
 // External imports
 import "bootstrap";
-
+import { initMapbox } from '../plugins/init_mapbox';
 
 
 // Internal imports, e.g:
@@ -33,6 +33,7 @@ import "bootstrap";
 
 document.addEventListener('turbolinks:load', () => {
   particlesJS('particles-js', 'particlesjs-config.json');
+  initMapbox();
   // Call your functions here, e.g:
   // initSelect2();
 });

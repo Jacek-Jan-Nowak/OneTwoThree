@@ -11,6 +11,12 @@ class UsersController < ApplicationController
       end
     @events = Event.all
     end
+    @markers = @users.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude,
+      }
+    end
   end
 
   def show
