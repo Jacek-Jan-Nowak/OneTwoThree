@@ -27,7 +27,7 @@ puts 'Creating 10 fake users...'
     username: Faker::Internet.username,
     password: "testing",
     is_pro?: [true, false].sample,
-    role: ["lead", "follower", "lead/follower"].sample
+    role: ["lead", "follower", "lead/follower"].sample,
   )
 end
 puts '10 users created!'
