@@ -1,0 +1,37 @@
+<br>
+
+<div class="grid-container">
+  <h3>ALL GROUPS</h3>
+</div>
+<div class="container d-flex", style="	justify-content: center; align-items: center">
+    <%= link_to "back home!", root_path, class:"btn btn-primary", style:"margin-right:30px" %>
+</div>
+
+<div class="main-container">
+  <div class="grid-container">
+    <% @groups.each do |group| %>
+    <% if @event %>
+      <% if group.event.id.to_s == @event.to_s %>
+        <div class="user-card" data-tilt>
+          <img src="https://via.placeholder.com/370">
+          <h1> <%= link_to group.name, group_path(group) %></h1>
+          <h3><%= group.event.name %> </h3>
+          <p> <%= group.owner.username %></p>
+        </div>
+      <% end %>
+    
+    <% else %>
+          <div class="user-card" data-tilt>
+          <img src="https://via.placeholder.com/370">
+          <h1> <%= link_to group.name, group_path(group) %></h1>
+          <h3><%= group.event.name %> </h3>
+          <p> <%= group.owner.username %></p>
+        </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>  
+
+<%= link_to "back home!", root_path %>
+
+<%= console %>

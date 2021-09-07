@@ -1,6 +1,5 @@
 <div class="container">
-  <%= render 'form', user: @user, event: @event %>
-  
+  <%=  render 'form', user: @user, event: @event %>
 </div>
 
 
@@ -9,7 +8,7 @@
   <%#= f.submit "Submit invite", class: "btn btn-primary" %>
 <%# end %>
 
-<%#= simple_form_for @invite, url:  new_event_user_invite_path(params[:event_id], params[:user_id]), method: :post do |f| %>
+<%#= simple_form_for @invite, method: :post do |f| %>
   <%#= f.input :message, as: :text, input_html: {rows: 10, cols: 10} %>
   <%#= f.submit "Submit invite", class: "btn btn-primary" %>
 <%# end %>

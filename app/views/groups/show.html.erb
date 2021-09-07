@@ -1,0 +1,27 @@
+<div class="centered-container">
+  <div class="wrapper">
+    <div class="user-card">
+      <img src="https://via.placeholder.com/250" alt="">
+    </div>
+    <div>
+      <h1>Group name: <%= @group.name %></h1>
+      <p>created by: <%= @group.owner.username %></p>
+      <p>place: <%= @group.event.place.name %></p>
+      <p>address: <%= @group.event.place.address %></p>
+      <p>event: <%= @group.event.name %></p>
+          <h2>Group members</h2>
+      <%  @group.invites.each do |invite| %>
+        <%= link_to user_path(invite.invitee) do %>
+          <div class="d-flex my-3 align-items-center">
+            <h5><%= invite.invitee.username %></h5> 
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+
+  </div>
+</div>
+</div>
+
+<%= console %>
