@@ -9,7 +9,6 @@ class User < ApplicationRecord
 
   has_many :groups, class_name: "Group", foreign_key: "owner_id"
 
-  has_many :invites, class_name: "Invite", foreign_key: "inviter_id"
   has_many :invites, class_name: "Invite", foreign_key: "invitee_id"
 
   has_many :messages

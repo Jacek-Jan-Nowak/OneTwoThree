@@ -24,6 +24,7 @@
       <% else %>
          <%= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
       <% end%>
+      <%= link_to "Join Event", invites_join_path(event: @event.id), method: :post, class:"btn btn-danger" %>
     <div>
       <br>
       <h1>Participants</h1>
