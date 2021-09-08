@@ -13,44 +13,87 @@ class InvitesController < ApplicationController
     @invite = Invite.new
     @user = params[:user]
     @event = params[:event] 
-    @group = Group.new
+    if params[:group]
+      @group = params[:group]
+    else
+      @group = Group.new
+    end
   end
 
   def create
+    if params[:group]
+      @invite = Invite.new
+      @invite.inviter = current_user
+      @invite.invitee = User.find(params[:user])
+      @invite.message = params[:message]
+      @invite.group = Group.find(params[:group])
+      @invite.save
 
+        if @invite.save
+          redirect_to group_path(Group.find(params[:group]))
+        else
+          render :new
+        end
+
+    else
+
+        @event = Event.find(params[:event])
+        @user = User.find(params[:user])
+        @group = Group.new
+        @group.event = @event
+        @group.owner = current_user
+        @group.name = params[:group_name]
+        @group.save
+        
+        @invite = Invite.new
+        @invite.inviter = current_user
+        @invite.invitee = current_user
+        @invite.message = params[:message]
+        @invite.group = @group
+        @invite.save
+
+        @invite = Invite.new
+        @invite.inviter = current_user
+        @invite.invitee = @user
+        @invite.message = params[:message]
+        @invite.group = @group
+        @invite.save
+
+        if @invite.save
+          redirect_to group_path(@group)
+        else
+          render :new
+        end
+
+    end
+  end
+
+  def join
     @event = Event.find(params[:event])
-    @user = User.find(params[:user])
     @group = Group.new
     @group.event = @event
     @group.owner = current_user
-    @group.name = params[:group_name]
+    @group.name = "#{current_user.username}'s group"
     @group.save
     
     @invite = Invite.new
     @invite.inviter = current_user
     @invite.invitee = current_user
-    @invite.message = params[:message]
+    @invite.message = ""
     @invite.group = @group
     @invite.save
 
-    @invite = Invite.new
-    @invite.inviter = current_user
-    @invite.invitee = @user
-    @invite.message = params[:message]
-    @invite.group = @group
-    @invite.save
+    if @invite.save
+      redirect_to group_path(@group)
+    end
+  end
     # #this will create events_user for the dancer
     # create_events_user(params[:user_id], params[:event_id], @invite)
 
     #this will create events_user for the current user
     # create_events_user(params[:event_id], current_user.id, @invite)
 
-    if @invite.save
-      redirect_to group_path(@group)
-    else
-      render :new
-    end
-  end
+
 
   def edit
   end
@@ -107,7 +150,7 @@ class InvitesController < ApplicationController
   
 
   def invite_params
-    params.require(:invite).permit(:message, :event, :user, :current_user)
+    params.require(:invite).permit(:message, :event, :user, :current_user, :group)
   end
 
 

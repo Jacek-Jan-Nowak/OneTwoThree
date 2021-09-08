@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :events
   resources :invites
 
+  post 'invites/join'
+
   resources :groups do
     resources :chatrooms, only: :show do
       resources :messages, only: :create

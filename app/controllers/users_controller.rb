@@ -8,6 +8,9 @@ class UsersController < ApplicationController
       if params[:event].present?
         @event = params[:event]
       end
+      if params[:group].present?
+        @group = params[:group]
+      end
     @events = Event.all
     end
     @markers = @users.geocoded.map do |user|
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @event = params[:event]
+    @group = params[:group]
     # session[:dancer_id] = @user.id
   end
 

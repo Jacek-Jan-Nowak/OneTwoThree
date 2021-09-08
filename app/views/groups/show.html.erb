@@ -12,16 +12,16 @@
           <h2>Group members</h2>
       <%  @group.invites.each do |invite| %>
         <%= link_to user_path(invite.invitee) do %>
-          <div class="d-flex my-3 align-items-center">
+          <div>
             <h5><%= invite.invitee.username %></h5> 
           </div>
         <% end %>
       <% end %>
     </div>
     <div>
-
+     <%= link_to "Add a user", users_path(group: @group.id), class:"btn btn-primary" %>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="container">

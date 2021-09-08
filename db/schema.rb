@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_164420) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.bigint "event_id", null: false
+    t.bigint "event_id"
     t.bigint "owner_id"
     t.index ["event_id"], name: "index_groups_on_event_id"
     t.index ["owner_id"], name: "index_groups_on_owner_id"
