@@ -23,7 +23,6 @@ class InvitesController < ApplicationController
   def create
     if params[:group]
       @invite = Invite.new
-      @invite.inviter = current_user
       @invite.invitee = User.find(params[:user])
       @invite.message = params[:message]
       @invite.group = Group.find(params[:group])
@@ -46,14 +45,12 @@ class InvitesController < ApplicationController
         @group.save
         
         @invite = Invite.new
-        @invite.inviter = current_user
         @invite.invitee = current_user
         @invite.message = params[:message]
         @invite.group = @group
         @invite.save
 
         @invite = Invite.new
-        @invite.inviter = current_user
         @invite.invitee = @user
         @invite.message = params[:message]
         @invite.group = @group
@@ -77,7 +74,6 @@ class InvitesController < ApplicationController
     @group.save
     
     @invite = Invite.new
-    @invite.inviter = current_user
     @invite.invitee = current_user
     @invite.message = ""
     @invite.group = @group

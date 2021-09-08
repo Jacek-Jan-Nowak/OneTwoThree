@@ -90,9 +90,8 @@ end
 puts 'Creating invitations...'
 
 
-10.times do
+30.times do
   Invite.create!(
-    inviter: User.all.sample,
     invitee: User.all.sample,
     confirmed?: true,
     group: Group.all.sample,
