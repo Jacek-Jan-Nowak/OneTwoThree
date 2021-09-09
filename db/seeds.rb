@@ -66,8 +66,8 @@ end
 end 
 =end
 
-puts 'Creating 10 events...'
-10.times do 
+puts 'Creating 20 events...'
+20.times do 
   Event.create!(
     name: Faker::Music::Opera.rossini,
     event_type: ["Lesson", "Event"].sample,
