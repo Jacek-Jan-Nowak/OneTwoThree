@@ -12,10 +12,19 @@
   </head>
 
   <body>
-    <div id="particles-js"></div>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+    <%= render 'shared/background' %>
+    <div class= "main-container">
+      <div class= "main-window">
+        <%= render 'shared/navbar' %> 
+        <%= render 'shared/flashes' %>
+        <div class= "content">
+         <%= yield %>
+        </div> 
+        <%= render 'shared/footer' %> 
+     </div>
+    </div>
+    <div class='end'>
+    </div>
   </body>
 
 </html>
