@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_164420) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.bigint "event_id"
+    t.bigint "event_id", null: false
     t.bigint "owner_id"
     t.index ["event_id"], name: "index_groups_on_event_id"
     t.index ["owner_id"], name: "index_groups_on_owner_id"
@@ -48,10 +48,12 @@ ActiveRecord::Schema.define(version: 2021_09_07_164420) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "invitee_id"
+    t.bigint "inviter_id"
     t.boolean "confirmed?", default: false
     t.bigint "group_id"
     t.index ["group_id"], name: "index_invites_on_group_id"
     t.index ["invitee_id"], name: "index_invites_on_invitee_id"
+    t.index ["inviter_id"], name: "index_invites_on_inviter_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -110,6 +112,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_164420) do
   add_foreign_key "groups", "events"
   add_foreign_key "groups", "users", column: "owner_id"
   add_foreign_key "invites", "users", column: "invitee_id"
+  add_foreign_key "invites", "users", column: "inviter_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "groups"
   add_foreign_key "messages", "users"
