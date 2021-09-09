@@ -1,36 +1,58 @@
-<br>
-
-<div class="grid-container">
+ <%= render 'shared/sidebar' %>
+<%# <div class="buddies-available">
   <h3>BUDDIES AVAILABLE</h3>
-</div>
-<div class="container d-flex", style="	justify-content: center; align-items: center">
-    <%= link_to "back home!", root_path, class:"btn btn-primary", style:"margin-right:30px" %>
-</div>
+</div> %>
+<% @users.each do |user| %>
+ <div class="modal fade" id="myModal_<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content popup">
+                    <div class="modal-header">
+                      <h3 class="modal-title" id="popupLabel"><%= user.username %></h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h4><%= user.email  %></h3>
+                      <p> <%= user.role %> </p>
+                    </div>
+                    <div class="modal-footer">
+                      <%= link_to "See User",  user_path(user, event: @event, group: @group), class: "modal-button" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+<% end %>
 
+    <div class="users-index-main">
+      <div class="users-grid">
+        <% @users.each do |user| %>
+            <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
+             
+              <img src="https://via.placeholder.com/370">
+              <div class="card-user-infos">
+                
+                  <h2> <%= link_to user.username, user_path(user, event: @event, group: @group) %></h2>
+                  <h2><% @event %> </h2>
+                  <p> <%= user.email %></p>
 
-<div class="main-container">
-  <div class="grid-container">
-    <% @users.each do |user| %>
-      <div class="user-card" data-tilt>
-        <img src="https://via.placeholder.com/370">
-        <h1> <%= link_to user.username, user_path(user, event: @event, group: @group) %></h1>
-        <h1><% @event %> </h1>
-        <p> <%= user.email %></p>
-
-        <% if user.role %>
-         <p>role: <%= user.role %> </p>
-        <% else %>
-          <p>role not specified</p>
-        <% end %>
+                  <% if user.role %>
+                    <p>role: <%= user.role %> </p>
+                  <% else %>
+                    <p>role not specified</p>
+                  <% end %>
+                
+              </div>
+            </div>
+          <% end %>
       </div>
-    <% end %>
-  </div>
-</div>  
+      <div id="map"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        <h1>MAP</h1>
+      </div> 
+    
+</div>
 
-<%= link_to "back home!", root_path %>
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-<%= console %>
+

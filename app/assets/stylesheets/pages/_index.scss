@@ -1,4 +1,17 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "invites";
+@import "user-index";
 
+a {
+  text-decoration: none;
+  color: black;
+  :hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+body{
+  text-decoration: none;
+}
