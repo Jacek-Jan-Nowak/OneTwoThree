@@ -25,26 +25,26 @@
 }
 
 .footer-copyright {
+  text-decoration: none;
   color: white;
   opacity: 0.75;
   display: flex;
   align-items: center;
   justify-content:space-evenly;
   font-size: 15px;
-  text-decoration: none;
 }
 
-.footer-copyright p {
+.footer-copyright p a {
+  text-decoration: none;
   color: white;
   opacity: 0.55;
-  text-decoration: none;
   font-size: 18px;
   margin: auto 5px 0;
   
 }
 
 
-.footer-copyright p:hover {
+.footer-copyright p :hover {
   opacity: 1;
 }
 
