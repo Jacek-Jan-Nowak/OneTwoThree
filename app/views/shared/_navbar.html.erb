@@ -1,27 +1,32 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+<div class="navbar navbar-expand-sm navbar-dark navbar-lewagon navbar-card">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item d-inline ">
+      <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+      <% end %>
+    </li>
+    <li class="nav-item d-none d-sm-block ">
+      <p>Dancing Buddies</p>
+    </li>
+  </ul>
+
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
 
-  <div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Home", "#", class: "nav-link" %>
+          <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Action", "#", class: "nav-link"  %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Another action", "#", class: "nav-link"  %>
+          <%= link_to "Messages", "#", class: "nav-link"  %>
         </li>
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"  %>

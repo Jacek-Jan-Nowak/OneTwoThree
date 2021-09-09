@@ -11,6 +11,24 @@
   width: 40px;
 }
 
-.navbar-nav .nav-item .nav-link {
+.navbar-card {
+  background-color: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.navbar-dark .navbar-nav .nav-link {
   color: white;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+.nav-item p{
+  color: white;
+  text-decoration: none;
+  margin: 0;
+}
+
+.navbar-nav {
+  align-items: center;
+  margin-right: 0;
 }
