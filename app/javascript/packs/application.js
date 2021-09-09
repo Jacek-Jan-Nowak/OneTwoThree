@@ -29,17 +29,3 @@ import { initMapbox } from '../plugins/init_mapbox';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-
-VanillaTilt.init(document.querySelector(""),{
-  reverse: false,
-  max: 10,
-  easing: "cubic-bezier(.03,.98,.52,.99)",
-  scale: 1.2,
-  speed: 100,
-  transition: true,
-  axis: null,
-  glare: true,
-  "max-glare": 0.2,
-  "glare-prerender": false,
-  "mouse-event-element": null,
-});
