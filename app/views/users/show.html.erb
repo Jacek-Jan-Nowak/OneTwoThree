@@ -20,6 +20,10 @@
 </nav>
 <div class="cont">
   <img src="https://via.placeholder.com/250" alt="">
+  <div id="map"
+          data-marker="<%= @marker.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
 </div>
 <div class="cont">
   <h1>Username: <%= @user.username %></h1>
@@ -56,4 +60,3 @@
     <%= link_to "Add user to a group", new_invite_path(user: @user.id, group: @group), class:"btn btn-danger" %>
   <% end%>
 </div>
-
