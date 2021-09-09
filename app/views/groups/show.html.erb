@@ -1,3 +1,61 @@
+
+<div class="main-grid-container">
+
+  <div class="child-grid child-grid-1 child-grid-tall">
+    <h3> one </h3>
+  </div>
+
+  <div class="child-grid child-grid-2 child-grid-tall{">
+    <h3> two </h3>
+  </div>
+
+  <div class="child-grid child-grid-1 child-grid-short">
+      <h3> three </h3>
+  </div>
+
+  <div class="child-grid child-grid-2 child-grid-short{">
+   <h3> four </h3>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="group-show">
+  <div class="group-card">
+    <h3> group dataaaaaaaaaaaaaaaaaa </h3>
+  </div>
+
+  <div class="chat-area">
+    <h3> CHAT </h3>
+  </div>
+</div>
+
+<div class="group-show">
+  <div class="group-card">
+    <h3> event picture </h3>
+  </div>
+
+  <div class="chat-area">
+    <h3> pictures </h3>
+  </div>
+</div>
+
+
+
 <div class="centered-container">
   <div class="wrapper">
     <div class="user-card">
@@ -25,7 +83,6 @@
 </div>
 
 <div class="container">
-
   <h1>#<%= @chatroom.name %></h1>
   <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
     <% @chatroom.messages.each do |message| %>
@@ -38,7 +95,6 @@
       </div>
     <% end %>
   </div>
-
 <%= simple_form_for [ @group, @chatroom, @message ], remote: true do |f| %>
   <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
 <% end %>
