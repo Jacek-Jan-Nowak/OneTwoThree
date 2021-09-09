@@ -14,7 +14,7 @@
   <h3>BUDDIES AVAILABLE</h3>
 </div> %>
 <% @users.each do |user| %>
- <div class="modal fade" id="myModal_<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
+              <div class="modal fade" id="myModal_<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content popup">
                     <div class="modal-header">
@@ -35,10 +35,10 @@
               </div>
 <% end %>
 
-    <div class="users-index-main">
+<div class="users-index-main">
       <div class="users-grid">
         <% @users.each do |user| %>
-            <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
+            <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y" data-tilt-scale="1.1" data-tilt-glare>
              
               <img src="https://via.placeholder.com/370">
               <div class="card-user-infos">
@@ -57,12 +57,13 @@
             </div>
           <% end %>
       </div>
-    
-    
-        <div id="map"
-          data-markers="<%= @markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
+
+      <div id="map"
+        class="users-map"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div> 
+
 </div>
 
 
