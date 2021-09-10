@@ -22,7 +22,7 @@
         <% if params[:event] %>
           <%= link_to  new_invite_path(user: @user.id, event: @event) do %>
             <li>
-                <i class="fa fa-hands-helping fa-2x"></i>
+                <i class="fa fa-glass-cheers fa-2x"></i>
                   <span class="nav-text">
                     Invite to this event
                   </span> 
@@ -41,7 +41,7 @@
         <% if params[:group] %>
           <%= link_to  new_invite_path(user: @user.id, group: @group) do %>
             <li>
-                <i class="fa fa-hands-helping fa-2x"></i>
+                <i class="fa fa-user-plus fa-2x"></i>
                   <span class="nav-text">
                     Add user to a group
                   </span>
