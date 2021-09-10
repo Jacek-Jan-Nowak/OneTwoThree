@@ -8,7 +8,7 @@
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
   :hover {
     text-decoration: none;
     color: black;
@@ -17,4 +17,14 @@ a {
 
 body{
   text-decoration: none;
+  color: white;
+}
+a:link, a:visited {
+  text-decoration: none;
+  color: white;
+}
+a:link{
+  text-decoration: none!important;
+  cursor: pointer;
+  color: white;
 }

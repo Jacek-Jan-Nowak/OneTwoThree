@@ -38,7 +38,7 @@
 <div class="users-index-main">
       <div class="users-grid">
         <% @users.each do |user| %>
-            <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y" data-tilt-scale="1.1" data-tilt-glare>
+            <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y">
               <%= link_to user_path(user, event: @event, group: @group) do %>
                 <img src="https://via.placeholder.com/370">
               <% end %>
