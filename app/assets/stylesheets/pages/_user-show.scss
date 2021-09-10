@@ -1,5 +1,5 @@
 .user-show-main{
-  padding:   10px 10px 10px 70px;
+  padding: 10px 10px 10px 70px;
   position: relative;
   height: 100%;
   width: 100%;
@@ -10,6 +10,19 @@
   grid-template-areas: 
   "user-show-profile user-show-data user-show-map"
   "user-show-achievements user-show-events user-show-comments";
+
+  h1 {
+    color: white;
+  }
+  h2 {
+    color: white;
+  }
+  h3 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
 }
 
 .user-show-profile {
@@ -59,6 +72,30 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   padding: 10px;
+  overflow-y: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.user-show-events::-webkit-scrollbar {
+  display: none;
+}
+
+.user-show-event-card {
+  height: 70px;
+  margin-top: 20px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  display: block;
+
+  p {
+    margin: 0;
+  }
 }
 
 .user-show-comments {
@@ -69,16 +106,292 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   padding: 10px;
+  overflow-y: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.user-show-comments::-webkit-scrollbar {
+  display: none;
 }
 
+.user-show-review-card {
+  height: 70px;
+  margin-top: 20px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  display: block;
+  
+  z-index: 10;
+
+  p{
+    font-size: 12px;
+    margin: 0 10px;
+  }
+
+  .user-show-review-card-format{
+display: flex;
+  }
+}
+  .user-show-achievements::-webkit-scrollbar {
+    display: none;
+  }
 .user-show-achievements {
+  color: white;
   grid-area: user-show-achievements;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
-  padding: 10px;
+  padding: 5px;
+  overflow-y: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+  grid-template-areas: 
+  "h2 h2 h2 h2"
+  "trophy1 trophy2 trophy3 trophy4"
+  "trophy5 trophy6 trophy7 trophy8"
+  "trophy9 trophy10 trophy11 trophy12"
+  "trophy13 trophy14 trophy15 trophy16";
+
+  .trophy1 {
+    grid-area: trophy1;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy2 {
+    grid-area: trophy2;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy3 {
+    grid-area: trophy3;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy4 {
+    grid-area: trophy4;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy5 {
+    grid-area: trophy5;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy6 {
+    grid-area: trophy6;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy7 {
+    grid-area: trophy7;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy8 {
+    grid-area: trophy8;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy9 {
+    grid-area: trophy9;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy10 {
+    grid-area: trophy10;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy11 {
+    grid-area: trophy11;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy12 {
+    grid-area: trophy12;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy13 {
+    grid-area: trophy13;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy14 {
+    grid-area: trophy14;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy15 {
+    grid-area: trophy15;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .trophy16 {
+    grid-area: trophy16;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 60px;
+    padding-top: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+  }
+
+  h2 {
+    grid-area: h2;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -99,5 +412,26 @@
   }
   .user-show-main::-webkit-scrollbar {
     display: none;
+  }
+  .user-show-achievements{
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .user-show-comments {
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .user-show-events {
+    .user-show-event-card {
+      height: 90px;
+    }
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
   }
 }
