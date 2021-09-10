@@ -61,9 +61,17 @@
     <div class="user-show-events">
       <h2>Upcoming Events</h2>
       <% @user.invites.each do |invite| %>
+      <div class="user-show-event-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
         <%= link_to event_path(invite.group.event.id) do %>
-          <p><%= invite.group.event.name %></p>
+        <div>
+         <p><strong><%= invite.group.event.name %></strong></p>
+        </div>
         <% end %>
+        <div>
+        <p>><%= invite.group.event.start_time %></p>
+        </div> 
+      </div>
+        
       <% end %>
     </div>
 
@@ -75,22 +83,106 @@
 
     <div class="user-show-data">
       <h2>Username: <%= @user.username %></h2>
+      <p>Address: <%= @user.address %></p>
       <p>email: <%= @user.email %></p>
       <% if @user.role %>
         <p>role: <%= @user.role %> </p>
       <% else %>
         <p>role not specified</p>
       <% end %>
+      <% @sum = 0 %>
+            <% @reviews.each do |review| %>
+              <% if review.receiver == @user %>
+                <% @sum += review.rating %>
+                <% end %>
+              <% end %>
+              <h3>Level: <%= @sum %></h3>
     </div>
 
     <div class="user-show-comments">
       <h2>Comments</h2>
+      <div class="display-reviews">
+        <% @reviews.each do |review| %>
+          <% if review.receiver == @user %>
+            <div class="user-show-review-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
+            <div class="user-show-review-card-format">
+              <%= link_to user_path(review.user.id) do %>
+                <p><strong><%= review.user.username%></strong></p>
+              <% end %>
+                <p>
+                <% review.rating.times do %>
+                  💃
+                <% end %>
+                </p>
+              </div>
+              <div class="user-show-review-card-format">
+                <p><%= review.content %></p>
+               </div>
+               <div class="user-show-review-card-format">
+                  <% if review.user == current_user %>
+                    <%= link_to  user_review_path(review), method: :delete, data: { confirm: "Are you sure?" } do %>
+                      <p class="text-alert"><i class="fas fa-trash"></i> Delete</p>
+                    <% end %>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>   
+      </div>
+      <div class="new-review">
+        <%#= render "review", receiver: @user, review: @review %>
+      </div>
     </div>
 
     <div class="user-show-achievements">
       <h2>Achievements</h2>
-    </div>
-
+      <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy6" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy7" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy8" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy9" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy10" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy11" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy12" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy13" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy14" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy15" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy16" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
   </div>
-
-
+    </div>
+  </div>

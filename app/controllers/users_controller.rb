@@ -24,6 +24,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @reviews = Review.all
+    @receiver = @user
     @event = params[:event]
     @group = params[:group]
     # session[:dancer_id] = @user.id
