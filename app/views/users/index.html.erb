@@ -4,7 +4,7 @@
       <a href="#">
       <i class="fa fa-user fa-2x"></i>
       <span class="nav-text">
-        Add User
+        Add a User
       </span>
       </a>  
     </li>
@@ -39,14 +39,13 @@
       <div class="users-grid">
         <% @users.each do |user| %>
             <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y" data-tilt-scale="1.1" data-tilt-glare>
-             
-              <img src="https://via.placeholder.com/370">
+              <%= link_to user_path(user, event: @event, group: @group) do %>
+                <img src="https://via.placeholder.com/370">
+              <% end %>
               <div class="card-user-infos">
                 
                   <h2> <%= link_to user.username, user_path(user, event: @event, group: @group) %></h2>
-                  <h2><% @event %> </h2>
                   <p> <%= user.email %></p>
-
                   <% if user.role %>
                     <p>role: <%= user.role %> </p>
                   <% else %>

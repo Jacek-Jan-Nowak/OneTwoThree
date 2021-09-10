@@ -1,7 +1,103 @@
-.cont{
-  border-radius: 30px;
+.user-show-main{
+  padding:   10px 10px 10px 70px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.8fr 1.5fr 1.5fr;
+  grid-template-rows: 1fr 1.5fr;
+  grid-gap: 1vw;
+  grid-template-areas: 
+  "user-show-profile user-show-data user-show-map"
+  "user-show-achievements user-show-events user-show-comments";
+}
+
+.user-show-profile {
+  grid-area: user-show-profile;
+  border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  padding: 10px;
+
+  img{
+    border-radius: 12px;
+    
+  }
+}
+
+.user-show-map {
+  grid-area: user-show-map;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.user-show-data {
+  grid-area: user-show-data;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.user-show-events {
+  grid-area: user-show-events;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.user-show-comments {
+  grid-area: user-show-comments;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.user-show-achievements {
+  grid-area: user-show-achievements;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+@media only screen and (max-width: 650px) {
+  .user-show-main{
+    position: absolute;
+    overflow-y: scroll;
+    height: 98%;
+    margin: 0 auto;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1.5fr 1fr 2fr ;
+    grid-template-areas: 
+    "user-show-profile"
+    "user-show-data"
+    "user-show-events" 
+    "user-show-achievements" 
+    "user-show-comments";
+  }
+  .user-show-main::-webkit-scrollbar {
+    display: none;
+  }
 }
