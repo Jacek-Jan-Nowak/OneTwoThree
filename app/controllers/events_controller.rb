@@ -4,19 +4,19 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = PgSearch.multisearch(params[:query])
+      @events = Event.place.near(params[query], 10)
     else
       @events = Event.all
       if params[:user].present?
         @invitee = params[:user]
       end
-    @events = Event.all
     end
     
     @markers = @events.map do |event|
       {
         lat: event.place.latitude,
         lng: event.place.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { event: event })
       }
     end
   end
@@ -24,6 +24,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = params[:user]
+    @marker = {
+      lat: @event.place.latitude,
+      lng: @event.place.longitude
+    }
   end
 
   def new
