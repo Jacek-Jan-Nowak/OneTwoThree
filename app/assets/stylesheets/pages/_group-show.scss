@@ -1,57 +1,135 @@
-.group-card{
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  flex-grow: 1;
-  margin: 30px 10px 10px 30px;
-}
-
-.chat-area{
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  flex-grow: 1;
-  width: 300px;
-  margin: 30px 30px 10px 10px;
-}
-
-.group-show{
-  display: flex;
-  justify-content: center;
-}
-
-.main-grid-container{
+.group-grid-container{
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 20px;
-  padding: 20px;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1.5fr 1fr;
+  grid-template-areas: 
+  "side-bar group-show-data group-chat group-chat group-people-coming"
+  "side-bar group-event-picture group-chat group-chat group-people-coming"
 }
-.child-grid{
-  border-radius: 30px;
+
+.group-grid-container::-webkit-scrollbar {
+  display: none;
+}
+.group-show-data::-webkit-scrollbar {
+  display: none;
+}
+.group-chat::-webkit-scrollbar {
+  display: none;
+}
+.group-event-picture::-webkit-scrollbar{
+    display: none;
+}
+
+.group-people-coming::-webkit-scrollbar{
+  display: none;
+}
+.group-show-data{
+  // position: absolute;
+  grid-area: group-show-data;
+  border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
-  text-align: center;  // flex-grow: 1;
-  // margin: 30px 10px 10px 30px;
+  backdrop-filter: blur(8px);
+  margin:5px;
+  padding: 10px 10px;
+  overflow-y: scroll;
 }
 
-.child-grid-1{
-  grid-column: span 2 / span 2;
+.group-chat{
+  // position: absolute;
+  overflow: hidden;
+  grid-area: group-chat;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  margin:5px;
+  padding: 10px 10px;
 }
 
-.child-grid-2{
-grid-column: span 3 / span 3;
+.chatroom{
+  padding: 10px 10px;
+  height: 92%;
+  overflow-y: scroll;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.child-grid-tall{
-  height: 500px;
+.chatroom-input{
+  height: 8%;
+  width: 100%;
+  margin:5px;
+  padding: 10px 10px;
+  bottom: 0;
 }
 
-.child-grid-short{
-  height: 220px;
+.chat-message-user{
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin:5px;
+  padding: 10px 10px;
+  text-align: left;
 }
+
+.chat-message-not-user{
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin:5px;
+  padding: 10px 10px;
+  text-align: right;
+}
+
+.chatroom::-webkit-scrollbar{
+  display: none;
+}
+
+.chatroom-input::-webkit-scrollbar{
+  display: none;
+}
+
+.group-event-picture{
+  // position: absolute;
+    grid-area: group-event-picture;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    margin:5px;
+    padding: 10px 10px;
+}
+
+.group-people-coming{
+  // position: absolute;
+    grid-area: group-people-coming;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    margin:5px;
+    padding: 10px 10px;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 650px) {
+  .group-grid-container{
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 2fr 2fr 2fr;
+    overflow-y: scroll;
+    grid-template-areas: 
+    "group-event-picture"
+    "group-show-data"
+    "group-chat"
+    "group-people-coming"
+  }
+}
+
