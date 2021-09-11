@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
       # send to channel
       ChatroomChannel.broadcast_to(
       @chatroom,
-      render_to_string(partial: "message", locals: { message: @message })
+      render_to_string(partial: "messages/message", locals: { message: @message })
       )
       redirect_to group_path(@chatroom, anchor: "message-#{@message.id}")
     else

@@ -1,8 +1,8 @@
 <!-- app/views/messages/_message.html.erb -->
-<div class="message-container" id="message-<%= message.id %>">
+<div class ="message-container <%= message.user_id == current_user.id ? 'chat-message-user' : 'chat-message-not-user' %>" id="message-<%= message.id %>">
+  <h3><%= message.content %></h3>
   <i class="author">
     <span><%= message.user.username %></span>
-    <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+    <small><%= message.created_at.strftime("%a %e at %l:%M%p") %></small>
   </i>
-  <p><%= message.content %></p>
 </div>
