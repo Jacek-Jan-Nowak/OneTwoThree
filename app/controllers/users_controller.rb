@@ -29,11 +29,14 @@ class UsersController < ApplicationController
     @event = params[:event]
     @group = params[:group]
     # session[:dancer_id] = @user.id
-    @marker =
+
+    @marker = [
       {
         lat: @user.latitude,
-        lng: @user.longitude
+        lng: @user.longitude  
       }
+    ]
+
   end
 
   def user_params
