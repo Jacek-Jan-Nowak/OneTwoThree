@@ -1,31 +1,66 @@
-<br>
-<div class="container d-flex", style="	justify-content: center; align-items: center">
-  <h3>EVENTS AVAILABLE</h3>
-</div>
+<nav class="main-menu">
+  <ul>
+    <li>
+      <a href="#">
+      <i class="fa fa-calendar fa-2x"></i>
+      <span class="nav-text">
+        Add an Event
+      </span>
+      </a>  
+    </li>
+  </ul>
+</nav> 
+<% @events.each do |event| %>
+              <div class="modal fade" id="myModal_<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content popup">
+                    <div class="modal-header">
+                      <h3 class="modal-title" id="popupLabel"><%= event.name %></h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h4><%= event.name  %></h3>
+                      <p> <%= event.place.name %> </p>
+                      <p> <%= event.place.address %> </p>
+                      <p> <%= event.start_time %> </p>
+                    </div>
+                    <div class="modal-footer">
+                      <%= link_to "See Event", event_path(event, user: @invitee ), class: "modal-button" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+<% end %>
+<%# <div class="cont"> %>
+  <%# <h3>EVENTS AVAILABLE</h3> %>
+<%# </div> %>
 
-<div class="container d-flex", style="	justify-content: center; align-items: center">
-    <%= link_to "back home!", root_path, class:"btn btn-primary", style:"margin-right:30px" %>
-    <%= link_to 'Add an event', new_event_path,  class:"btn btn-primary"  %>
-</div>
+<%# <div class="cont"> %>
+    <%#= link_to "back home!", root_path, class:"btn btn-primary", style:"margin-right:30px" %>
+    <%#= link_to 'Add an event', new_event_path,  class:"btn btn-primary"  %>
+<%# </div> %>
 
+<div class="events-index-main">
 
-<div class="main-container">
-  <div class="grid-container">
+  <div class="events-grid">
     <% @events.each do |event| %>
-      <div class = "event-card" data-tilt>
-        <img src="https://via.placeholder.com/250">
-
-         <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
-     
-        <p>Event Type: <%= event.event_type %></p>
-        <p>Place: <strong> <%= event.place.name.truncate(27, separator: ' ') %> </strong> </p>
-        starting at: <strong> <%= event.start_time.strftime("%B %d, %Y %A") %> </strong>
+      <div class="card-event" data-toggle="modal" data-target="#myModal_<%= event.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
+        <img src="https://via.placeholder.com/100x50">
+        <div class="card-event-infos">
+          <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
+      
+          <p>Event Type: <%= event.event_type %></p>
+          <p>Place: <strong> <%= event.place.name.truncate(27, separator: ' ') %> </strong> </p>
+          starting at: <strong> <%= event.start_time.strftime("%B %d, %Y %A") %> </strong>
+        </div>
       </div>
     <% end %>
   </div>
- </div>
+
 <div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-<%= link_to "back home!", root_path %>
+  class="events-map"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+</div>

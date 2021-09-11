@@ -2,11 +2,12 @@ require 'csv'
 require 'open-uri'
 require 'nokogiri'
 puts "Resetting database"
-Event.destroy_all
-User.destroy_all
-Place.destroy_all
-Invite.destroy_all
 Group.destroy_all
+Invite.destroy_all
+User.destroy_all
+Event.destroy_all
+Place.destroy_all
+Review.destroy_all
 
 Faker::Config.locale 
 
@@ -28,7 +29,7 @@ puts 'TEST users created!'
 puts 'Creating 10 fake users...'
 CSV.foreach(userfilepath, csv_options).with_index do |row, index|
   break if index == 15
-    User.create!(
+    user = User.create!(
       email: Faker::Internet.email,
       username: Faker::Internet.username,
       password: "testing",
@@ -36,6 +37,14 @@ CSV.foreach(userfilepath, csv_options).with_index do |row, index|
       role: ["lead", "follower", "lead/follower"].sample,
       address: row['address'],
     )
+    rand(3..7).times do
+      review = Review.create!(
+      rating: rand(1..5),
+      content: Faker::Movie.quote,
+      receiver: user,
+      user: User.all.sample,
+      )
+    end
 end
 puts '10 users created!'
 
@@ -66,8 +75,8 @@ end
 end 
 =end
 
-puts 'Creating 10 events...'
-10.times do 
+puts 'Creating 20 events...'
+20.times do 
   Event.create!(
     name: Faker::Music::Opera.rossini,
     event_type: ["Lesson", "Event"].sample,

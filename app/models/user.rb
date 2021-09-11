@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   has_many :invites, class_name: "Invite", foreign_key: "invitee_id"
 
+  has_many :reviews, class_name: "Review", foreign_key: "receiver_id"
+
+  has_many :reviews
+  
   has_many :messages
 
   include PgSearch::Model

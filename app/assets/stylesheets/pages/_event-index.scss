@@ -1,0 +1,129 @@
+
+.events-index-main{
+  padding-top: 10px ;
+  padding-left: 60px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 
+  "events-grid events-map";
+ }
+ 
+ .events-grid{
+  padding: 0 10px;
+  position: absolute;
+  overflow-y: scroll;
+  height: 98%;
+  margin: 0 auto;
+  width: 100%;
+  grid-area: events-grid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ }
+ 
+ .events-grid::-webkit-scrollbar {
+   display: none;
+ }
+ 
+ .card-event{
+   margin-bottom: 10px;
+   height: 300px;
+   width: 250px;
+   padding: 10px;
+   border-radius: 15px;
+   background: rgba(255, 255, 255, 0.1);
+   overflow: hidden;
+   border-top: 1px solid rgba(255, 255, 255, 0.5);
+   border-left: 1px solid rgba(255, 255, 255, 0.5);
+   backdrop-filter: blur(8px);
+   align-items: center;
+
+   align-items: flex-end;
+   z-index: 100;
+ 
+   .card-event-infos{
+    display: block;
+    color: white ;
+ 
+   }
+   img {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+   a {
+     text-decoration: none;
+     color: white;
+   }
+ 
+   h3 {
+     font-size: 22px;
+     text-decoration: none;
+     color: white;
+   }
+
+   p {
+     font-size: 14px;
+     margin: 0;
+   }
+ 
+ }
+
+ 
+ .events-map{
+  position: absolute;
+  margin: 0 2vw 10px 0;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  grid-area: events-map;
+ }
+
+ .popup{
+  border-radius: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0.603)
+}
+.modal-backdrop {
+  z-index: -12;
+  backdrop-filter: blur(8px) saturate(151%);
+}
+.modal-button{
+  padding: 0px 10px 5px;
+  height: calc(20px+3vw);
+  color: rgb(68, 68, 68);
+  font-size: 2vh;
+  background-color: rgba(255, 255, 255, 0.479);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  border-radius: 12px;
+  margin: 5px ;
+  text-decoration: none;
+}
+@media only screen and (max-width: 1500px) {
+  .events-grid{
+    grid-template-columns: 1fr 1fr;
+   }
+}
+
+
+@media only screen and (max-width: 650px) {
+  .events-index-main{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "events-grid";
+  }
+  .events-grid{
+    grid-template-columns: 1fr;
+   }
+   .card-event{
+    height: 300px;
+    width: 350px;
+    margin: 0 auto 10px;
+   }
+}

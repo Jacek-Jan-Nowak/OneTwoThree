@@ -1,59 +1,188 @@
 <nav class="main-menu">
   <ul>
-    <li>
-      <a href="#">
-      <i class="fa fa-users fa-2x"></i>
-      <span class="nav-text">
-        All Buddies
-      </span>
-      </a>  
-    </li>
-    <li>
-      <a href="#">
-      <i class="fa fa-hands-helping fa-2x"></i>
-      <span class="nav-text">
-        Invite to dance
-      </span>
-      </a>  
-    </li>
+        <% if params.include?(:event) %>
+          <%= link_to users_path do %>
+            <li>
+                <i class="fa fa-users fa-2x"></i>
+                  <span class="nav-text">
+                    Back to buddies
+                  </span>
+            </li>
+          <% end %>
+        <% else %>
+          <%= link_to users_path(event: @event) do %>
+            <li>
+                <i class="fa fa-users fa-2x"></i>
+                  <span class="nav-text">
+                    All buddies
+                  </span>  
+            </li>
+            <% end %>
+          <% end %>
+        <% if params[:event] %>
+          <%= link_to  new_invite_path(user: @user.id, event: @event) do %>
+            <li>
+                <i class="fa fa-glass-cheers fa-2x"></i>
+                  <span class="nav-text">
+                    Invite to this event
+                  </span> 
+            </li>
+          <% end%>
+        <% else %>
+          <%= link_to  events_path(user: @user.id) do %>
+            <li>
+                <i class="fa fa-hands-helping fa-2x"></i>
+                  <span class="nav-text">
+                    Invite to dance
+                  </span> 
+            </li>
+          <% end%>
+        <% end%>
+        <% if params[:group] %>
+          <%= link_to  new_invite_path(user: @user.id, group: @group) do %>
+            <li>
+                <i class="fa fa-user-plus fa-2x"></i>
+                  <span class="nav-text">
+                    Add user to a group
+                  </span>
+            </li>
+          <% end%>
+        <% end%>
   </ul>
 </nav>
-<div class="cont">
-  <img src="https://via.placeholder.com/250" alt="">
-</div>
-<div class="cont">
-  <h1>Username: <%= @user.username %></h1>
-  <p>email: <%= @user.email %></p>
-</div>
-<div class="cont">
-  <% if @user.role %>
-    <p>role: <%= @user.role %> </p>
-  <% else %>
-    <p>role not specified</p>
-  <% end %>
-</div>
-<div class="cont">
-  <h1>upcoming Events</h1>
-  <% @user.invites.each do |invite| %>
-    <%= link_to event_path(invite.group.event.id) do %>
-      <p><%= invite.group.event.name %></p>
-    <% end %>
-  <% end %>
-</div>
-<div class="cont">
-  <%= link_to "home", root_path, class:"btn btn-primary" %>
-  <% if params.include?(:event_id) %>
-    <%= link_to "back to buddies", event_users_path, class:"btn btn-primary"  %>
-  <% else %>
-    <%= link_to "all buddies", users_path, class:"btn btn-primary" %>
-  <% end %>
-  <% if params[:event] %>
-    <%= link_to "Invite to this event", new_invite_path(user: @user.id, event: @event), class:"btn btn-danger" %>
-  <% else %>
-    <%= link_to "invite to dance", events_path(user: @user.id), class:"btn btn-danger" %>
-  <% end%>
-  <% if params[:group] %>
-    <%= link_to "Add user to a group", new_invite_path(user: @user.id, group: @group), class:"btn btn-danger" %>
-  <% end%>
-</div>
 
+
+  <div class="user-show-main">
+
+    <div class="user-show-profile">
+      <img src="https://via.placeholder.com/250" alt="">
+    </div>
+
+    <div class="user-show-events">
+      <h2>Upcoming Events</h2>
+      <% @user.invites.each do |invite| %>
+      <div class="user-show-event-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
+        <%= link_to event_path(invite.group.event.id) do %>
+        <div>
+         <p><strong><%= invite.group.event.name %></strong></p>
+        </div>
+        <% end %>
+        <div>
+        <p>><%= invite.group.event.start_time %></p>
+        </div> 
+      </div>
+        
+      <% end %>
+    </div>
+
+    <div id="map" 
+      class="user-show-map"
+      data-marker="<%= @marker.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
+    <div class="user-show-data">
+      <h2>Username: <%= @user.username %></h2>
+      <p>Address: <%= @user.address %></p>
+      <p>email: <%= @user.email %></p>
+      <% if @user.role %>
+        <p>role: <%= @user.role %> </p>
+      <% else %>
+        <p>role not specified</p>
+      <% end %>
+      <% @sum = 0 %>
+            <% @reviews.each do |review| %>
+              <% if review.receiver == @user %>
+                <% @sum += review.rating %>
+                <% end %>
+              <% end %>
+              <h3>Level: <%= @sum %></h3>
+    </div>
+
+    <div class="user-show-comments">
+      <h2>Comments</h2>
+      <div class="display-reviews">
+        <% @reviews.each do |review| %>
+          <% if review.receiver == @user %>
+            <div class="user-show-review-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
+            <div class="user-show-review-card-format">
+              <%= link_to user_path(review.user.id) do %>
+                <p><strong><%= review.user.username%></strong></p>
+              <% end %>
+                <p>
+                <% review.rating.times do %>
+                  💃
+                <% end %>
+                </p>
+              </div>
+              <div class="user-show-review-card-format">
+                <p><%= review.content %></p>
+               </div>
+               <div class="user-show-review-card-format">
+                  <% if review.user == current_user %>
+                    <%= link_to  user_review_path(review), method: :delete, data: { confirm: "Are you sure?" } do %>
+                      <p class="text-alert"><i class="fas fa-trash"></i> Delete</p>
+                    <% end %>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>   
+      </div>
+      <div class="new-review">
+        <%#= render "review", receiver: @user, review: @review %>
+      </div>
+    </div>
+
+    <div class="user-show-achievements">
+      <h2>Achievements</h2>
+      <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy6" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy7" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy8" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy9" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy10" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy11" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy12" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy13" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy14" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy15" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+      </div>
+      <div class="trophy16" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fa fa-users fa-2x"></i>
+  </div>
+    </div>
+  </div>
