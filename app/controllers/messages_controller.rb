@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
       @chatroom,
       render_to_string(partial: "messages/message", locals: { message: @message })
       )
-      redirect_to group_path(@chatroom, anchor: "message-#{@message.id}")
+      redirect_to group_path(@chatroom)
     else
       render "chatrooms/show"
     end

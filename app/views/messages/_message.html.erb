@@ -1,5 +1,5 @@
 <!-- app/views/messages/_message.html.erb -->
-<div class ="message-container <%= message.user_id == current_user.id ? 'chat-message-user' : 'chat-message-not-user' %>" id="message-<%= message.id %>">
+<div class ="message-container <%= message.user == current_user ? 'chat-message-user' : 'chat-message-not-user' %>" id="message-<%= message.id %>">
   <h3><%= message.content %></h3>
   <i class="author">
     <span><%= message.user.username %></span>
