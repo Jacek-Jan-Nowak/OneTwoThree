@@ -6,7 +6,14 @@ class Event < ApplicationRecord
   # do we need has many users?
 
   include PgSearch::Model
-  multisearchable against: [:place]
+  pg_search_scope :search_by_name_and_address,
+    against: [:name],
+    associated_against: {
+      place: [ :address ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 
   validates :start_time, presence: true
   validates :name, presence: true

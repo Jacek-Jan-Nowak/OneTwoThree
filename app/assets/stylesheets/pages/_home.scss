@@ -90,7 +90,7 @@
   margin: 10px;
 }
 
-.home_buttons .main_BUDDY a {
+.home_buttons .main_BUDDY input {
 position: absolute;
 top: 0;
 left: 0;
@@ -112,7 +112,7 @@ backdrop-filter: blur(20px);
 }
 
 
-.main_BUDDY:hover a {
+.main_BUDDY:hover input {
   letter-spacing: 3px;
   transition-delay: 0.3s;
   background: -webkit-linear-gradient(-45deg, #8741e6, #b2519f, #da5e58, #d8b46e);
@@ -120,7 +120,7 @@ backdrop-filter: blur(20px);
   -webkit-text-fill-color: transparent;
 }
 
-.main_BUDDY a::before {
+.main_BUDDY input::before {
   content: '';
   position: absolute;
   top: 0;
@@ -133,7 +133,7 @@ backdrop-filter: blur(20px);
   transition: 0.5s;
 }
 
-.home_buttons .main_BUDDY:hover a::before {
+.home_buttons .main_BUDDY:hover input::before {
   transform: skewX(45deg) translateX(200%);
 }
 
@@ -193,7 +193,7 @@ backdrop-filter: blur(20px);
   margin: 10px;
 }
 
-.home_buttons .main_EVENT a {
+.home_buttons .main_EVENT input {
 position: absolute;
 top: 0;
 left: 0;
@@ -215,7 +215,7 @@ backdrop-filter: blur(20px);
 }
 
 
-.main_EVENT:hover a {
+.main_EVENT:hover input {
   letter-spacing: 3px;
   transition-delay: 0.3s;
   background: -webkit-linear-gradient(-45deg, #8741e6, #b2519f, #da5e58, #d8b46e);
@@ -224,7 +224,7 @@ backdrop-filter: blur(20px);
   animation: my-gradient 10s ease infinite;
 }
 
-.main_EVENT a::before {
+.main_EVENT input::before {
   content: '';
   position: absolute;
   top: 0;
