@@ -1,45 +1,42 @@
-<div class="centered-container">
-  <div class="wrapper">
-    <div class="user-card">
-      <img src="https://via.placeholder.com/250" alt="">
-    </div>
-    <div>
-      <h1>Group name: <%= @group.name %></h1>
-      <p>created by: <%= @group.owner.username %></p>
-      <p>place: <%= @group.event.place.name %></p>
-      <p>address: <%= @group.event.place.address %></p>
-      <p>event: <%= @group.event.name %></p>
-          <h2>Group members</h2>
-      <%  @group.invites.each do |invite| %>
-        <%= link_to user_path(invite.invitee) do %>
-          <div>
-            <h5><%= invite.invitee.username %></h5> 
-          </div>
-        <% end %>
+
+<div class="group-grid-container">
+
+  <div class = "group-show-data">
+    <h1>Group name: <%= @group.name %></h1>
+    <p>created by: <%= @group.owner.username %></p>
+    <p>place: <%= @group.event.place.name %></p>
+    <p>address: <%= @group.event.place.address %></p>
+    <p>event: <%= @group.event.name %></p>
+    <img src="https://via.placeholder.com/370">
+  </div>
+
+  <div class = "group-chat">
+  <div class="chatroom">
+    <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+      <% @chatroom.messages.each do |message| %>
+        <%= render 'messages/message', message: message %>
       <% end %>
     </div>
+</div>
+    <div class = "chatroom-input">
+      <%= simple_form_for [ @group, @chatroom, @message ], remote: true do |f| %>
+        <%= f.input :content, label: false %>
+      <% end %>
+    </div>
+
+  </div>
+
+
+
+  <div class="group-event-picture">
+    <h3> event picture </h3>
+    <img src="https://via.placeholder.com/370">
+  </div>
+
+  <div class="group-people-coming">
+    <h3> group-people-coming </h3>
     <div>
      <%= link_to "Add a user", users_path(group: @group.id), class:"btn btn-primary" %>
     </div>
   </div>
-</div>
-
-<div class="container">
-
-  <h1>#<%= @chatroom.name %></h1>
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-    <% @chatroom.messages.each do |message| %>
-      <div class="message-container" id="message-<%= message.id %>">
-        <i class="author">
-          <span><%= message.user.username %></span>
-          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-        </i>
-        <p><%= message.content %></p>
-      </div>
-    <% end %>
-  </div>
-
-<%= simple_form_for [ @group, @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
-<% end %>
 </div>
