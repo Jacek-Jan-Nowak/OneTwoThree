@@ -19,10 +19,11 @@
   width: 50vw;
   min-width: 450px;
   height: 50vh;
-  margin: 5vh auto 1vh;
-  padding-top: 2vh;
+  margin: auto auto ;
+  padding-top: 0;
   border-radius: 12px;
   transform-style: preserve-3d;
+  justify-self: center;
 }
 
 .home_search_bar {
