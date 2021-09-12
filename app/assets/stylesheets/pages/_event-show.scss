@@ -1,7 +1,128 @@
-.cont{
-  border-radius: 30px;
+.event-show-main{
+  padding: 10px 10px 10px 70px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.8fr 1.5fr;
+  grid-gap: 1vw;
+  grid-template-areas: 
+  "event-show-pic event-show-data event-show-map"
+  "event-show-participants event-show-participants event-show-groups";
+
+  h1 {
+    color: white;
+  }
+  h2 {
+    color: white;
+  }
+  h3 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+}
+
+.event-show-pic {
+  border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: fill;
+  padding: 10px;
+
+  img{
+ 
+    border-radius: 12px;
+    
+  }
+}
+
+.event-show-map {
+  grid-area: event-show-map;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.event-show-data {
+  grid-area: event-show-data;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.event-show-group {
+  grid-area: event-show-events;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.event-show-participants {
+  color: white;
+  grid-area: event-show-participants;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+@media only screen and (max-width: 650px) {
+  .event-show-main{
+    position: absolute;
+    overflow-y: scroll;
+    height: 98%;
+    margin: 0 auto;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1.5fr 1fr 2fr ;
+    grid-template-areas: 
+    "event-show-profile"
+    "event-show-data"
+    "event-show-events" 
+    "event-show-achievements" 
+    "event-show-comments";
+  }
+  .event-show-main::-webkit-scrollbar {
+    display: none;
+  }
+  .event-show-achievements{
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .event-show-comments {
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .event-show-events {
+    .event-show-event-card {
+      height: 90px;
+    }
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
 }
