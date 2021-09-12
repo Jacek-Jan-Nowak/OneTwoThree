@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   has_many :invites, dependent: :destroy, through: :groups
   # do we need has many users?
 
+  has_one_attached :photo
+
   include PgSearch::Model
   pg_search_scope :search_by_name_and_address,
     against: [:name],

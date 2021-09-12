@@ -5,4 +5,6 @@ class Place < ApplicationRecord
     belongs_to :owner, class_name: "User"
     validates :name, presence: true
     validates :address, presence: true
+    has_one_attached :photo
+    
 end
