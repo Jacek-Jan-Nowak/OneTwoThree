@@ -55,7 +55,7 @@
   <div class="user-show-main">
 
     <div class="user-show-profile">
-      <img src="https://via.placeholder.com/250" alt="">
+      <%= cl_image_tag @user.photo.key, height: 370, width: 370, crop: :fill %>
     </div>
 
     <div class="user-show-events">
