@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if params[:query].present?
       @users = User.search_by_address(params[:query])
     else
-      @users = User.all
+      @users = User.where.not(latitude: nil, longitude: nil)
       if params[:event].present?
         @event = params[:event]
       end
@@ -29,11 +29,14 @@ class UsersController < ApplicationController
     @event = params[:event]
     @group = params[:group]
     # session[:dancer_id] = @user.id
-    @marker =
+
+    @marker = [
       {
         lat: @user.latitude,
-        lng: @user.longitude
+        lng: @user.longitude  
       }
+    ]
+
   end
 
   def user_params

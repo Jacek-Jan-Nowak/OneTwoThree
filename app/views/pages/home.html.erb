@@ -10,27 +10,27 @@
           class: "form-control",
           placeholder: "Search here..."
         %>
-         <%= submit_tag "Search", class: " search-button" %>
-        <%#= select_tag "options", options_for_select(['Buddies', 'Events'], ''), class:"select-options"%>
-          <%= check_box("Buddies", @user, {checked: false}) %>  
-          <%= label_tag "Events" %> 
-          <%= check_box("events", @event, {checked: false}) %>
-          <%= label_tag "Users" %>
-         
-        <% end %> 
-    </div>
-
+         <%#= select_tag "radius", options_for_select(['1', '2', "5","10","all"], ''), class:"search-buttons"%>
+          <%# <%= check_box("Buddies", @user, {checked: false}) %>  
+          <%#= label_tag "Events" %> 
+          <%#= check_box("events", @event, {checked: false}) %>
+          <%#= label_tag "Users" %>
     <div class="home_buttons">
 
       <div class="main_BUDDY">
-        <%= link_to "Find a buddy!", users_path %>
+        <%= submit_tag "Find a buddy!", value: "buddy" %>
       </div>
 
       <div class="main_EVENT">
-        <%= link_to "Find events!", events_path %>
+        <%= submit_tag "Find events!", value: "events" %>
       </div>
 
     </div>
+        <% end %> 
+
+    </div>
+  
+
   </div>
 
 

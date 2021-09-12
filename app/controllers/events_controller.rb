@@ -4,15 +4,15 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.place.near(params[query], 10)
+      @events = Event.search_by_name_and_address(params[:query])
     else
-      @events = Event.all
+      @events = Event.where.not(latitude: nil, longitude: nil)
       if params[:user].present?
         @invitee = params[:user]
       end
     end
     
-    @markers = @events.map do |event|
+     @markers = @events.map do |event|
       {
         lat: event.place.latitude,
         lng: event.place.longitude,
