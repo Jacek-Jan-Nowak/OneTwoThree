@@ -1,56 +1,60 @@
-<div class="event-show-side">
+  <div class="event-show-side">
   
-</div>
+  </div>
   
-<div class="event-show-main">
   
-  <div class="event-show-data">
-    <h1><%= @event.name %> </h1>
-    <p><strong>Event type: </strong> <%= @event.event_type %></p>
-    <p><strong>Place: </strong> <%= @event.place.address %></p>
-    <p><strong>Starting at: </strong> <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
-    <div class="user-avatar">
-      <img src="../../assets/dance.jpg" alt="" class="avatar">
-    </div>
-    <div>
-      <p>Created by: <%= @event.host.username %></p>
-    </div>
-  </div>
-
-  <div class="event-show-pic">
-    <img src="https://via.placeholder.com/150">
-  </div>
-
-  <div class="event-show-groups">
-    <% if params[:user] %>
-      <%= link_to "Create invitation", new_invite_path(event: @event.id, user: @user), class:"btn btn-danger" %>
-    <% else %>
-        <%= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
-    <% end%>
-    <%= link_to "Join Event", invites_join_path(event: @event.id), method: :post, class:"btn btn-danger" %>
-    <%= link_to "home", root_path, class:"btn btn-primary" %>
-    <% if params.include?(:user)  %>
-      <%= link_to "all events", events_path(user: @user), class:"btn btn-primary" %>
-    <% else %>
-      <%= link_to "all events", events_path, class:"btn btn-primary" %>
-    <% end %>
-    <%= link_to "all groups for this event", groups_path(event: @event.id), class:"btn btn-primary"  %>
-  </div>
-     
-  <div class="event-show-participants">
-    <h1>Participants</h1>
-      <%  @event.groups.each do |group| %>
-      <% group.invites.each do |invite| %>
-        <%= link_to user_path(invite.invitee) do %>
-          <div class="d-flex my-3 align-items-center">
-            <h5><%= invite.invitee.username %></h5> 
+  <div class="event-show-main">
+  
+      <div class="event-show-data">
+        <h1><%= @event.name %> </h1>
+        <p><strong>Event type: </strong> <%= @event.event_type %></p>
+        <p><strong>Place: </strong> <%= @event.place.address %></p>
+        <p><strong>Starting at: </strong> <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
+   <div class="user-avatar">
+            <img src="../../assets/dance.jpg" alt="" class="avatar">
           </div>
+          <div>
+            <p>Created by: <%= @event.host.username %></p>
+          </div>
+    </div>
+
+    <div class="event-show-pic">
+      <%= cl_image_tag @event.photo.key, height: 370, width: 370, crop: :fill %>
+    </div>
+
+    <div class="event-show-groups">
+     <% if params[:user] %>
+        <%= link_to "Create invitation", new_invite_path(event: @event.id, user: @user), class:"btn btn-danger" %>
+      <% else %>
+         <%= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
+      <% end%>
+      <%= link_to "Join Event", invites_join_path(event: @event.id), method: :post, class:"btn btn-danger" %>
+      <%= link_to "home", root_path, class:"btn btn-primary" %>
+      <% if params.include?(:user)  %>
+        <%= link_to "all events", events_path(user: @user), class:"btn btn-primary" %>
+      <% else %>
+        <%= link_to "all events", events_path, class:"btn btn-primary" %>
+      <% end %>
+      <%= link_to "all groups for this event", groups_path(event: @event.id), class:"btn btn-primary"  %>
+    </div>
+     
+    <div class="event-show-participants">
+      <h1>Participants</h1>
+       <%  @event.groups.each do |group| %>
+        <% group.invites.each do |invite| %>
+          <%= link_to user_path(invite.invitee) do %>
+            <div class="d-flex my-3 align-items-center">
+              <h5><%= invite.invitee.username %></h5> 
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </div>
-
+    </div>
+<%# test %>
   <div id="map" class="event-show-map"
-    data-marker="<%= @marker.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
+          data-marker="<%= @marker.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+
+</div>
+

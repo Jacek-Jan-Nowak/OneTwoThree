@@ -47,7 +47,7 @@
   <div class="events-grid">
     <% @events.each do |event| %>
       <div class="card-event" data-toggle="modal" data-target="#myModal_<%= event.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
-        <img src="https://via.placeholder.com/100x50">
+        <%= cl_image_tag event.photo.key, height: 150 %>
         <div class="card-event-infos">
           <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
       

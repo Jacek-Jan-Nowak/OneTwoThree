@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  has_one_attached :photo
   
   has_many :events, class_name: "Event", foreign_key: "host_id"
   has_many :places, class_name: "Place", foreign_key: "owner_id"
