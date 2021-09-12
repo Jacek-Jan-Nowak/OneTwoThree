@@ -19,7 +19,7 @@
     </div>
 
     <div class="event-show-pic">
-      <img src="https://via.placeholder.com/150">
+      <%= cl_image_tag @event.photo.key, height: 370, width: 370, crop: :fill %>
     </div>
 
     <div class="event-show-groups">
