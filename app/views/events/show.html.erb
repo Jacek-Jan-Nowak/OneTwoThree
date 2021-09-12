@@ -1,32 +1,44 @@
-
-<div class="show-container">
-  <div class="event-image">
-    <img src="https://via.placeholder.com/750" alt="" class="dance-img">
-
-    
+  <div class="event-show-side">
+  
   </div>
-  <div class="event-wrapper">
-    <br>
-      <div class="event-info">
+  
+  
+  <div class="event-show-main">
+  
+      <div class="event-show-data">
         <h1><%= @event.name %> </h1>
         <p><strong>Event type: </strong> <%= @event.event_type %></p>
         <p><strong>Place: </strong> <%= @event.place.address %></p>
         <p><strong>Starting at: </strong> <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
-        <div class="align-items-center d-flex">
-          <div class="user-avatar">
+   <div class="user-avatar">
             <img src="../../assets/dance.jpg" alt="" class="avatar">
           </div>
-        <%# <p>@event.dancer.username </p> %>
-        </div>
+          <div>
+            <p>Created by: <%= @event.host.username %></p>
+          </div>
     </div>
-      <% if params[:user] %>
+
+    <div class="event-show-pic">
+      <img src="https://via.placeholder.com/150">
+    </div>
+
+    <div class="event-show-groups">
+     <% if params[:user] %>
         <%= link_to "Create invitation", new_invite_path(event: @event.id, user: @user), class:"btn btn-danger" %>
       <% else %>
          <%= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
       <% end%>
       <%= link_to "Join Event", invites_join_path(event: @event.id), method: :post, class:"btn btn-danger" %>
-    <div>
-      <br>
+      <%= link_to "home", root_path, class:"btn btn-primary" %>
+      <% if params.include?(:user)  %>
+        <%= link_to "all events", events_path(user: @user), class:"btn btn-primary" %>
+      <% else %>
+        <%= link_to "all events", events_path, class:"btn btn-primary" %>
+      <% end %>
+      <%= link_to "all groups for this event", groups_path(event: @event.id), class:"btn btn-primary"  %>
+    </div>
+     
+    <div class="event-show-participants">
       <h1>Participants</h1>
        <%  @event.groups.each do |group| %>
         <% group.invites.each do |invite| %>
@@ -38,19 +50,13 @@
         <% end %>
       <% end %>
     </div>
-    <div class="btn-container">
-      <%= link_to "home", root_path, class:"btn btn-primary" %>
-      <% if params.include?(:user)  %>
-        <%= link_to "all events", events_path(user: @user), class:"btn btn-primary" %>
-      <% else %>
-        <%= link_to "all events", events_path, class:"btn btn-primary" %>
-      <% end %>
-      <%= link_to "all groups for this event", groups_path(event: @event.id), class:"btn btn-primary"  %>
-      
-    </div>
-  </div>
-  <div id="map"
+
+  <div id="map" class="event-show-map"
           data-marker="<%= @marker.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
+<<<<<<< HEAD
 </div>
+=======
+
+>>>>>>> bc9c471fa5ca8fb53d40fdc89440f8c311646fde
