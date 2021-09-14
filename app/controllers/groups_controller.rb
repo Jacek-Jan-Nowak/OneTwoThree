@@ -17,7 +17,6 @@ class GroupsController < ApplicationController
     @event = params[:event]
     @chatroom = @group.chatroom
     @message = Message.new
-    @invite = Invite.find(@group.id)
 
 
   end

@@ -5,7 +5,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 0.8fr 1fr 1.5fr 0.8fr;
-  grid-template-rows: 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-gap: 1vw;
   grid-template-areas: 
   "group-show-side group-show-data group-chat group-people-coming"
@@ -30,6 +30,9 @@
 }
 .group-show-data{
   // position: absolute;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   grid-area: group-show-data;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
@@ -37,7 +40,27 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   overflow-y: scroll;
+
 }
+.group-show-data-inline{
+  display: flex;
+  margin-bottom: 20px;
+
+  .icon{
+    width: 15%;
+    text-align: center;
+  }
+  .text{
+    width: 95%;
+    text-align: left;
+  }
+}
+
+.group-title{
+  text-align: left;
+  margin-bottom: 30px;
+}
+
 
 .group-chat{
   // position: absolute;
@@ -101,7 +124,17 @@
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  
+    img{
+      border-radius: 12px;
+      height: 100%;
+      width: 100%;
+      object-fit:cover;
+    }
 }
 
 .group-people-coming{
@@ -112,31 +145,38 @@
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
+    padding: 10px;
     overflow-y: scroll;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 
     .group-people-card {
-      border-radius: 50%;
-      padding-left: 5px;
-      margin-top: 20px;
-      padding-top: 20px;
-      display: flex;
-      height: 280px;
-      flex-direction: column;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      margin:5px;
+      height: 100px;
+      padding: 10px 10px;
       border-radius: 15px;
-      overflow-y: scroll;
-      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
     .group-people-card img{
-      border-radius: 50%;
-
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+      margin-top: 5px;
+      border-radius: 10px;
+      margin-right: 10px;
     }
 
+    .group-people-card-det{
+      overflow: hidden;
+    }
 }
 
 .group-show-side{

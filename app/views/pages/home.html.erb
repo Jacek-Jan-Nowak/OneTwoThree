@@ -8,7 +8,7 @@
         <%= text_field_tag :query,
           params[:query],
           class: "form-control",
-          placeholder: "Search here..."
+          placeholder: "Your location..."
         %>
          <%#= select_tag "radius", options_for_select(['1', '2', "5","10","all"], ''), class:"search-buttons"%>
           <%# <%= check_box("Buddies", @user, {checked: false}) %>  
@@ -18,11 +18,11 @@
     <div class="home_buttons">
 
       <div class="main_BUDDY">
-        <%= submit_tag "buddy", value: "buddy" %>
+        <%= submit_tag "Find people", value: "Find people" %>
       </div>
 
       <div class="main_EVENT">
-        <%= submit_tag "events", value: "events" %>
+        <%= submit_tag "Find events", value: "Find events" %>
       </div>
 
     </div>
