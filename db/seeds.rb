@@ -102,7 +102,7 @@ CSV.foreach(filepath, csv_options).with_index do |row, index|
     break if index == 15
     place = Place.create!(
     name: row['name'],
-    address: row['address'],
+    address: "#{row['address']} london",
     latitude: row['latitude'].to_f,
     longitude: row['longitude'].to_f, 
     # user: User.find_by(is_pro?: true),
