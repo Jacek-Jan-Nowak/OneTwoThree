@@ -7,8 +7,7 @@
 }
 
 .users-index-main{
-  padding-top: 10px ;
-  padding-left: 60px;
+  padding: 10px;
   position: relative;
   height: 100%;
   width: 100%;
@@ -19,7 +18,7 @@
   "user-index-side users-grid users-map";
 }
 .user-index-side{
-  grid-area: "user-index-side";
+  grid-area: user-index-side;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -137,9 +136,17 @@
 @media only screen and (max-width: 650px) {
   .users-index-main{
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 0.1fr 1fr;
     grid-template-areas: 
+    "user-index-side" 
     "users-grid";
+  }
+
+  .user-index-side{
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
   }
   .users-map {
     visibility: hidden;
