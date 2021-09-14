@@ -17,6 +17,12 @@
   grid-template-areas: 
   "user-index-side users-grid users-map";
 }
+
+.users-index-main::-webkit-scrollbar {
+  display: none;
+}
+
+
 .user-index-side{
   grid-area: user-index-side;
   border-radius: 15px;
@@ -26,15 +32,12 @@
   backdrop-filter: blur(8px);
 }
 .users-grid{
-  display: grid;
-  padding: 0 10px;
-  position: absolute;
-  overflow-y: scroll;
-  height: 98%;
-  margin: 0 auto;
-  width: 100%;
   grid-area: users-grid;
-  z-index: 5;
+  padding: 10px;
+  overflow-y: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .users-grid::-webkit-scrollbar {
@@ -135,6 +138,11 @@
 
 @media only screen and (max-width: 650px) {
   .users-index-main{
+    position: absolute;
+    overflow-y: scroll;
+    height: 98%;
+    margin: 0 auto;
+    width: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 0.1fr 1fr;
     grid-template-areas: 
@@ -143,6 +151,12 @@
   }
 
   .user-index-side{
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .users-grid{
     overflow-y: visible;
     position: relative;
     height: 100%;

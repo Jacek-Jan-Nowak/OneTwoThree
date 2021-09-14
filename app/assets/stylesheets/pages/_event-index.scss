@@ -10,6 +10,12 @@
   grid-template-areas: 
   "event-index-side events-grid events-map";
  }
+
+ .events-index-main::-webkit-scrollbar {
+  display: none;
+}
+
+
  .event-index-side{
   grid-area: event-index-side;
   border-radius: 15px;
@@ -120,6 +126,11 @@
 
 @media only screen and (max-width: 650px) {
   .events-index-main{
+    position: absolute;
+    overflow-y: scroll;
+    height: 98%;
+    margin: 0 auto;
+    width: 100%;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
