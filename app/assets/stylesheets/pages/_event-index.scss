@@ -1,19 +1,25 @@
 
 .events-index-main{
-  padding-top: 10px ;
-  padding-left: 60px;
+  padding: 10px;
   position: relative;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 1.5fr;
+  grid-template-columns: 0.5fr 2fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: 
-  "events-grid events-map";
+  "event-index-side events-grid events-map";
  }
- 
+ .event-index-side{
+  grid-area: event-index-side;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+ }
  .events-grid{
-  padding: 0 10px;
+  padding: 5px 15px;
   position: absolute;
   overflow-y: scroll;
   height: 98%;
@@ -22,6 +28,7 @@
   grid-area: events-grid;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
  }
  
  .events-grid::-webkit-scrollbar {
@@ -31,7 +38,7 @@
  .card-event{
    margin-bottom: 10px;
    height: 300px;
-   width: 250px;
+   width: 200px;
    padding: 10px;
    border-radius: 15px;
    background: rgba(255, 255, 255, 0.1);
@@ -104,7 +111,7 @@
   margin: 5px ;
   text-decoration: none;
 }
-@media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 1100px) {
   .events-grid{
     grid-template-columns: 1fr 1fr;
    }
@@ -114,16 +121,32 @@
 @media only screen and (max-width: 650px) {
   .events-index-main{
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "event-index-side" 
     "events-grid";
   }
+  .event-index-side{
+    overflow-y: visible;
+    position: relative;
+   
+    width: 100%;
+  }
   .events-grid{
+    padding-top: 10px;
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
     grid-template-columns: 1fr;
    }
    .card-event{
     height: 300px;
     width: 350px;
     margin: 0 auto 10px;
+   }
+   .events-map {
+    visibility: hidden;
+    width: 0;
    }
 }

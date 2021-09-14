@@ -13,12 +13,19 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 1.5fr;
+  grid-template-columns: 0.5fr 2fr 1.5fr;
   grid-template-rows: 1fr;
   grid-template-areas: 
-  "users-grid users-map";
+  "user-index-side users-grid users-map";
 }
-
+.user-index-side{
+  grid-area: "user-index-side";
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
 .users-grid{
   display: grid;
   padding: 0 10px;
@@ -134,4 +141,8 @@
     grid-template-areas: 
     "users-grid";
   }
+  .users-map {
+    visibility: hidden;
+    width: 0;
+   }
 }

@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   has_many :reviews, class_name: "Review", foreign_key: "receiver_id"
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   
   has_many :messages
 

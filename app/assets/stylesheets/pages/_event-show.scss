@@ -1,15 +1,15 @@
 .event-show-main{
-  padding: 10px 10px 10px 70px;
+  padding: 10px;
   position: relative;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.8fr 0.5fr 1fr 1fr;
   grid-template-rows: 0.8fr 1.5fr;
   grid-gap: 1vw;
   grid-template-areas: 
-  "event-show-pic event-show-data event-show-map"
-  "event-show-participants event-show-participants event-show-groups";
+  "event-show-side event-show-pic event-show-data event-show-map"
+  "event-show-side event-show-participants event-show-participants event-show-groups";
 
   h1 {
     color: white;
@@ -25,6 +25,17 @@
   }
 }
 
+.event-show-side{
+  grid-area: event-show-side;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  // padding: 10px;
+  
+}
+
 .event-show-pic {
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
@@ -34,13 +45,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  object-fit: fill;
   padding: 10px;
 
   img{
- 
     border-radius: 12px;
-    
+    height:100%;
+    object-fit:cover;
   }
 }
 
@@ -64,18 +74,39 @@
   padding: 10px;
 }
 
-.event-show-group {
-  grid-area: event-show-events;
+.event-show-groups {
+  grid-area: event-show-groups;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   padding: 10px;
+  overflow-y: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.event-show-groups::-webkit-scrollbar {
+  display: none;
 }
 
+.event-show-group-card {
+  height: 70px;
+  margin-top: 20px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  display: block;
+
+  p {
+    margin: 0;
+  }
+}
 .event-show-participants {
-  color: white;
   grid-area: event-show-participants;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
@@ -83,6 +114,59 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   padding: 10px;
+  overflow-y: scroll;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.event-show-participants::-webkit-scrollbar {
+  display: none;
+}
+.event-show-participant-card {
+  margin:5px;
+  height: 100px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+
+  img {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    margin-top: 5px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+  
+  .event-show-participant-card-infos{
+    padding: 30px;
+    margin: 30px;
+    color: white;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  h2 {
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -93,13 +177,14 @@
     margin: 0 auto;
     width: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1.5fr 1fr 2fr ;
+    grid-template-rows: 1fr 1fr 1fr 1.5fr 1fr 2fr ;
     grid-template-areas: 
-    "event-show-profile"
+    "event-show-side"
+    "event-show-pic"
     "event-show-data"
-    "event-show-events" 
-    "event-show-achievements" 
-    "event-show-comments";
+    "event-show-groups" 
+    "event-show-participants" 
+    "event-show-map";
   }
   .event-show-main::-webkit-scrollbar {
     display: none;
@@ -110,19 +195,32 @@
     height: 100%;
     width: 100%;
   }
-  .event-show-comments {
+  .event-show-side{
     overflow-y: visible;
     position: relative;
     height: 100%;
     width: 100%;
   }
-  .event-show-events {
-    .event-show-event-card {
+  .event-show-participants {
+    .event-show-participant-card {
       height: 90px;
     }
     overflow-y: visible;
     position: relative;
     height: 100%;
     width: 100%;
+  }
+  
+  .event-show-groups {
+    .event-show-group-card {
+      height: 90px;
+    }
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .event-show-map {
+visibility: hidden;
   }
 }

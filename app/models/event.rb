@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :place
-  has_many :groups
+  has_many :groups, dependent: :destroy
   belongs_to :host, class_name: "User"
   has_many :invites, dependent: :destroy, through: :groups
   # do we need has many users?

@@ -1,7 +1,11 @@
 <%= form_with(url: invites_path, method: :post, local: true)  do |f| %>
-  <%= f.text_field :group_name %>
-  <%= f.text_area :message %>
+  <%= f.label :"Group Name" %>
+  <%= f.text_field :group_name,  class:"form-text" %>
+  <br>
+    <%= f.label :"Message" %>
+  <%= f.text_area :message,  class:"form-text" %>
   <%= f.hidden_field :event, value: @event %>
   <%= f.hidden_field :user, value: @user %>
-  <%= f.submit "Save" %>
+  <br>
+  <%= f.submit "Save", class:"form-button" %>
 <% end %>
