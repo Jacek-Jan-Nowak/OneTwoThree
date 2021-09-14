@@ -1,0 +1,45 @@
+.invite-new-main{
+  margin: 20px auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+  height: 50%;
+  width: 70%;
+  display: block;
+  align-items: center;
+  text-align: center
+  
+}
+
+.form-button{
+  color: white;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  
+  backdrop-filter: blur(8px);
+}
+
+
+.form-button:hover{
+  text-decoration:none;
+  letter-spacing: 3px;
+  
+  text-shadow: 0 0 10px #ffffff,
+  0 0 25px #ffffff,
+  0 0 50px #ffffff,
+  0 0 80px #ffffff;
+}
+
+.form-text{
+  margin: 0 auto;
+  display: block;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}

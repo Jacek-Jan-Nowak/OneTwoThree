@@ -1,38 +1,5 @@
-<nav class="main-menu">
-  <ul>
-    <li>
-      <a href="#">
-      <i class="fa fa-calendar fa-2x"></i>
-      <span class="nav-text">
-        Add an Event
-      </span>
-      </a>  
-    </li>
-  </ul>
-</nav> 
-<% @events.each do |event| %>
-              <div class="modal fade" id="myModal_<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="popupLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content popup">
-                    <div class="modal-header">
-                      <h3 class="modal-title" id="popupLabel"><%= event.name %></h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <h4><%= event.name  %></h3>
-                      <p> <%= event.place.name %> </p>
-                      <p> <%= event.place.address %> </p>
-                      <p> <%= event.start_time %> </p>
-                    </div>
-                    <div class="modal-footer">
-                      <%= link_to "See Event", event_path(event, user: @invitee ), class: "modal-button" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-<% end %>
+
+
 <%# <div class="cont"> %>
   <%# <h3>EVENTS AVAILABLE</h3> %>
 <%# </div> %>
@@ -43,11 +10,22 @@
 <%# </div> %>
 
 <div class="events-index-main">
-
+  <div class="sidebar event-index-side">
+    <ul>
+    <li>
+      <a href="#">
+      <i class="fa fa-calendar fa-2x"></i>
+      <span class="nav-text">
+        Add an Event
+      </span>
+      </a>  
+    </li>
+  </ul>
+  </div>
   <div class="events-grid">
     <% @events.each do |event| %>
       <div class="card-event" data-toggle="modal" data-target="#myModal_<%= event.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
-        <%= cl_image_tag event.photo.key, height: 150 %>
+        <%= cl_image_tag event.photo.key, height: 120 %>
         <div class="card-event-infos">
           <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
       
@@ -61,7 +39,7 @@
 
 <div id="map"
   class="events-map"
-  style="height: 500px; width: 576px;"
+  <%# style="height: 500px; width: 576px;" %>
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>

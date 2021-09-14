@@ -6,19 +6,20 @@ class EventsController < ApplicationController
     if params[:query].present?
       @events = Event.search_by_name_and_address(params[:query])
     else
-      @events = Event.where.not(latitude: nil, longitude: nil)
+      @events = Event.all
+      # @events = Event.where.not(latitude: nil, longitude: nil)
       if params[:user].present?
         @invitee = params[:user]
       end
     end
     
-     @markers = @events.map do |event|
-      {
-        lat: event.place.latitude,
-        lng: event.place.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { event: event })
-      }
-    end
+    #  @markers = @events.map do |event|
+    #   {
+    #     lat: event.place.latitude,
+    #     lng: event.place.longitude,
+    #     info_window: render_to_string(partial: "info_window", locals: { event: event })
+    #   }
+    # end
   end
 
   def show

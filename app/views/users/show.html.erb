@@ -1,5 +1,12 @@
-<nav class="main-menu">
-  <ul>
+
+ 
+
+
+
+  <div class="user-show-main">
+
+    <div class="sidebar user-show-side">
+     <ul>
         <% if params.include?(:event) %>
           <%= link_to users_path do %>
             <li>
@@ -49,11 +56,7 @@
           <% end%>
         <% end%>
   </ul>
-</nav>
-
-
-  <div class="user-show-main">
-
+    </div>
     <div class="user-show-profile">
       <%= cl_image_tag @user.photo.key, height: 370, width: 370, crop: :fill %>
     </div>

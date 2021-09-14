@@ -2,12 +2,16 @@ require 'csv'
 require 'open-uri'
 require 'nokogiri'
 puts "Resetting database"
-Group.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
 Invite.destroy_all
-User.destroy_all
+Group.destroy_all
+Review.destroy_all
 Event.destroy_all
 Place.destroy_all
-Review.destroy_all
+User.destroy_all
+
+
 
 Faker::Config.locale 
 
@@ -65,6 +69,7 @@ puts 'TEST users created!'
 
 puts 'Creating 10 fake users...'
 CSV.foreach(userfilepath, csv_options).with_index do |row, index|
+  puts "creating user number #{index}"
   break if index == 10
     user = User.create!(
       email: Faker::Internet.email,
@@ -89,7 +94,7 @@ end
 puts '10 users created!'
 
 
-puts 'Creating 10 places...'
+puts 'Creating 15 places...'
 
 
 CSV.foreach(filepath, csv_options).with_index do |row, index|

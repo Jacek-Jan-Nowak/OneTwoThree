@@ -1,15 +1,15 @@
 .user-show-main{
-  padding: 10px 10px 10px 70px;
+  padding: 10px;
   position: relative;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.8fr 1.5fr 1.5fr;
+  grid-template-columns: 0.5fr 0.8fr 1.5fr 1.5fr;
   grid-template-rows: 0.8fr 1.5fr;
   grid-gap: 1vw;
   grid-template-areas: 
-  "user-show-profile user-show-data user-show-map"
-  "user-show-achievements user-show-events user-show-comments";
+  "user-show-side user-show-profile user-show-data user-show-map"
+  "user-show-side user-show-achievements user-show-events user-show-comments";
 
   h1 {
     color: white;
@@ -23,6 +23,16 @@
   p {
     color: white;
   }
+}
+
+.user-show-side{
+  grid-area: user-show-side;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  // padding: 10px;
 }
 
 .user-show-profile {
@@ -402,8 +412,9 @@ display: flex;
     margin: 0 auto;
     width: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1.5fr 1fr 2fr ;
-    grid-template-areas: 
+    grid-template-rows: 1fr 1fr 1fr 1.5fr 1fr 2fr ;
+    grid-template-areas:
+    "user-show-side" 
     "user-show-profile"
     "user-show-data"
     "user-show-events" 
@@ -413,6 +424,14 @@ display: flex;
   .user-show-main::-webkit-scrollbar {
     display: none;
   }
+
+  .user-show-side{
+    overflow-y: visible;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
   .user-show-achievements{
     overflow-y: visible;
     position: relative;
