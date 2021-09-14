@@ -29,8 +29,7 @@
 
 
   <div class="group-event-picture">
-    <h3> event picture </h3>
-    <img src="https://via.placeholder.com/370">
+    <%= cl_image_tag @group.event.photo.key, height: 370, width: 370, crop: :fill %>
   </div>
 
   <div class="group-people-coming">
