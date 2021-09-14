@@ -1,6 +1,31 @@
 
 <div class="group-grid-container">
 
+    <div class="sidebar group-show-side">
+      <ul>
+        <%= link_to  events_path(group: @group) do %>
+          <li>
+              <i class="fa fa-glass-cheers fa-2x"></i>
+                <span class="nav-text">
+                  All Events
+                </span> 
+          </li>
+        <% end%>
+
+      <%= link_to users_path(group: @group.id) do %>
+        <li>
+            <i class="fa fa-users fa-2x"></i>
+              <span class="nav-text">
+                Invite a Friend
+              </span>  
+        </li>
+        <% end %>
+
+      </ul>
+      </div>
+
+
+
   <div class = "group-show-data">
     <h1>Group name: <%= @group.name %></h1>
     <p>created by: <%= @group.owner.username %></p>
@@ -35,7 +60,15 @@
   <div class="group-people-coming">
     <h3> group-people-coming </h3>
     <div>
-     <%= link_to "Add a user", users_path(group: @group.id), class:"btn btn-primary" %>
+     <%# <%= link_to "Add a user", users_path(group: @group.id), class:"btn btn-primary" %>
+     
+      <%= @group.invites.each do |invite| %>
+      <div class="group-people-card">
+        <%= cl_image_tag @group.owner.photo.key, height: 200, width: 200, crop: :fill, gravity: :face %>
+        <p> <%= invite.invitee.username %> </p>
+      </div>
+       <% end %>
+
     </div>
   </div>
 </div>
