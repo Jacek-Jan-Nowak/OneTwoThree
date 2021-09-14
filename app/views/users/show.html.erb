@@ -45,12 +45,12 @@
             </li>
           <% end%>
         <% end%>
-        <% if params[:group] %>
+        <% if params[:group] %> 
           <%= link_to  new_invite_path(user: @user.id, group: @group) do %>
             <li>
                 <i class="fa fa-user-plus fa-2x"></i>
                   <span class="nav-text">
-                    Add user to a group
+                    Add user to the group
                   </span>
             </li>
           <% end%>

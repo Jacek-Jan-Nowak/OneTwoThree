@@ -15,7 +15,6 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @user = params[:user]
     @event = params[:event]
-    
     @chatroom = @group.chatroom
     @message = Message.new
 

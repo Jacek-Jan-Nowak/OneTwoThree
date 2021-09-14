@@ -1,14 +1,15 @@
 .group-grid-container{
-  display: grid;
-  overflow-y: scroll;
+  padding: 10px;
+  position: relative;
   height: 100%;
   width: 100%;
-  position: relative;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1.5fr 1fr;
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 1.5fr 0.8fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1vw;
   grid-template-areas: 
-  "side-bar group-show-data group-chat group-chat group-people-coming"
-  "side-bar group-event-picture group-chat group-chat group-people-coming"
+  "group-show-side group-show-data group-chat group-people-coming"
+  "group-show-side group-event-picture group-chat group-people-coming"
 }
 
 .group-grid-container::-webkit-scrollbar {
@@ -29,16 +30,37 @@
 }
 .group-show-data{
   // position: absolute;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   grid-area: group-show-data;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
-  margin:5px;
-  padding: 10px 10px;
   overflow-y: scroll;
+
 }
+.group-show-data-inline{
+  display: flex;
+  margin-bottom: 20px;
+
+  .icon{
+    width: 15%;
+    text-align: center;
+  }
+  .text{
+    width: 95%;
+    text-align: left;
+  }
+}
+
+.group-title{
+  text-align: left;
+  margin-bottom: 30px;
+}
+
 
 .group-chat{
   // position: absolute;
@@ -49,8 +71,6 @@
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
-  margin:5px;
-  padding: 10px 10px;
 }
 
 .chatroom{
@@ -64,11 +84,12 @@
 }
 
 .chatroom-input{
+  position: absolute;
   height: 8%;
-  width: 100%;
+  width: 98%;
   margin:5px;
   padding: 10px 10px;
-  bottom: 0;
+  bottom: 10px;
 }
 
 .chat-message-user{
@@ -103,8 +124,17 @@
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
-    margin:5px;
-    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  
+    img{
+      border-radius: 12px;
+      height: 100%;
+      width: 100%;
+      object-fit:cover;
+    }
 }
 
 .group-people-coming{
@@ -115,10 +145,53 @@
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
-    margin:5px;
-    padding: 10px 10px;
+    padding: 10px;
     overflow-y: scroll;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    .group-people-card {
+      margin:5px;
+      height: 100px;
+      padding: 10px 10px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .group-people-card img{
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+      margin-top: 5px;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+
+    .group-people-card-det{
+      overflow: hidden;
+    }
 }
+
+.group-show-side{
+  grid-area: group-show-side;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  // padding: 10px;
+}
+
+.group-event-picture img {
+    border-radius: 12px;
+  }
 
 @media only screen and (max-width: 650px) {
   .group-grid-container{

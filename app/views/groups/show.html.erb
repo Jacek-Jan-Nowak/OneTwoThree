@@ -1,13 +1,65 @@
 
 <div class="group-grid-container">
 
+    <div class="sidebar group-show-side">
+      <ul>
+        <%= link_to  events_path(group: @group) do %>
+          <li>
+              <i class="fa fa-glass-cheers fa-2x"></i>
+                <span class="nav-text">
+                  All Events
+                </span> 
+          </li>
+        <% end%>
+
+      <%= link_to users_path(group: @group.id) do %>
+        <li>
+            <i class="fa fa-users fa-2x"></i>
+              <span class="nav-text">
+                Invite someone
+              </span>  
+        </li>
+        <% end %>
+
+      </ul>
+      </div>
+
+
+
   <div class = "group-show-data">
-    <h1>Group name: <%= @group.name %></h1>
-    <p>created by: <%= @group.owner.username %></p>
-    <p>place: <%= @group.event.place.name %></p>
-    <p>address: <%= @group.event.place.address %></p>
-    <p>event: <%= @group.event.name %></p>
-    <img src="https://via.placeholder.com/370">
+    <div class="group-title">
+        <h1><%= @group.name %></h1>
+    </div>
+
+    <div class="group-show-data-inline">
+      <div class="icon">
+        <h3><%=icon('fas', 'male')%></h3>
+      </div>
+      <div class="text">
+        <p><%= @group.owner.username %></p>
+      </div>
+    </div>
+
+
+    <div class="group-show-data-inline">
+      <div class="icon">
+        <h3><%=icon('fas', 'map-marker')%></h3>
+      </div>
+      <div class="text">
+        <p><%= @group.event.place.address %></p>
+      </div>
+    </div>
+   
+
+    <div class="group-show-data-inline">
+      <div class="icon">
+        <h3><%=icon('fas', 'glass-cheers')%></h3>
+      </div>
+      <div class="text">
+        <p><%= @group.event.name%></p>
+      </div>
+    </div>
+
   </div>
 
   <div class = "group-chat">
@@ -23,19 +75,22 @@
         <%= f.input :content, label: false %>
       <% end %>
     </div>
-
   </div>
-
-
 
   <div class="group-event-picture">
     <%= cl_image_tag @group.event.photo.key, height: 370, width: 370, crop: :fill %>
   </div>
 
   <div class="group-people-coming">
-    <h3> group-people-coming </h3>
-    <div>
-     <%= link_to "Add a user", users_path(group: @group.id), class:"btn btn-primary" %>
+   
+      <% @group.invites.each do |invite| %>
+        <div class="group-people-card">
+          <%= cl_image_tag invite.invitee.photo.key, height: 200, width: 200, crop: :fill, gravity: :face %>
+          <div class="group-people-card-det" >
+            <h3> <%= invite.invitee.username %> </h3>
+            <p> <%= invite.invitee.role %> </p>
+          </div> 
+        </div>
+       <% end %>
     </div>
-  </div>
 </div>

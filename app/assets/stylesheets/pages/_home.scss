@@ -4,13 +4,14 @@
   text-align: center;
   margin: 1vh auto;
   font-size: 5vw;
-  letter-spacing: 15px;
+  letter-spacing: 5px;
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
   background-color: rgba(255, 255, 255, 0.175);
   border: 1px solid rgba(209, 213, 219, 0.3);
   border-radius: 12px;
   margin: 20px;
+  margin-top: 110px;
   padding: 20px;
 }
 
@@ -73,22 +74,20 @@
 }
 
 .home_buttons {
-  padding: 1vh;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  background-color: rgba(255, 255, 255, 0.175);
-  border: 1px solid rgba(209, 213, 219, 0.3);
-  border-radius: 12px;
-  margin: 20px;
+  justify-content: space-between;
+  // background-color: rgba(255, 255, 255, 0.175);
+  // border: 1px solid rgba(209, 213, 219, 0.3);
+  // border-radius: 12px;
 }
 
 .home_buttons .main_BUDDY {
   position: relative;
   width: 100%;
   height: calc(30px + 4vw);
-  margin: 10px;
+  align-items: center;
 }
 
 .home_buttons .main_BUDDY input {
