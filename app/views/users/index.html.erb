@@ -19,7 +19,11 @@
         <% @users.each do |user| %>
             <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y">
               <%= link_to user_path(user, event: @event, group: @group) do %>
+              <% if user.photo.attached?%>
                 <%= cl_image_tag user.photo.key, height: 370, width: 370, crop: :fill %>
+              <% else %>
+                <%= image_tag('profile-pic.jfif') %>
+              <% end %>
                 <%# <img src="https://via.placeholder.com/370"> %>
               <% end %>
               <div class="card-user-infos">

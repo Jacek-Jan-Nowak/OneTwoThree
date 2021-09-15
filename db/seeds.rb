@@ -61,24 +61,102 @@ user = User.create!(
   username: "testing",
   password: "testing",
   is_pro?: true,
-  role: ["lead", "follower", "lead/follower"].sample,
+  role: ["leader", "follower", "lead/follower"].sample,
   status: "I really want to dance now!",
   style: dancing_styles.sample
   )
   user_photo = URI.open(users_urls.sample)
   user.photo.attach(io: user_photo, filename: 'photo.jpg')
 puts 'TEST users created!'
+puts 'Creating the boys'
+puts 'first up! ervis'
+ervis = User.create!(
+  email: Faker::Internet.email,
+  username: "Ervis lapis",
+  password: "testing",
+  is_pro?: true,
+  role: "leader/follower",
+  address: "169 Hoxton St, London N1 6PG",
+  status: "I really want to dance now!",
+  style: dancing_styles.sample
+)
+ervis.photo.attach(io: File.open('app/assets/images/ervis.jpg'), filename: 'ervis.jpg')
+rand(3..7).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: ervis,
+  user: User.all.sample,
+  )
+end
+puts "ervis is in the building"
+puts 'Next up! Mike'
+mike = User.create!(
+  email: Faker::Internet.email,
+  username: "Mike Drop",
+  password: "testing",
+  is_pro?: true,
+  role: "leader/follower",
+  address: "London E2 8DY",
+  status: "vamos a bailar",
+  style: dancing_styles.sample
+)
+mike.photo.attach(io: File.open('app/assets/images/mike.jpg'), filename: 'mike.jpg')
+rand(3..7).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: mike,
+  user: User.all.sample,
+  )
+end
+puts "mike is in the building"
+puts "Jacek the big dawg!"
+Jacek = User.create!(
+  email: Faker::Internet.email,
+  username: "Jacek",
+  password: "testing",
+  is_pro?: false,
+  role: "leader/follower",
+  address: "Haggerston Rd, London",
+  status: "Looking forward to my first dance",
+  style: dancing_styles.sample
+)
+Jacek.photo.attach(io: File.open('app/assets/images/jacek.jpg'), filename: 'jacek.jpg')
 
+puts "The big dawg is in the building woof woof"
+puts "introducing dave"
+dave = User.create!(
+  email: Faker::Internet.email,
+  username: "david",
+  password: "testing",
+  is_pro?: true,
+  role: "follower",
+  address: "138 Kingsland Rd, London E2 8DY",
+  status: "I'm free all week",
+  style: dancing_styles.sample
+)
+dave.photo.attach(io: File.open('app/assets/images/dave.png'), filename: 'dave.png')
+rand(3..7).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: dave,
+  user: User.all.sample,
+  )
+end
+puts "dave is in the building"
 puts 'Creating 10 fake users...'
+
 CSV.foreach(userfilepath, csv_options).with_index do |row, index|
   puts "creating user number #{index}"
-  break if index == 5
+  break if index == 3
     user = User.create!(
       email: Faker::Internet.email,
       username: Faker::Internet.username,
       password: "testing",
       is_pro?: [true, false].sample,
-      role: ["lead", "follower", "lead/follower"].sample,
+      role: ["leader", "follower", "leader/follower"].sample,
       address: row['address'],
       status: "I really want to dance now!",
       style: dancing_styles.sample

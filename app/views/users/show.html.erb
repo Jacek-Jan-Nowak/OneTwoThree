@@ -58,7 +58,11 @@
   </ul>
     </div>
     <div class="user-show-profile">
-      <%= cl_image_tag @user.photo.key, height: 370, width: 370, crop: :fill %>
+      <% if @user.photo.attached?%>
+        <%= cl_image_tag @user.photo.key, height: 370, width: 370, crop: :fill, gravity: :face%>
+      <% else %>
+        <%= image_tag('profile-pic.jfif') %>
+      <% end %>
     </div>
 
     <div class="user-show-events">
