@@ -80,7 +80,7 @@
 
     <div id="map" 
       class="user-show-map"
-      style="height: 270px; width: 100%;"
+      <%# style="height: 270px; width: 100%;" %>
       data-markers="<%= @marker.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
