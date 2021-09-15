@@ -68,12 +68,41 @@
   }
   
   .card-user-infos{
-    padding: 30px;
-    margin: 30px;
     color: white;
     margin: 0;
     padding: 0;
     flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "name name name" 
+    "role status level"
+    "style status level"
+  }
+
+  .card-user-infos-role{
+    grid-area: role;
+  }
+
+  .card-user-infos-status{
+    grid-area: status;
+    padding-left: 30px;
+  }
+
+  .card-user-infos-name{
+    grid-area: name;
+    padding-top: -20px;
+  }
+
+  .card-user-infos-style{
+    grid-area: style;
+  }
+
+  .card-user-infos-level{
+    grid-area: level;
+    text-align: right;
+    padding-right: 20px;
   }
     
   img {
@@ -93,10 +122,19 @@
     font-size: 22px;
     text-decoration: none;
     color: white;
+    margin-bottom: 0;
   }
   p {
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .status-text{
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: lighter;
   }
 }
 

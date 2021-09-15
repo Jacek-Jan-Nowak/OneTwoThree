@@ -23,15 +23,42 @@
                 <%# <img src="https://via.placeholder.com/370"> %>
               <% end %>
               <div class="card-user-infos">
-                
+                <div class="card-user-infos-name">
                   <h2> <%= link_to user.username, user_path(user, event: @event, group: @group) %></h2>
-                  <p> <%= user.email %></p>
+                </div>
+                  <div class="card-user-infos-role">
                   <% if user.role %>
-                    <p>role: <%= user.role %> </p>
+                      <p><%=icon('fas', 'praying-hands')%> <%= user.role %> </p>
+                    <% else %>
+                      <p>role not specified</p>
+                    <% end %>
+                  </div>
+
+                  <div class="card-user-infos-status">
+                    <% if user.status %>
+                      <status-text><%= user.status %></status-text>
+                    <% else %>
+                      <p>role not specified</p>
+                    <% end %>
+                 </div>
+
+                  <div class="card-user-infos-style">
+                  <% if user.style %>
+                    <p><%=icon('fas', 'shoe-prints')%> <%= user.style %> </p>
                   <% else %>
-                    <p>role not specified</p>
+                    <p>style not specified</p>
                   <% end %>
+                </div>
                 
+                <div class="card-user-infos-level">
+                  <% sum = 0 %>
+                  <% user.reviews.each do |review| %>
+                    <% if review.receiver == user %>
+                      <% sum += review.rating %>  
+                    <% end %>
+                  <% end %>
+                  <p>Lv <b><%= sum %></b> </p>
+                </div>
               </div>
             </div>
           <% end %>
