@@ -14,18 +14,24 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/mikeybarrett/cktkkilkc502a17pf6y3la65z',
     });
     navigator.geolocation.getCurrentPosition(position => {
       new mapboxgl.Marker({
-        color: '#F84C4C' // color it red for user location marker
-        }).setLngLat([position.coords.longitude, position.coords.latitude]).addTo(map)
+        color: '#F84C4C'
+      }).setLngLat([position.coords.longitude, position.coords.latitude]).addTo(map)
     }); 
 
     const markers = JSON.parse(mapElement.dataset.markers);
       markers.forEach((marker) => {
         const popup = new mapboxgl.Popup().setHTML(marker.info_window);
-          new mapboxgl.Marker()
+        const element = document.createElement('div');
+        element.className = 'marker';
+        element.style.backgroundImage = `url('${marker.image_url}')`;
+        element.style.backgroundSize = 'contain';
+        element.style.width = '25px';
+        element.style.height = '25px';
+          new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
           .setPopup(popup)
           .addTo(map);
