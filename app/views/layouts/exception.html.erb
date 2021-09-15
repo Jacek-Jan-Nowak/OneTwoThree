@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OneTwoThree</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <%= favicon_link_tag %>
+  </head>
+
+  <body>
+    <%= render 'shared/background' %>
+    <div class= "main-container">
+      <div class= "main-window">
+        <%= render 'shared/navbar' %> 
+        <%= render 'shared/flashes' %>
+        <div class= "content-404-500">
+          <div class= "texerror"> 
+            <%=icon('fas', 'times-circle')%>
+          </div> 
+          <div class= "texerror">
+            Page not found
+          </div> 
+        </div> 
+          <%= render 'shared/footer' %> 
+     </div>
+    </div>
+    <div class='end'>
+    </div>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  </body>
+
+</html>

@@ -16,9 +16,31 @@ module OneTwoThree
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    config.exception_handler = {
+      dev: true, # allows you to turn ExceptionHandler "on" in development
+        # This is an entirely NEW structure for the "layouts" area
+        # You're able to define layouts, notifications etc ↴
+        # All keys interpolated as strings, so you can use symbols, strings or integers where necessary
+        exceptions: {
+          :all => {
+          layout: "exception", # define layout
+          notification: true # (false by default)
+        # action: ____, (this is general)
+        # background: (can define custom background for exceptions layout if required)
+          },
+          404 => {
+            layout: "exception", # define layout
+            notification: true # (false by default)
+        # action: ____, (this is general)
+        # background: (can define custom background for exceptions layout if required)
+          },    
+          500 => {
+            layout: "exception", # define layout
+            notification: true # (false by default)
+        # action: ____, (this is general)
+        # background: (can define custom background for exceptions layout if required)
+          }
+        }
+      }
   end
 end
