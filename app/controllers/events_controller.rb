@@ -13,13 +13,14 @@ class EventsController < ApplicationController
       end
     end
     
-    #  @markers = @events.map do |event|
-    #   {
-    #     lat: event.place.latitude,
-    #     lng: event.place.longitude,
-    #     info_window: render_to_string(partial: "info_window", locals: { event: event })
-    #   }
-    # end
+    @markers = @events.map do |event|
+      {
+        lat: event.place.latitude,
+        lng: event.place.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { event: event }),
+        image_url: helpers.asset_url('noun_Dancing_20415.png')
+      }
+     end
   end
 
   def show
