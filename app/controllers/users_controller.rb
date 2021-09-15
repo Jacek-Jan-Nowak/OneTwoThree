@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def index
     if params[:query].present?
       @users = User.search_by_address(params[:query])
+      @users = User.where.not(latitude: nil, longitude: nil)
     else
       @users = User.where.not(latitude: nil, longitude: nil)
       if params[:event].present?

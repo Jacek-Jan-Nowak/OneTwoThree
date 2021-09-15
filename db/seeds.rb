@@ -53,7 +53,7 @@ places_urls = [
 # place_photo = URI.open(places_urls.sample)
 # place.photo.attach(io: place_photo, filename: 'photo.jpg')
 
-
+dancing_styles = ["Cuban Style", "Puerto Rican Style", "Casino Rueda", "LA Style", "New YorkStyle"]
 puts 'Creating 1 test user... pass testing'
 
 user = User.create!(
@@ -62,6 +62,8 @@ user = User.create!(
   password: "testing",
   is_pro?: true,
   role: ["lead", "follower", "lead/follower"].sample,
+  status: "I really want to dance now!",
+  style: dancing_styles.sample
   )
   user_photo = URI.open(users_urls.sample)
   user.photo.attach(io: user_photo, filename: 'photo.jpg')
@@ -70,7 +72,7 @@ puts 'TEST users created!'
 puts 'Creating 10 fake users...'
 CSV.foreach(userfilepath, csv_options).with_index do |row, index|
   puts "creating user number #{index}"
-  break if index == 10
+  break if index == 5
     user = User.create!(
       email: Faker::Internet.email,
       username: Faker::Internet.username,
@@ -78,6 +80,8 @@ CSV.foreach(userfilepath, csv_options).with_index do |row, index|
       is_pro?: [true, false].sample,
       role: ["lead", "follower", "lead/follower"].sample,
       address: row['address'],
+      status: "I really want to dance now!",
+      style: dancing_styles.sample
     )
     user_photo = URI.open(users_urls.sample)
     user.photo.attach(io: user_photo, filename: 'photo.jpg')
@@ -99,10 +103,10 @@ puts 'Creating 15 places...'
 
 CSV.foreach(filepath, csv_options).with_index do |row, index|
     puts "creating place number #{index}"
-    break if index == 15
+    break if index == 5
     place = Place.create!(
     name: row['name'],
-    address: row['address'],
+    address: "#{row['address']}, London",
     latitude: row['latitude'].to_f,
     longitude: row['longitude'].to_f, 
     # user: User.find_by(is_pro?: true),
@@ -148,7 +152,7 @@ end
 puts 'Creating invitations...'
 
 
-30.times do
+20.times do
   Invite.create!(
     invitee: User.all.sample,
     confirmed?: true,

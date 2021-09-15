@@ -1,2 +1,13 @@
-<%= user.username %>
-<%= user.address %>
+<div class="marker-popup">
+  <div>
+  <%= cl_image_tag user.photo.key, height: 100, width: 100, crop: :fill %>
+  </div>
+  <div>
+    <h4>
+    <%= user.username %>
+    </h4>
+    <p>
+    <%= user.address %>
+    </p>
+  </div>
+</div>
