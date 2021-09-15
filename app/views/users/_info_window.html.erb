@@ -1,6 +1,10 @@
 <div class="marker-popup">
   <div>
+  <% if user.photo.attached?%>
   <%= cl_image_tag user.photo.key, height: 100, width: 100, crop: :fill %>
+   <% else %>
+   <%= image_tag('profile-pic.jfif') %>
+   <% end %>
   </div>
   <div>
     <h4>
