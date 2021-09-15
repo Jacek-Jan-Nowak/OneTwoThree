@@ -28,7 +28,7 @@ gem 'geocoder'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cloudinary', '~> 1.16.0'
-
+gem 'exception_handler', '~> 0.8.0.0'
 gem 'devise'
 gem 'pg_search', '~> 2.3.0'
 gem 'autoprefixer-rails', '10.2.5'
