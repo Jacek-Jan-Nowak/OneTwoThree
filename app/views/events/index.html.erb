@@ -25,7 +25,11 @@
   <div class="events-grid">
     <% @events.each do |event| %>
       <div class="card-event" data-toggle="modal" data-target="#myModal_<%= event.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
-        <%= cl_image_tag event.photo.key, height: 120 %>
+          <% if event.photo.present? %>
+            <%= cl_image_tag event.photo.key, height: 120, width: 120, crop: :fill %>
+          <% else %>
+            <img src="../../assets/def.jpg" alt="" height= "120" width= "120">
+          <% end %>
         <div class="card-event-infos">
           <h3> <strong> <%= link_to event.name, event_path(event, user: @invitee ) %> </strong></h3>
       
