@@ -56,6 +56,35 @@ places_urls = [
 dancing_styles = ["Cuban Style", "Puerto Rican Style", "Casino Rueda", "LA Style", "New YorkStyle"]
 puts 'Creating 2 test users... pass testing'
 
+
+puts 'Creating 5 fake users...'
+CSV.foreach(userfilepath, csv_options).with_index do |row, index|
+  puts "creating user number #{index}"
+  break if index == 5
+    user = User.create!(
+      email: Faker::Internet.email,
+      username: Faker::Internet.username,
+      password: "testing",
+      is_pro?: [true, false].sample,
+      role: ["leader", "follower", "leader/follower"].sample,
+      address: row['address'],
+      status: "I really want to dance now!",
+      style: dancing_styles.sample
+    )
+    user_photo = URI.open(users_urls.sample)
+    user.photo.attach(io: user_photo, filename: 'photo.jpg')
+
+    rand(3..7).times do
+      review = Review.create!(
+      rating: rand(1..5),
+      content: Faker::Movie.quote,
+      receiver: user,
+      user: User.all.sample,
+      )
+    end
+end
+puts '10 users created!'
+
 user = User.create!(
   email: "testing@testing.com",
   username: "testing",
@@ -91,7 +120,8 @@ ervis = User.create!(
   role: "leader/follower",
   address: "169 Hoxton St, London N1 6PG",
   status: "I really want to dance now!",
-  style: dancing_styles.sample
+  style: dancing_styles.sample,
+  level: 99
 )
 ervis.photo.attach(io: File.open('app/assets/images/ervis.jpg'), filename: 'ervis.jpg')
 rand(3..7).times do
@@ -112,7 +142,8 @@ mike = User.create!(
   role: "leader/follower",
   address: "London E2 8DY",
   status: "vamos a bailar",
-  style: dancing_styles.sample
+  style: dancing_styles.sample,
+  level: 199
 )
 mike.photo.attach(io: File.open('app/assets/images/mike.jpg'), filename: 'mike.jpg')
 rand(3..7).times do
@@ -133,7 +164,8 @@ jacek = User.create!(
   role: "leader/follower",
   address: "Haggerston Rd, London",
   status: "Looking forward to my first dance",
-  style: dancing_styles.sample
+  style: dancing_styles.sample,
+  level: 0
 )
 jacek.photo.attach(io: File.open('app/assets/images/jacek.jpg'), filename: 'jacek.jpg')
 
@@ -185,33 +217,7 @@ end
 
 
 
-puts 'Creating 5 fake users...'
-CSV.foreach(userfilepath, csv_options).with_index do |row, index|
-  puts "creating user number #{index}"
-  break if index == 5
-    user = User.create!(
-      email: Faker::Internet.email,
-      username: Faker::Internet.username,
-      password: "testing",
-      is_pro?: [true, false].sample,
-      role: ["leader", "follower", "leader/follower"].sample,
-      address: row['address'],
-      status: "I really want to dance now!",
-      style: dancing_styles.sample
-    )
-    user_photo = URI.open(users_urls.sample)
-    user.photo.attach(io: user_photo, filename: 'photo.jpg')
 
-    rand(3..7).times do
-      review = Review.create!(
-      rating: rand(1..5),
-      content: Faker::Movie.quote,
-      receiver: user,
-      user: User.all.sample,
-      )
-    end
-end
-puts '10 users created!'
 
 
 puts 'Creating 15 places...'
