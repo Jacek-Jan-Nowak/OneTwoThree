@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     end
     
     @users.each do |user|
+      user.level = 0
       user.reviews.each do |review|
         user.level += review.rating
       end
