@@ -54,7 +54,7 @@ places_urls = [
 # place.photo.attach(io: place_photo, filename: 'photo.jpg')
 
 dancing_styles = ["Cuban Style", "Puerto Rican Style", "Casino Rueda", "LA Style", "New YorkStyle"]
-puts 'Creating 1 test user... pass testing'
+puts 'Creating 2 test users... pass testing'
 
 user = User.create!(
   email: "testing@testing.com",
@@ -67,12 +67,25 @@ user = User.create!(
   )
   user_photo = URI.open(users_urls.sample)
   user.photo.attach(io: user_photo, filename: 'photo.jpg')
+
+user = User.create!(
+  email: "testing2@testing2.com",
+  username: "testing",
+  password: "testing",
+  is_pro?: true,
+  role: ["leader", "follower", "lead/follower"].sample,
+  status: "I really want to dance now!",
+  style: dancing_styles.sample
+  )
+  user_photo = URI.open(users_urls.sample)
+  user.photo.attach(io: user_photo, filename: 'photo.jpg')
+  
 puts 'TEST users created!'
 puts 'Creating the boys'
 puts 'first up! ervis'
 ervis = User.create!(
-  email: Faker::Internet.email,
-  username: "Ervis lapis",
+  email: "ervis@testing.com",
+  username: "Ervis",
   password: "testing",
   is_pro?: true,
   role: "leader/follower",
@@ -92,7 +105,7 @@ end
 puts "ervis is in the building"
 puts 'Next up! Mike'
 mike = User.create!(
-  email: Faker::Internet.email,
+  email: "mike@testing.com",
   username: "Mike Drop",
   password: "testing",
   is_pro?: true,
@@ -112,8 +125,8 @@ rand(3..7).times do
 end
 puts "mike is in the building"
 puts "Jacek the big dawg!"
-Jacek = User.create!(
-  email: Faker::Internet.email,
+jacek = User.create!(
+  email: "jacek@testing.com",
   username: "Jacek",
   password: "testing",
   is_pro?: false,
@@ -122,12 +135,12 @@ Jacek = User.create!(
   status: "Looking forward to my first dance",
   style: dancing_styles.sample
 )
-Jacek.photo.attach(io: File.open('app/assets/images/jacek.jpg'), filename: 'jacek.jpg')
+jacek.photo.attach(io: File.open('app/assets/images/jacek.jpg'), filename: 'jacek.jpg')
 
 puts "The big dawg is in the building woof woof"
 puts "introducing dave"
 dave = User.create!(
-  email: Faker::Internet.email,
+  email: "dave@testing.com",
   username: "david",
   password: "testing",
   is_pro?: true,
@@ -146,11 +159,36 @@ rand(3..7).times do
   )
 end
 puts "dave is in the building"
-puts 'Creating 10 fake users...'
 
+
+puts 'Creating Sofie'
+sofie = User.create!(
+  email: "sofie@testing.com",
+  username: "Sofie",
+  password: "testing",
+  is_pro?: true,
+  role: "follower",
+  address: "London SW18 1SX",
+  status: "I MISS DANCING SALSA SO MUCH!!!",
+  style: dancing_styles.sample
+)
+sofie.photo.attach(io: File.open('app/assets/images/sofie.jpg'), filename: 'sofie.jpg')
+rand(3..7).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: sofie,
+  user: User.all.sample,
+  )
+end
+
+
+
+
+puts 'Creating 5 fake users...'
 CSV.foreach(userfilepath, csv_options).with_index do |row, index|
   puts "creating user number #{index}"
-  break if index == 3
+  break if index == 5
     user = User.create!(
       email: Faker::Internet.email,
       username: Faker::Internet.username,
@@ -194,21 +232,130 @@ CSV.foreach(filepath, csv_options).with_index do |row, index|
   place.photo.attach(io: place_photo, filename: 'photo.jpg')
   index += 1
 end
-=begin 10.times do 
-  Place.create!(
-    name: Faker::Quote.robin,
-    address: Faker::Address.street_address,
-    # user: User.find_by(is_pro?: true),
-    owner: User.all.sample,
-  )
-end 
-=end
+############################## THIS IS ONE PLACE WITH ITS CLASSES/SOCIALS - JUJUS ###################
+puts "creating jujus"
+jujus = Place.create!(
+  name: "Juju's Bar and Stage",
+  address: "Ely's Yard, 15 Hanbury St, London E1 6QR",
+  latitude: 51.520370,
+  longitude: 0.073650, 
+  owner: User.all.sample,
+)
+# EVENT 1
+puts "creating event at jujus"
+jujus_event = Event.create!(
+  name: "Juju's Cuban Sunday",
+  event_type: "Social",
+  host: User.all.sample,
+  place: jujus,
+  start_time: rand(1..100).days.from_now
+)
+jujus_event.photo.attach(io: File.open('app/assets/images/jujus.jpg'), filename: 'jujus.jpg')
+
+puts "creating class at jujus"
+jujus_class = Event.create!(
+  name: "Juju's Salsa Class",
+  event_type: "Class",
+  host: User.all.sample,
+  place: jujus,
+  start_time: rand(1..100).days.from_now
+)
+jujus_class.photo.attach(io: File.open('app/assets/images/jujus.jpg'), filename: 'jujus.jpg')
+
+#####################################################################################################
+
+############################## THIS IS ONE PLACE WITH ITS SALSA TEMPLE ###################
+puts "creating salsa temple"
+temple = Place.create!(
+  name: "Salsa Temple",
+  address: "Victoria Embankment, Temple, London WC2R 2PH",
+  latitude: 51.511140,
+  longitude: -0.107870, 
+  owner: User.all.sample,
+)
+# EVENT 1
+puts "creating event at temple"
+temple_event = Event.create!(
+  name: "Temple Sunday",
+  event_type: "Social",
+  host: User.all.sample,
+  place: temple,
+  start_time: rand(1..100).days.from_now
+)
+temple_event.photo.attach(io: File.open('app/assets/images/temple.jpg'), filename: 'temple.jpg')
+
+puts "creating class at temple"
+temple_class = Event.create!(
+  name: "Temple Salsa Class",
+  event_type: "Class",
+  host: User.all.sample,
+  place: temple,
+  start_time: rand(1..100).days.from_now
+)
+temple_class.photo.attach(io: File.open('app/assets/images/temple.jpg'), filename: 'temple.jpg')
+
+#####################################################################################################
+
+############################## THIS IS ONE PLACE WITH ITS CLASSES/SOCIALS - CITYSALSA ###################
+puts "creating salsa citysalsa"
+citysalsa = Place.create!(
+  name: "CitySalsa",
+  address: "114 Clapham High St, London SW4 7UJ",
+  latitude: 51.462450,
+  longitude: -0.136870, 
+  owner: User.all.sample,
+)
+# EVENT 1
+puts "creating event at citysalsa"
+citysalsa_event = Event.create!(
+  name: "CitySalsa Friday Special",
+  event_type: "Social",
+  host: User.all.sample,
+  place: citysalsa,
+  start_time: rand(1..100).days.from_now
+)
+citysalsa_event.photo.attach(io: File.open('app/assets/images/citysalsa.jpg'), filename: 'citysalsa.jpg')
+
+puts "creating class at citysalsa"
+citysalsa_class = Event.create!(
+  name: "CitySalsa Salsa Class",
+  event_type: "Class",
+  host: User.all.sample,
+  place: citysalsa,
+  start_time: rand(1..100).days.from_now
+)
+citysalsa_class.photo.attach(io: File.open('app/assets/images/citysalsa.jpg'), filename: 'citysalsa.jpg')
+
+#####################################################################################################
+
+############################## THIS IS ONE PLACE WITH ITS CLASSES/SOCIALS - lewagon ###################
+puts "creating salsa lewagon"
+lewagon = Place.create!(
+  name: "Lewagon",
+  address: "114 Clapham High St, London SW4 7UJ",
+  latitude: 51.462450,
+  longitude: -0.136870, 
+  owner: User.all.sample,
+)
+# EVENT 1
+puts "creating event at lewagon"
+lewagon_event = Event.create!(
+  name: "Coding and Salsa",
+  event_type: "Social",
+  host: User.all.sample,
+  place: lewagon,
+  start_time: 0.days.from_now
+)
+lewagon_event.photo.attach(io: File.open('app/assets/images/lewagon.jpg'), filename: 'lewagon.jpg')
+
+
+#####################################################################################################
 
 puts 'Creating 10 events...'
 10.times do 
   event = Event.create!(
     name: Faker::Music::Opera.rossini,
-    event_type: ["Lesson", "Event"].sample,
+    event_type: ["Class", "Social"].sample,
     host: User.all.sample,
     place: Place.all.sample,
     start_time: rand(1..100).days.from_now

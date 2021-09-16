@@ -87,7 +87,11 @@
     </div>
 
     <div class="event-show-pic">
+    <% if @event.photo.attached? %>
       <%= cl_image_tag @event.photo.key, height: 270, width: 270, crop: :fill %>
+    <% else %>
+      <img src="../../assets/def.jpg" alt="" height= "270" width= "270">
+    <% end %>
     </div>
 
     <div class="event-show-groups">
