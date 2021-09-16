@@ -29,7 +29,6 @@
   display: none;
 }
 .group-show-data{
-  // position: absolute;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -62,59 +61,9 @@
 }
 
 
-.group-chat{
-  // position: absolute;
-  overflow: hidden;
-  grid-area: group-chat;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
-}
 
-.chatroom{
-  padding: 10px 10px;
-  height: 92%;
-  overflow-y: scroll;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
 
-.chatroom-input{
-  position: absolute;
-  height: 8%;
-  width: 98%;
-  margin:5px;
-  padding: 10px 10px;
-  bottom: 10px;
-}
 
-.chat-message-user{
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  margin:5px;
-  padding: 10px 10px;
-  text-align: left;
-}
-
-.chat-message-not-user{
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  margin:5px;
-  padding: 10px 10px;
-  text-align: right;
-}
-
-.chatroom::-webkit-scrollbar{
-  display: none;
-}
-
-.chatroom-input::-webkit-scrollbar{
-  display: none;
-}
 
 .group-event-picture{
   // position: absolute;
@@ -192,6 +141,75 @@
 .group-event-picture img {
     border-radius: 12px;
   }
+
+
+
+
+.group-chat{
+  overflow: hidden;
+  grid-area: group-chat;
+  border-radius: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.chatroom-input{
+  height: 8%;
+  padding-top:10px;
+}
+
+.chatroom{
+  height: 92%;
+  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.message-card{
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.message-card img{
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  margin: 8px;
+  align-items: top;
+
+}
+.message-card-det{
+  overflow: hidden;
+  padding-left: 5px;
+  overflow-y: scroll;
+  overflow: hidden;
+}
+  
+.message-card::-webkit-scrollbar{
+  display: none;
+}
+
+.message-card-det::-webkit-scrollbar{
+  display: none;
+}
+
+.chatroom::-webkit-scrollbar{
+  display: none;
+}
+
+.chatroom-input::-webkit-scrollbar{
+  display: none;
+}
+
+
+
 
 @media only screen and (max-width: 650px) {
   .group-grid-container{

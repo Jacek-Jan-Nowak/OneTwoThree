@@ -63,17 +63,17 @@
   </div>
 
   <div class = "group-chat">
+
   <div class="chatroom">
-    <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
       <% @chatroom.messages.each do |message| %>
         <%= render 'messages/message', message: message %>
       <% end %>
-    </div>
-</div>
+  </div>
     <div class = "chatroom-input">
       <%= simple_form_for [ @group, @chatroom, @message ], remote: true do |f| %>
         <%= f.input :content, label: false %>
       <% end %>
+
     </div>
   </div>
 
@@ -85,7 +85,7 @@
       <%# all_invitees = []
       <% @group.invites.each do |invite| %>
         <%# all_invitees << invite.invitee
-      <% end %>  %> %>
+      <% end %> 
       <% @all_invitees.uniq.each do |invitee| %>
         <div class="group-people-card">
           <%= cl_image_tag invitee.photo.key, height: 200, width: 200, crop: :fill, gravity: :face %>
