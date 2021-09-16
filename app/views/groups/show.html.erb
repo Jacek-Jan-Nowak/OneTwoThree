@@ -82,13 +82,16 @@
   </div>
 
   <div class="group-people-coming">
-   
+      <%# all_invitees = []
       <% @group.invites.each do |invite| %>
+        <%# all_invitees << invite.invitee
+      <% end %>  %> %>
+      <% @all_invitees.uniq.each do |invitee| %>
         <div class="group-people-card">
-          <%= cl_image_tag invite.invitee.photo.key, height: 200, width: 200, crop: :fill, gravity: :face %>
+          <%= cl_image_tag invitee.photo.key, height: 200, width: 200, crop: :fill, gravity: :face %>
           <div class="group-people-card-det" >
-            <h3> <%= invite.invitee.username %> </h3>
-            <p> <%= invite.invitee.role %> </p>
+            <h3> <%= invitee.username %> </h3>
+            <p> <%= invitee.role %> </p>
           </div> 
         </div>
        <% end %>
