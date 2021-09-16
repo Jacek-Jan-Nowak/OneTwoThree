@@ -138,27 +138,76 @@
 
     <div class="user-show-achievements">
       <h2>Achievements</h2>
-      <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
+      <% if @user.level >= 1  %>
+        <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-american-sign-language-interpreting fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 2  %>
+        <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-heartbeat fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 5  %>
+        <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-sign-language fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 8  %>
+        <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-fighter-jet fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 10  %>
+        <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-biohazard fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 15  %>
+      <div class="trophy6" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fab fa-battle-net fa-2x"></i>
       </div>
-      <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
-      <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
-      <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
-      <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
+      <% else %>
       <div class="trophy6" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
        <i class="fa fa-users fa-2x"></i>
       </div>
+      <% end %>
+
+      <% if @user.level >= 20  %>
+      <div class="trophy7" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fab fa-accusoft fa-2x"></i>
+      </div>
+      <% else %>
       <div class="trophy7" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
        <i class="fa fa-users fa-2x"></i>
       </div>
+      <% end %>
+
       <div class="trophy8" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
        <i class="fa fa-users fa-2x"></i>
       </div>
