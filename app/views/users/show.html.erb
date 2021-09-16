@@ -98,13 +98,7 @@
       <% else %>
         <p>role not specified</p>
       <% end %>
-      <% @sum = 0 %>
-            <% @reviews.each do |review| %>
-              <% if review.receiver == @user %>
-                <% @sum += review.rating %>
-                <% end %>
-              <% end %>
-              <h3>Level: <%= @sum %></h3>
+        <h3>Level:<%= @user.level %></h3>
     </div>
 
     <div class="user-show-comments">

@@ -55,13 +55,7 @@
                 </div>
                 
                 <div class="card-user-infos-level">
-                  <% sum = 0 %>
-                  <% user.reviews.each do |review| %>
-                    <% if review.receiver == user %>
-                      <% sum += review.rating %>  
-                    <% end %>
-                  <% end %>
-                  <p>Lv <b><%= sum %></b> </p>
+                  <p>Lv <b><%= user.level%></b> </p>
                 </div>
               </div>
             </div>

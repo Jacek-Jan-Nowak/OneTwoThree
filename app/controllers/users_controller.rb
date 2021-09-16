@@ -22,6 +22,14 @@ class UsersController < ApplicationController
         image_url: helpers.asset_url('noun_Dancing_20415.png')
       }
     end
+    
+    @users.each do |user|
+      user.reviews.each do |review|
+        user.level += review.rating
+      end
+      user.save
+    end
+
   end
 
   def show

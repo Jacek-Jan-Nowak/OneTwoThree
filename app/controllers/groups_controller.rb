@@ -17,7 +17,10 @@ class GroupsController < ApplicationController
     @event = params[:event]
     @chatroom = @group.chatroom
     @message = Message.new
-
+    @all_invitees = []
+    @group.invites.each do |invite|
+        @all_invitees << invite.invitee
+      end 
 
   end
 

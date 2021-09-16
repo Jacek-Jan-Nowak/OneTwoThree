@@ -17,7 +17,7 @@ module OneTwoThree
     config.load_defaults 6.0
 
     config.exception_handler = {
-      dev: true, # allows you to turn ExceptionHandler "on" in development
+      dev: false, # allows you to turn ExceptionHandler "on" in development
         # This is an entirely NEW structure for the "layouts" area
         # You're able to define layouts, notifications etc ↴
         # All keys interpolated as strings, so you can use symbols, strings or integers where necessary
