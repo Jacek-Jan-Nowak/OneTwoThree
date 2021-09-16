@@ -1,8 +1,10 @@
 <!-- app/views/messages/_message.html.erb -->
-<div class ="message-container <%= message.user == current_user ? 'chat-message-user' : 'chat-message-not-user' %>" id="message-<%= message.id %>">
-  <h3><%= message.content %></h3>
-  <i class="author">
-    <span><%= message.user.username %></span>
-    <small><%= message.created_at.strftime("%a %e at %l:%M%p") %></small>
-  </i>
-</div>
+  <div class="message-card">
+    <%= cl_image_tag message.user.photo.key, height: 60, width: 60, crop: :fill   %>
+    <div class="message-card-det" >
+      <h4><%= message.content %></h4>
+      <%# <span><%= message.user.username %></span>
+      <small><%= message.created_at.strftime("%a %e at %l:%M%p") %></small>
+    </div> 
+  </div>
+
