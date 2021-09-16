@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     if params[:query].present?
       @events = Event.search_by_name_and_address(params[:query])
     else
-      @events = Event.where.not(latitude: nil, longitude: nil)
+      @events = Event.all
       if params[:user].present?
         @invitee = params[:user]
       end
