@@ -91,7 +91,7 @@
     grid-area: role;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-self: flex-end;
     flex-direction: column;
     overflow: hidden;
   }
@@ -103,9 +103,11 @@
     align-content: center;
     flex-direction: column;
     overflow: hidden;
+    padding-bottom: 5px;
   }
 
   .card-user-infos-name{
+    padding-top: 5px;
     grid-area: name;
     display: flex;
     justify-content: center;
@@ -127,6 +129,7 @@
     grid-area: level;
     text-align: center;
     padding-right: 10px;
+    padding-top: 10px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -138,13 +141,12 @@
     }
     p {
       position: relative;
-      top: -10px;
     }
   }
 
   .status-text{
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 0;
     font-weight: lighter;
     font-style: italic;

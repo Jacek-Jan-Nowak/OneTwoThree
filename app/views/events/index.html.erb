@@ -26,13 +26,13 @@
     <% @events.each do |event| %>
       <div class="card-event" data-toggle="modal" data-target="#myModal_<%= event.id %>" data-tilt data-tilt-max="5" data-tilt-scale="1.1" data-tilt-glare>
           <% if event.photo.present? %>
-            <%= cl_image_tag event.photo.key, height: 200, crop: :fill %>
+            <%= cl_image_tag event.photo.key, height: 150, crop: :fill %>
           <% else %>
             <img src="../../assets/def.jpg" alt="" height= "120" width= "120">
           <% end %>
         <div class="card-event-infos">
           <div class="event-title">
-            <h3> <%= link_to event.name.truncate(28), event_path(event, user: @invitee ) %> </h3>
+            <h3> <%= link_to event.name.truncate(29), event_path(event, user: @invitee ) %> </h3>
           </div>
       
           <div class="icons-infos">
@@ -50,7 +50,7 @@
                 <h3><%=icon('fas', 'map-marker')%></h3>
               </div>
               <div class="event-text">
-                <p><%= event.place.name.truncate(27, separator: ' ')%></p>
+                <p><%= event.place.name.truncate(21)%></p>
               </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <h3><%=icon('fas', 'calendar')%></h3>
               </div>
               <div class="event-text">
-                <p><%= event.start_time.strftime("%B %d, %Y")%></p>
+                <p><%= event.start_time.strftime("%B %d, %Y").truncate(27)%></p>
               </div>
             </div>
           </div>
