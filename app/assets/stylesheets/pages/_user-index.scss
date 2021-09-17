@@ -1,11 +1,3 @@
-.none {
-
-}
-
-.buddies-available{
-
-}
-
 .users-index-main{
   padding: 10px;
   position: relative;
@@ -22,14 +14,13 @@
   display: none;
 }
 
-
 .user-index-side{
   grid-area: user-index-side;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
+  // background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
+  // backdrop-filter: blur(8px);
 }
 .users-grid{
   grid-area: users-grid;
@@ -47,8 +38,8 @@
 
 .card-user{
   margin-bottom:8px;
+  padding: 10px;
   height: 100px;
-  padding: 10px 10px;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -56,78 +47,98 @@
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
-  z-index: 10;
 
   img {
     height: 80px;
     width: 80px;
     object-fit: cover;
-    margin-top: 5px;
     border-radius: 10px;
-    margin-right: 10px;
   }
-  
+
   .card-user-infos{
     color: white;
-    margin: 0;
-    padding: 0;
+    padding-left: 25px;
+    height: 100%;
+    overflow: hidden;
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 2.4fr 1.8fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-areas: 
-    "name name name" 
-    "role status level"
-    "style status level"
+    "name role level" 
+    "status style level" 
+  }
+
+  .card-user-infos p{
+    margin-bottom: 0px;
+  }
+  .card-user-infos a{
+    margin-bottom: 0px;
+  }
+  .card-user-infos h2{
+    margin-bottom: 0px;
+    // font-size: 100%;
+  }
+
+  img {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   .card-user-infos-role{
     grid-area: role;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .card-user-infos-status{
     grid-area: status;
-    padding-left: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .card-user-infos-name{
     grid-area: name;
-    padding-top: -20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .card-user-infos-style{
     grid-area: style;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .card-user-infos-level{
     grid-area: level;
-    text-align: right;
-    padding-right: 20px;
-  }
-    
-  img {
-    height: 80px;
-    width: 80px;
-    object-fit: cover;
-    margin-top: 5px;
-    border-radius: 10px;
-  }
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
-
-  h2 {
-    font-size: 22px;
-    text-decoration: none;
-    color: white;
-    margin-bottom: 0;
-  }
-  p {
-    margin: 0;
-    font-size: 16px;
-    margin-bottom: 0;
+    text-align: center;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    .lev{
+      font-size: 200%;
+    }
+    p{
+      position: relative;
+      top: -10px;
+    }
   }
 
   .status-text{
@@ -136,10 +147,6 @@
     margin-bottom: 0;
     font-weight: lighter;
   }
-}
-
-.card-user-infos{
-
 }
 
 .users-map{
@@ -151,28 +158,6 @@
   backdrop-filter: blur(8px);
   grid-area: users-map;
   margin-right: 16px;
-}
-
-.popup{
-  border-radius: 20px;
-  border-radius: 30px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  background: rgba(255, 255, 255, 0.603)
-}
-.modal-backdrop {
-  z-index: -12;
-  backdrop-filter: blur(8px) saturate(151%);
-}
-.modal-button{
-  padding: 0px 10px 5px;
-  height: calc(20px+3vw);
-  color: rgb(68, 68, 68);
-  font-size: 2vh;
-  background-color: rgba(255, 255, 255, 0.479);
-  border: 1px solid rgba(209, 213, 219, 0.3);
-  border-radius: 12px;
-  margin: 5px ;
-  text-decoration: none;
 }
 
 @media only screen and (max-width: 650px) {

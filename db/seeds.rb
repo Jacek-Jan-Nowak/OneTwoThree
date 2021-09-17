@@ -60,7 +60,7 @@ puts 'Creating 2 test users... pass testing'
 puts 'Creating 5 fake users...'
 CSV.foreach(userfilepath, csv_options).with_index do |row, index|
   puts "creating user number #{index}"
-  break if index == 5
+  break if index == 3
     user = User.create!(
       email: Faker::Internet.email,
       username: Faker::Internet.username,
@@ -215,6 +215,28 @@ rand(3..7).times do
 end
 
 
+puts 'Creating anne'
+anne = User.create!(
+  email: "anne@testing.com",
+  username: "anne",
+  password: "testing",
+  is_pro?: true,
+  role: "follower",
+  address: "GVJV XH London",
+  status: "Enough with Rails, time to dance!",
+  style: "French Salsa"
+)
+anne.photo.attach(io: File.open('app/assets/images/anne.jpeg'), filename: 'anne.jpeg')
+rand(3..7).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: anne,
+  user: User.all.sample,
+  )
+end
+
+
 
 
 
@@ -225,7 +247,7 @@ puts 'Creating 15 places...'
 
 CSV.foreach(filepath, csv_options).with_index do |row, index|
     puts "creating place number #{index}"
-    break if index == 5
+    break if index == 3
     place = Place.create!(
     name: row['name'],
     address: "#{row['address']}, London",
