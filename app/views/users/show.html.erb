@@ -45,13 +45,14 @@
             </li>
           <% end%>
         <% end%>
+        
         <% if params[:group] %> 
           <%= link_to  new_invite_path(user: @user.id, group: @group) do %>
             <li>
                 <i class="fa fa-user-plus fa-2x"></i>
                   <span class="nav-text">
-                    Add user to the group
-                  </span>
+                   <b> Add <%= @user.username %></b>
+                  </span> 
             </li>
           <% end%>
         <% end%>
@@ -78,7 +79,6 @@
         <p>><%= invite.group.event.start_time %></p>
         </div> 
       </div>
-        
       <% end %>
     </div>
 
@@ -89,16 +89,68 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
 
-    <div class="user-show-data">
-      <h2>Username: <%= @user.username %></h2>
-      <p>Address: <%= @user.address %></p>
-      <p>email: <%= @user.email %></p>
-      <% if @user.role %>
-        <p>role: <%= @user.role %> </p>
-      <% else %>
-        <p>role not specified</p>
-      <% end %>
-        <h3>Level:<%= @user.level %></h3>
+
+   <div class="user-show-data">
+      <div class="card-user-infos-show">
+        <div class="user-username">
+          <h3><%= @user.username%></h3>
+        </div>
+
+          <div class="icons-user-show">
+            <div class="user-index-data-inline-show">
+              <div class="user-infos-status">
+                <div class = "status-text">
+                  <p> <%= @user.status %></p>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+    
+          <div class="user-index-data-inline-show">
+            <div class="user-icon-show">
+              <h3><%=icon('fas', 'map-marker')%></h3>
+            </div>
+            <div class="user-text-show">
+              <p><%= @user.address.truncate(27, separator: ' ')%></p>
+            </div>
+          </div>
+
+          <div class="user-index-data-inline-show">
+            <div class="user-icon-show">
+              <h3><%=icon('fas', 'praying-hands')%></h3>
+            </div>
+            <div class="user-text-show">
+              <p><%= @user.role%></p>
+            </div>
+          </div> 
+
+          
+          <div class="user-index-data-inline-show">
+            <div class="user-icon-show">
+              <h3><%=icon('fas', 'shoe-prints')%></h3>
+            </div>
+            <div class="user-text-show">
+              <p><%= @user.style %> </p>
+            </div>
+          </div> 
+
+          <div class="user-index-data-inline-show-lev">
+            <div class="user-icon-show">
+            <div class="user-show-infos-level">
+              <div class = "lev-show">
+                <%= 3 %>
+              </div>
+              <p>lvl</p>
+            </div>
+            </div>
+          </div>
+
+
+
+
+      </div>
     </div>
 
     <div class="user-show-comments">
