@@ -60,6 +60,14 @@
       </div>
     </div>
 
+    <div class="group-show-data-inline">
+      <div class="icon">
+        <h3><%=icon('fas', 'calendar')%></h3>
+      </div>
+      <div class="text">
+        <p><%= @group.event.start_time.strftime("%B %d, %Y").truncate(27)%></p>
+      </div>
+    </div>
   </div>
 
   <div class = "group-chat">

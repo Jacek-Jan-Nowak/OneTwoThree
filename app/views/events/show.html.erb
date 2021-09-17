@@ -143,9 +143,9 @@
           <div class="event-show-participant-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
               <%= cl_image_tag invite.invitee.photo.key, height: 50, width: 50, crop: :fill %>
              <div class="event-show-participant-card-infos">
-              <p> <%= invite.invitee.email %></p>
+              <p style= " font-size: 20px" > <%= invite.invitee.username %></p>
                   <% if invite.invitee.role %>
-                    <p>role: <%= invite.invitee.role %> </p>
+                    <p><%= invite.invitee.role %> </p>
                   <% else %>
                     <p>role not specified</p>
                   <% end %> 

@@ -113,7 +113,11 @@
               <h3><%=icon('fas', 'map-marker')%></h3>
             </div>
             <div class="user-text-show">
-              <p><%= @user.address.truncate(27, separator: ' ')%></p>
+              <% if @user.address %>
+                <p><%= @user.address.truncate(27, separator: ' ')%></p>
+              <% else %>
+              < p>London</p>
+              <% end %>
             </div>
           </div>
 
@@ -140,7 +144,11 @@
             <div class="user-icon-show">
             <div class="user-show-infos-level">
               <div class = "lev-show">
-                <%= 3 %>
+              <%if @user.level > 0 %>
+                <%= @user.level %>
+              <% else %>
+                <%= 0  %>
+              <% end %>
               </div>
               <p>lvl</p>
             </div>
@@ -170,7 +178,7 @@
                 </p>
               </div>
               <div class="user-show-review-card-format">
-                <p><%= review.content %></p>
+                <p style= " font-size: 18px"><%= review.content.truncate(60) %></p>
                </div>
                <div class="user-show-review-card-format">
                   <% if review.user == current_user %>
