@@ -4,9 +4,9 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.search_by_name_and_address(params[:query])
+      @events = Event.order(start_time: :asc).search_by_name_and_address(params[:query])
     else
-      @events = Event.all
+      @events = Event.order(start_time: :asc).all
       if params[:user].present?
         @invitee = params[:user]
       end

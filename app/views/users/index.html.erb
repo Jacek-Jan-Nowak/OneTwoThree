@@ -40,7 +40,9 @@
 
                   <div class="card-user-infos-status">
                     <% if user.status %>
-                      <status-text><%= user.status %></status-text>
+                      <div class = "status-text">
+                        <%= user.status %>
+                      </div>
                     <% else %>
                       <p>role not specified</p>
                     <% end %>
