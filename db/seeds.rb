@@ -50,7 +50,44 @@ places_urls = [
 dancing_styles = ["Cuban Style", "Puerto Rican Style", "Casino Rueda", "LA Style", "New YorkStyle"]
 puts 'Creating 2 test users... pass testing'
 
+statuses = [
+  "I want to start a beginners class",
+  "Let's do this now!!!!",
+  "My brain is melting :(",
+  "Going to to Cuba next month!!",
+  "Salsa is life",
+  "Ready for some salsa, the dip! lolz"
+]
 
+puts 'Creating 5 fake users...'
+CSV.foreach(userfilepath, csv_options).with_index do |row, index|
+  puts "creating user number #{index}"
+  break if index == 5
+    user = User.create!(
+      email: Faker::Internet.email,
+      username: Faker::Internet.username,
+      password: "testing",
+      is_pro?: [true, false].sample,
+      role: ["leader", "follower", "leader/follower"].sample,
+      address: row['address'],
+      status: statuses.sample,
+      style: dancing_styles.sample
+    )
+    user_photo = URI.open(users_urls.sample)
+    user.photo.attach(io: user_photo, filename: 'photo.jpg')
+
+    statuses.delete(user.status)
+
+    rand(3..7).times do
+      review = Review.create!(
+      rating: rand(1..5),
+      content: Faker::Movie.quote,
+      receiver: user,
+      user: User.all.sample,
+      )
+    end
+end
+puts '10 users created!'
 
 
 user = User.create!(
@@ -114,7 +151,7 @@ mike = User.create!(
 mike.photo.attach(io: File.open('app/assets/images/mike.jpg'), filename: 'mike.jpg')
 rand(3..7).times do
   review = Review.create!(
-  rating: rand(1..5),
+  rating: rand(4..5),
   content: Faker::Movie.quote,
   receiver: mike,
   user: User.all.sample,
@@ -147,9 +184,9 @@ dave = User.create!(
   style: dancing_styles.sample
 )
 dave.photo.attach(io: File.open('app/assets/images/dave.png'), filename: 'dave.png')
-rand(3..7).times do
+rand(3..4).times do
   review = Review.create!(
-  rating: rand(1..5),
+  rating: rand(1..3),
   content: Faker::Movie.quote,
   receiver: dave,
   user: User.all.sample,
@@ -208,9 +245,7 @@ end
 puts "creating jujus"
 jujus = Place.create!(
   name: "Juju's Bar and Stage",
-  address: "Ely's Yard, 15 Hanbury St, London E1 6QR",
-  latitude: 51.520370,
-  longitude: 0.073650, 
+  address: "15 Hanbury St, London E1 6QR",
   owner: User.all.sample,
 )
 # EVENT 1
@@ -304,9 +339,7 @@ citysalsa_class.photo.attach(io: File.open('app/assets/images/citysalsa.jpg'), f
 puts "creating salsa lewagon"
 lewagon = Place.create!(
   name: "Lewagon",
-  address: "114 Clapham High St, London SW4 7UJ",
-  latitude: 51.462450,
-  longitude: -0.136870, 
+  address: "138 Kingsland Road, London E2 8DY",
   owner: User.all.sample,
 )
 # EVENT 1

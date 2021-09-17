@@ -21,9 +21,7 @@ class UsersController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { user: user }),
       }
     end
-
     users_level(@users)
-
   end
 
   def show

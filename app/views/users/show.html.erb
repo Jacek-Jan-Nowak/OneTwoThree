@@ -178,7 +178,7 @@
                 </p>
               </div>
               <div class="user-show-review-card-format">
-                <p style= " font-size: 18px"><%= review.content.truncate(60) %></p>
+                <p style= " font-size: 18px"><%= review.content.truncate(50) %></p>
                </div>
                <div class="user-show-review-card-format">
                   <% if review.user == current_user %>
@@ -298,4 +298,4 @@
     </div>
   </div>
 
-<%= console %>
+<%# <%= console %>

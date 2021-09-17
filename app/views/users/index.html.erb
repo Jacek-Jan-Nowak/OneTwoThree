@@ -17,6 +17,7 @@
 </div>
       <div class="users-grid">
         <% @users.each do |user| %>
+          <% if user != current_user %>
             <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y">
               <%= link_to user_path(user, event: @event, group: @group) do %>
               <% if user.photo.attached?%>
@@ -61,6 +62,7 @@
               </div>
             </div>
           <% end %>
+        <% end %>
       </div>
 
       <div id="map"
@@ -70,7 +72,7 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div> 
 </div>
-<%= console %>
+<%# <%= console %> 
 
 
 

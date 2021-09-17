@@ -136,6 +136,7 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   display: block;
+  overflow: hidden;
   
   z-index: 10;
 
@@ -478,7 +479,7 @@ display: flex;
  
 .user-username{
   padding-top: 20px;
-  padding-left: 25px;
+  padding-left: 20px;
   display: flex;
   flex-direction: column;
 }
