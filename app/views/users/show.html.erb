@@ -70,9 +70,9 @@
       <% @user.invites.each do |invite| %>
       <div class="user-show-event-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
         <%= link_to event_path(invite.group.event.id) do %>
-        <div>
-         <p><strong><%= invite.group.event.name %></strong></p>
-        </div>
+          <div>
+          <p><strong><%= invite.group.event.name %></strong></p>
+          </div>
         <% end %>
         <div>
         <p>><%= invite.group.event.start_time %></p>
