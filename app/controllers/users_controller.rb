@@ -22,15 +22,7 @@ class UsersController < ApplicationController
       }
     end
 
-    @users.each do |user|
-      user.level = 0
-      user.reviews.each do |review|
-        if review.receiver == user
-          user.level += review.rating
-        end
-      end
-      user.save
-    end
+    users_level(@users)
 
   end
 
@@ -48,7 +40,27 @@ class UsersController < ApplicationController
         lng: @user.longitude,
       }
     ]
+    user_level(@user)
+  end
+  
+  private
+  
+  def users_level(users)
+    users.each do |user|
+      user_reviews = Review.where(receiver: user)
+      user.level = 0
+      user_reviews.each do |user_review|
+        user.level += user_review.rating
+      end
+    end
+  end
 
+  def user_level(user)
+    user_reviews = Review.where(receiver: user)
+    user.level = 0
+    user_reviews.each do |user_review|
+      user.level += user_review.rating
+    end
   end
 
   def user_params

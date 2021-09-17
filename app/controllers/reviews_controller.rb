@@ -9,8 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.create(review_params)
     @review.receiver = @user
-    
-    @user.level += @review.rating
+    # @user.level += @review.rating
 
     @review.user = current_user
     if @review.save
@@ -25,7 +24,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review.update(review_params)
-    @user.level += @review.rating
+    # @user.level += @review.rating
     if @review.save
       redirect_to user_path(@user)
     else

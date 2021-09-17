@@ -46,44 +46,12 @@ places_urls = [
   "https://res.cloudinary.com/duxof8o3p/image/upload/v1631480267/onetwothree/places/photo-1569924995012-c4c706bfcd51_p4f8lz.jpg",
   "https://res.cloudinary.com/duxof8o3p/image/upload/v1631480267/onetwothree/places/photo-1589459985166-966c72e767d9_afykqq.jpg"
 ]
-# user_photo = URI.open(users_urls.sample)
-# # user.photo.attach(io: user_photo, filename: 'photo.jpg')
-# event_photo = URI.open(events_urls.sample)
-# event.photo.attach(io: event_photo, filename: 'photo.jpg')
-# place_photo = URI.open(places_urls.sample)
-# place.photo.attach(io: place_photo, filename: 'photo.jpg')
 
 dancing_styles = ["Cuban Style", "Puerto Rican Style", "Casino Rueda", "LA Style", "New YorkStyle"]
 puts 'Creating 2 test users... pass testing'
 
 
-puts 'Creating 5 fake users...'
-CSV.foreach(userfilepath, csv_options).with_index do |row, index|
-  puts "creating user number #{index}"
-  break if index == 3
-    user = User.create!(
-      email: Faker::Internet.email,
-      username: Faker::Internet.username,
-      password: "testing",
-      is_pro?: [true, false].sample,
-      role: ["leader", "follower", "leader/follower"].sample,
-      address: row['address'],
-      status: "I really want to dance now!",
-      style: dancing_styles.sample
-    )
-    user_photo = URI.open(users_urls.sample)
-    user.photo.attach(io: user_photo, filename: 'photo.jpg')
 
-    rand(3..7).times do
-      review = Review.create!(
-      rating: rand(1..5),
-      content: Faker::Movie.quote,
-      receiver: user,
-      user: User.all.sample,
-      )
-    end
-end
-puts '10 users created!'
 
 user = User.create!(
   email: "testing@testing.com",
@@ -109,7 +77,7 @@ user = User.create!(
   user_photo = URI.open(users_urls.sample)
   user.photo.attach(io: user_photo, filename: 'photo.jpg')
   
-puts 'TEST users created!'
+puts '2 TEST users created!'
 puts 'Creating the boys'
 puts 'first up! ervis'
 ervis = User.create!(
@@ -121,10 +89,9 @@ ervis = User.create!(
   address: "169 Hoxton St, London N1 6PG",
   status: "I really want to dance now!",
   style: dancing_styles.sample,
-  level: 99
 )
 ervis.photo.attach(io: File.open('app/assets/images/ervis.jpg'), filename: 'ervis.jpg')
-rand(3..7).times do
+rand(5..6).times do
   review = Review.create!(
   rating: rand(1..5),
   content: Faker::Movie.quote,
@@ -143,7 +110,6 @@ mike = User.create!(
   address: "London E2 8DY",
   status: "vamos a bailar",
   style: dancing_styles.sample,
-  level: 199
 )
 mike.photo.attach(io: File.open('app/assets/images/mike.jpg'), filename: 'mike.jpg')
 rand(3..7).times do
@@ -165,7 +131,6 @@ jacek = User.create!(
   address: "Haggerston Rd, London",
   status: "Looking forward to my first dance",
   style: dancing_styles.sample,
-  level: 0
 )
 jacek.photo.attach(io: File.open('app/assets/images/jacek.jpg'), filename: 'jacek.jpg')
 
@@ -222,7 +187,7 @@ anne = User.create!(
   password: "testing",
   is_pro?: true,
   role: "follower",
-  address: "GVJV XH London",
+  address: "London SW1A 1AA",
   status: "Enough with Rails, time to dance!",
   style: "French Salsa"
 )
@@ -239,27 +204,6 @@ end
 
 
 
-
-
-
-puts 'Creating 15 places...'
-
-
-CSV.foreach(filepath, csv_options).with_index do |row, index|
-    puts "creating place number #{index}"
-    break if index == 3
-    place = Place.create!(
-    name: row['name'],
-    address: "#{row['address']}, London",
-    latitude: row['latitude'].to_f,
-    longitude: row['longitude'].to_f, 
-    # user: User.find_by(is_pro?: true),
-    owner: User.all.sample,
-  )
-  place_photo = URI.open(places_urls.sample)
-  place.photo.attach(io: place_photo, filename: 'photo.jpg')
-  index += 1
-end
 ############################## THIS IS ONE PLACE WITH ITS CLASSES/SOCIALS - JUJUS ###################
 puts "creating jujus"
 jujus = Place.create!(
@@ -379,8 +323,33 @@ lewagon_event.photo.attach(io: File.open('app/assets/images/lewagon.jpg'), filen
 
 #####################################################################################################
 
+
+puts 'Creating 5 places...'
+
+
+CSV.foreach(filepath, csv_options).with_index do |row, index|
+    puts "creating place number #{index}"
+    break if index == 5
+    place = Place.create!(
+    name: row['name'],
+    address: "#{row['address']}, London",
+    latitude: row['latitude'].to_f,
+    longitude: row['longitude'].to_f, 
+    # user: User.find_by(is_pro?: true),
+    owner: User.all.sample,
+  )
+  place_photo = URI.open(places_urls.sample)
+  place.photo.attach(io: place_photo, filename: 'photo.jpg')
+  index += 1
+end
+puts '5 places... created'
+#####################################################################################################
+
+
+
+
 puts 'Creating 10 events...'
-10.times do 
+5.times do 
   event = Event.create!(
     name: Faker::Music::Opera.rossini,
     event_type: ["Class", "Social"].sample,
@@ -394,7 +363,7 @@ end
 puts '10 events created!'
 
 puts 'creating 10 groups!'
-10.times do
+30.times do
   Group.create!(
     name: Faker::Marketing.buzzwords,
     event: Event.all.sample,
@@ -405,7 +374,7 @@ end
 puts 'Creating invitations...'
 
 
-20.times do
+30.times do
   Invite.create!(
     invitee: User.all.sample,
     confirmed?: true,
