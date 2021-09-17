@@ -25,16 +25,16 @@
   // backdrop-filter: blur(8px);
  }
  .events-grid{
-  padding: 5px 15px;
   position: absolute;
   overflow-y: scroll;
   height: 98%;
-  margin: 0 auto;
   width: 100%;
   grid-area: events-grid;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 5px;
+  grid-gap: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
  }
  
  .events-grid::-webkit-scrollbar {
@@ -42,10 +42,9 @@
  }
  
  .card-event{
-   margin-bottom: 10px;
-   height: 300px;
-   width: 200px;
+   height: 380px;
    padding: 10px;
+   width: 100%;
    border-radius: 15px;
    background: rgba(255, 255, 255, 0.1);
    overflow: hidden;
@@ -60,12 +59,13 @@
    .card-event-infos{
     display: block;
     color: white ;
- 
    }
    img {
     width: 100%;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+
   }
    a {
      text-decoration: none;
@@ -73,18 +73,46 @@
    }
  
    h3 {
-     font-size: 22px;
+     font-size: 26px;
+     font-weight: bold;
      text-decoration: none;
      color: white;
+     margin-bottom: 10px;
    }
 
    p {
-     font-size: 14px;
+     font-size: 18px;
      margin: 0;
    }
  
  }
+ .icons-infos{
+  padding-left: -10px;
+  position: relative;
+ }
+ .event-index-data-inline{
+   display: flex;
+   height: 25px;
+   align-content: left;
+   margin-bottom: 6px;
 
+
+   .event-icon {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 70%;
+   
+   }
+   .event-text {
+    padding-left: 10px;
+    width: 85%;
+    display: flex;
+    text-align: left;
+    align-content: center;
+   }
+ }
  
  .events-map{
   position: absolute;

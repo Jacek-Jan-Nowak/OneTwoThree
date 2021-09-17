@@ -132,10 +132,11 @@
     align-content: center;
     flex-direction: column;
     overflow: hidden;
-    .lev{
-      font-size: 200%;
+
+    .lev {
+      font-size: 150%;
     }
-    p{
+    p {
       position: relative;
       top: -10px;
     }
@@ -146,6 +147,7 @@
     font-size: 20px;
     margin-bottom: 0;
     font-weight: lighter;
+    font-style: italic;
   }
 }
 
