@@ -353,7 +353,22 @@ lewagon_event = Event.create!(
 )
 lewagon_event.photo.attach(io: File.open('app/assets/images/lewagon.jpg'), filename: 'lewagon.jpg')
 
-
+puts "creating wayne manor"
+wayne_manor = Place.create!(
+  name: "Wayne Manor",
+  address: "64 How's St, London E2 8EH",
+  owner: User.all.sample,
+)
+# EVENT 1
+puts "creating event with Batman"
+lewagon_event = Event.create!(
+  name: "Salsa with Batman",
+  event_type: "Social",
+  host: User.all.sample,
+  place: wayne_manor,
+  start_time: 2.days.from_now
+)
+lewagon_event.photo.attach(io: File.open('app/assets/images/wayne-manor.jpg'), filename: 'wayne-manor.jpg')
 #####################################################################################################
 
 
