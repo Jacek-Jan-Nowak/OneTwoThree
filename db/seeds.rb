@@ -59,35 +59,140 @@ statuses = [
   "Ready for some salsa, the dip! lolz"
 ]
 
-puts 'Creating 5 fake users...'
-CSV.foreach(userfilepath, csv_options).with_index do |row, index|
-  puts "creating user number #{index}"
-  break if index == 5
-    user = User.create!(
-      email: Faker::Internet.email,
-      username: Faker::Internet.username,
-      password: "testing",
-      is_pro?: [true, false].sample,
-      role: ["leader", "follower", "leader/follower"].sample,
-      address: row['address'],
-      status: statuses.sample,
-      style: dancing_styles.sample
-    )
-    user_photo = URI.open(users_urls.sample)
-    user.photo.attach(io: user_photo, filename: 'photo.jpg')
+# puts 'Creating 5 fake users...'
+# CSV.foreach(userfilepath, csv_options).with_index do |row, index|
+#   puts "creating user number #{index}"
+#   break if index == 5
+#     user = User.create!(
+#       email: Faker::Internet.email,
+#       username: Faker::Internet.username,
+#       password: "testing",
+#       is_pro?: [true, false].sample,
+#       role: ["leader", "follower", "leader/follower"].sample,
+#       address: row['address'],
+#       status: statuses.sample,
+#       style: dancing_styles.sample
+#     )
+#     user_photo = URI.open(users_urls.sample)
+#     user.photo.attach(io: user_photo, filename: 'photo.jpg')
 
-    statuses.delete(user.status)
+#     statuses.delete(user.status)
 
-    rand(3..7).times do
-      review = Review.create!(
-      rating: rand(1..5),
-      content: Faker::Movie.quote,
-      receiver: user,
-      user: User.all.sample,
-      )
-    end
+#     rand(3..7).times do
+#       review = Review.create!(
+#       rating: rand(1..5),
+#       content: Faker::Movie.quote,
+#       receiver: user,
+#       user: User.all.sample,
+#       )
+#     end
+# end
+# puts '10 users created!'
+
+
+######################
+
+puts 'first user'
+user1 = User.create!(
+  email: "user1@testing.com",
+  username: "Jordan",
+  password: "testing",
+  is_pro?: true,
+  role: "leader",
+  address: "200 Hoxton St, London N1 6PG",
+  status: "I really want to dance now!",
+  style: dancing_styles.sample,
+)
+user1.photo.attach(io: File.open('app/assets/images/user1.jpg'), filename: 'user1.jpg')
+rand(3..4).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: user1,
+  user: User.all.sample,
+  )
 end
-puts '10 users created!'
+puts "user1 is in the building"
+
+#####################
+
+######################
+puts 'creating queen'
+queen = User.create!(
+  email: "queen@testing.com",
+  username: "Liz",
+  password: "testing",
+  is_pro?: true,
+  role: "leader",
+  address: "Buckingham Palace London SW1A 1AA",
+  status: "The Queen of salsa is here",
+  style: dancing_styles.sample,
+)
+queen.photo.attach(io: File.open('app/assets/images/queen.jpg'), filename: 'queen.jpg')
+rand(3..4).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: queen,
+  user: User.all.sample,
+  )
+end
+puts "queen is in the building"
+#####################
+
+######################
+
+puts 'rokas '
+rokas = User.create!(
+  email: "rokas@testing.com",
+  username: "Rokas",
+  password: "testing",
+  is_pro?: true,
+  role: "leader",
+  address: "100 Hoxton St, London N1 6PG",
+  status: "Need some salsa after fixing bikes",
+  style: dancing_styles.sample,
+)
+rokas.photo.attach(io: File.open('app/assets/images/rokas.jpg'), filename: 'rokas.jpg')
+rand(3..4).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: rokas,
+  user: User.all.sample,
+  )
+end
+puts "rokas is in the building"
+
+#####################
+
+######################
+
+puts 'rahul '
+rahul = User.create!(
+  email: "rahul@testing.com",
+  username: "rahul",
+  password: "testing",
+  is_pro?: true,
+  role: "leader",
+  address: "190 Hoxton St, London N1 6PG",
+  status: "My moves sweet as my haircut",
+  style: dancing_styles.sample,
+)
+rahul.photo.attach(io: File.open('app/assets/images/rahul.jpg'), filename: 'rahul.jpg')
+rand(3..4).times do
+  review = Review.create!(
+  rating: rand(1..5),
+  content: Faker::Movie.quote,
+  receiver: rahul,
+  user: User.all.sample,
+  )
+end
+puts "rahul is in the building"
+
+#####################
+
+
 
 
 user = User.create!(
