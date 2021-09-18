@@ -171,7 +171,7 @@ puts "rokas is in the building"
 puts 'rahul '
 rahul = User.create!(
   email: "rahul@testing.com",
-  username: "rahul",
+  username: "Rahul",
   password: "testing",
   is_pro?: true,
   role: "leader",
@@ -280,7 +280,7 @@ puts "The big dawg is in the building woof woof"
 puts "introducing dave"
 dave = User.create!(
   email: "dave@testing.com",
-  username: "david",
+  username: "David",
   password: "testing",
   is_pro?: true,
   role: "follower",
@@ -325,7 +325,7 @@ end
 puts 'Creating anne'
 anne = User.create!(
   email: "anne@testing.com",
-  username: "anne",
+  username: "Anne",
   password: "testing",
   is_pro?: true,
   role: "follower",
