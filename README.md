@@ -102,6 +102,9 @@ rails s
 
 ## Design process using whimsical
 
+ Available at:
+ [Whimsical/OneTwoThree](https://whimsical.com/onetwoothree-ULFikpkcZUHm4SbAgrxgxi)
+
 <table>
   <tr>
     <td><img src="app/assets/images/whimisical_1.JPG" ></td>
@@ -113,6 +116,9 @@ rails s
 ---
 
 ## UX/UI using Figma
+
+ Available at:
+ [Figma/OneTwoThree](https://www.figma.com/file/clp62GuwJqWbJr8DtdU6u4/Dancing-buddies?node-id=0%3A1)
 
 ![Figma](/app/assets/images/figma.JPG?raw=true "Figma")
 <table>
