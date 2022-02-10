@@ -4,22 +4,22 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.search_by_name_and_address(params[:query])
+      @events = Event.order(start_time: :asc).search_by_name_and_address(params[:query])
     else
-      @events = Event.all
-      # @events = Event.where.not(latitude: nil, longitude: nil)
+      @events = Event.order(start_time: :asc).all
       if params[:user].present?
         @invitee = params[:user]
       end
     end
     
-    #  @markers = @events.map do |event|
-    #   {
-    #     lat: event.place.latitude,
-    #     lng: event.place.longitude,
-    #     info_window: render_to_string(partial: "info_window", locals: { event: event })
-    #   }
-    # end
+    @markers = @events.map do |event|
+      {
+        lat: event.place.latitude,
+        lng: event.place.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { event: event }),
+        image_url: helpers.asset_url('noun_Dancing_20415.png')
+      }
+     end
   end
 
   def show

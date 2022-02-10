@@ -8,7 +8,7 @@
             <li>
                 <i class="fa fa-glass-cheers fa-2x"></i>
                   <span class="nav-text">
-                    All Events
+                    Back to Events
                   </span> 
             </li>
           <% end%>
@@ -17,7 +17,7 @@
             <li>
                 <i class="fa fa-hands-helping fa-2x"></i>
                   <span class="nav-text">
-                    All Events
+                    Back to events
                   </span> 
             </li>
           <% end%>
@@ -36,7 +36,7 @@
             <li>
                 <i class="fa fa-users fa-2x"></i>
                   <span class="nav-text">
-                    Invite a Friend
+                    Invite people
                   </span>  
             </li>
             <% end %>
@@ -45,7 +45,7 @@
             <li>
                 <i class="fa fa-user-plus fa-2x"></i>
                   <span class="nav-text">
-                    Join Event
+                    Join this event
                   </span>
             </li>
           <% end%>
@@ -53,41 +53,69 @@
             <li>
                 <i class="fa fa-users fa-2x"></i>
                   <span class="nav-text">
-                   All groups for this event
+                   Event's groups 
                   </span>
             </li>
           <% end%>
   </ul>
   </div>
-<%# if params[:user] %>
-        <%#= link_to "Create invitation", new_invite_path(event: @event.id, user: @user), class:"btn btn-danger" %>
-      <%# else %>
-         <%#= link_to "invite a friend", users_path(event: @event.id), class:"btn btn-primary" %>
-      <%# end%>
-      <%#= link_to "Join Event", invites_join_path(event: @event.id), method: :post, class:"btn btn-danger" %>
-      <%#= link_to "home", root_path, class:"btn btn-primary" %>
-      <%# if params.include?(:user)  %>
-        <%#= link_to "all events", events_path(user: @user), class:"btn btn-primary" %>
-      <%# else %>
-        <%#= link_to "all events", events_path, class:"btn btn-primary" %>
-      <%# end %>
-      <%#= link_to "all groups for this event", groups_path(event: @event.id), class:"btn btn-primary"  %>
-
+  
    <div class="event-show-data">
-        <h1><%= @event.name %> </h1>
-        <p><strong>Event type: </strong> <%= @event.event_type %></p>
-        <p><strong>Place: </strong> <%= @event.place.address %></p>
-        <p><strong>Starting at: </strong> <%= @event.start_time.strftime("%B %d, %Y %A") %></p>
-   <div class="user-avatar">
-            <img src="../../assets/dance.jpg" alt="" class="avatar">
+      <div class="card-event-infos-show">
+        <div class="event-title-show" >
+          <h3 ><%= @event.name%></h3>
+        </div>
+    
+        <div class="icons-infos-show">
+
+          <div class="event-index-data-inline-show">
+            <div class="event-icon-show">
+              <h3><%=icon('fas', 'glass-cheers')%></h3>
+            </div>
+            <div class="event-text-show">
+              <p><%= @event.event_type%></p>
+            </div>
           </div>
-          <div>
-            <p>Created by: <%= @event.host.username %></p>
+
+          <div class="event-index-data-inline-show">
+            <div class="event-icon-show">
+              <h3><%=icon('fas', 'map-marker')%></h3>
+            </div>
+            <div class="event-text-show">
+              <p><%= @event.place.name.truncate(27, separator: ' ')%></p>
+            </div>
           </div>
+
+          <div class="event-index-data-inline-show">
+            <div class="event-icon-show">
+              <h3><%=icon('fas', 'calendar')%></h3>
+            </div>
+            <div class="event-text-show">
+              <p><%= @event.start_time.strftime("%B %d, %Y")%></p>
+            </div>
+          </div> 
+
+          
+          <div class="event-index-data-inline-show">
+            <div class="event-icon-show">
+              <h3><%=icon('fas', 'user-alt')%></h3>
+            </div>
+            <div class="event-text-show">
+              <p><%= @event.host.username %> </p>
+            </div>
+          </div> 
+
+        </div>
+
+      </div>
     </div>
 
     <div class="event-show-pic">
-      <%= cl_image_tag @event.photo.key, height: 270, width: 270, crop: :fill %>
+    <% if @event.photo.attached? %>
+      <%= cl_image_tag @event.photo.key, height: 300, crop: :fill %>
+    <% else %>
+      <img src="../../assets/def.jpg" alt="" height= "270" width= "270">
+    <% end %>
     </div>
 
     <div class="event-show-groups">
@@ -115,9 +143,9 @@
           <div class="event-show-participant-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
               <%= cl_image_tag invite.invitee.photo.key, height: 50, width: 50, crop: :fill %>
              <div class="event-show-participant-card-infos">
-              <p> <%= invite.invitee.email %></p>
+              <p style= " font-size: 20px" > <%= invite.invitee.username %></p>
                   <% if invite.invitee.role %>
-                    <p>role: <%= invite.invitee.role %> </p>
+                    <p><%= invite.invitee.role %> </p>
                   <% else %>
                     <p>role not specified</p>
                   <% end %> 

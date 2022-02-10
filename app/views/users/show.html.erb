@@ -45,20 +45,25 @@
             </li>
           <% end%>
         <% end%>
+        
         <% if params[:group] %> 
           <%= link_to  new_invite_path(user: @user.id, group: @group) do %>
             <li>
                 <i class="fa fa-user-plus fa-2x"></i>
                   <span class="nav-text">
-                    Add user to the group
-                  </span>
+                   <b> Add <%= @user.username %></b>
+                  </span> 
             </li>
           <% end%>
         <% end%>
   </ul>
     </div>
     <div class="user-show-profile">
-      <%= cl_image_tag @user.photo.key, height: 370, width: 370, crop: :fill %>
+      <% if @user.photo.attached?%>
+        <%= cl_image_tag @user.photo.key, height: 370, width: 370, crop: :fill, gravity: :face%>
+      <% else %>
+        <%= image_tag('profile-pic.jfif') %>
+      <% end %>
     </div>
 
     <div class="user-show-events">
@@ -66,15 +71,14 @@
       <% @user.invites.each do |invite| %>
       <div class="user-show-event-card" data-tilt data-tilt-max="5" data-tilt-axis="y">
         <%= link_to event_path(invite.group.event.id) do %>
-        <div>
-         <p><strong><%= invite.group.event.name %></strong></p>
-        </div>
+          <div>
+          <p><strong><%= invite.group.event.name %></strong></p>
+          </div>
         <% end %>
         <div>
         <p>><%= invite.group.event.start_time %></p>
         </div> 
       </div>
-        
       <% end %>
     </div>
 
@@ -85,22 +89,76 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
 
-    <div class="user-show-data">
-      <h2>Username: <%= @user.username %></h2>
-      <p>Address: <%= @user.address %></p>
-      <p>email: <%= @user.email %></p>
-      <% if @user.role %>
-        <p>role: <%= @user.role %> </p>
-      <% else %>
-        <p>role not specified</p>
-      <% end %>
-      <% @sum = 0 %>
-            <% @reviews.each do |review| %>
-              <% if review.receiver == @user %>
-                <% @sum += review.rating %>
-                <% end %>
+
+   <div class="user-show-data">
+      <div class="card-user-infos-show">
+        <div class="user-username">
+          <h3><%= @user.username%></h3>
+        </div>
+
+          <div class="icons-user-show">
+            <div class="user-index-data-inline-show">
+              <div class="user-infos-status">
+                <div class = "status-text">
+                  <p> <%= @user.status %></p>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+    
+          <div class="user-index-data-inline-show">
+            <div class="user-icon-show">
+              <h3><%=icon('fas', 'map-marker')%></h3>
+            </div>
+            <div class="user-text-show">
+              <% if @user.address %>
+                <p><%= @user.address.truncate(27, separator: ' ')%></p>
+              <% else %>
+              < p>London</p>
               <% end %>
-              <h3>Level: <%= @sum %></h3>
+            </div>
+          </div>
+
+          <div class="user-index-data-inline-show">
+            <div class="user-icon-show">
+              <h3><%=icon('fas', 'praying-hands')%></h3>
+            </div>
+            <div class="user-text-show">
+              <p><%= @user.role%></p>
+            </div>
+          </div> 
+
+          
+          <div class="user-index-data-inline-show">
+            <div class="user-icon-show">
+              <h3><%=icon('fas', 'shoe-prints')%></h3>
+            </div>
+            <div class="user-text-show">
+              <p><%= @user.style %> </p>
+            </div>
+          </div> 
+
+          <div class="user-index-data-inline-show-lev">
+            <div class="user-icon-show">
+            <div class="user-show-infos-level">
+              <div class = "lev-show">
+              <%if @user.level > 0 %>
+                <%= @user.level %>
+              <% else %>
+                <%= 0  %>
+              <% end %>
+              </div>
+              <p>lvl</p>
+            </div>
+            </div>
+          </div>
+
+
+
+
+      </div>
     </div>
 
     <div class="user-show-comments">
@@ -120,7 +178,7 @@
                 </p>
               </div>
               <div class="user-show-review-card-format">
-                <p><%= review.content %></p>
+                <p style= " font-size: 18px"><%= review.content.truncate(50) %></p>
                </div>
                <div class="user-show-review-card-format">
                   <% if review.user == current_user %>
@@ -140,27 +198,76 @@
 
     <div class="user-show-achievements">
       <h2>Achievements</h2>
-      <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
+      <% if @user.level >= 1  %>
+        <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-american-sign-language-interpreting fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy1" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 2  %>
+        <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-heartbeat fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 5  %>
+        <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-sign-language fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 8  %>
+        <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-fighter-jet fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 10  %>
+        <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-biohazard fa-2x"></i>
+        </div>
+      <% else %>
+        <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+          <i class="fa fa-users fa-2x"></i>
+        </div>
+      <% end %>
+
+      <% if @user.level >= 15  %>
+      <div class="trophy6" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fab fa-battle-net fa-2x"></i>
       </div>
-      <div class="trophy2" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
-      <div class="trophy3" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
-      <div class="trophy4" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
-      <div class="trophy5" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
-       <i class="fa fa-users fa-2x"></i>
-      </div>
+      <% else %>
       <div class="trophy6" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
        <i class="fa fa-users fa-2x"></i>
       </div>
+      <% end %>
+
+      <% if @user.level >= 20  %>
+      <div class="trophy7" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
+       <i class="fab fa-accusoft fa-2x"></i>
+      </div>
+      <% else %>
       <div class="trophy7" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
        <i class="fa fa-users fa-2x"></i>
       </div>
+      <% end %>
+
       <div class="trophy8" data-tilt data-tilt-max="5"  data-tilt-scale="1.1" data-tilt-glare>
        <i class="fa fa-users fa-2x"></i>
       </div>
@@ -190,3 +297,5 @@
   </div>
     </div>
   </div>
+
+<%# <%= console %>

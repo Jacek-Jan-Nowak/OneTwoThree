@@ -4,8 +4,8 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.8fr 1.5fr 1.5fr;
-  grid-template-rows: 0.8fr 1.5fr;
+  grid-template-columns: 0.5fr 1.2fr 1.5fr 1.5fr;
+  grid-template-rows: 0.8fr 2.5fr;
   grid-gap: 1vw;
   grid-template-areas: 
   "user-show-side user-show-profile user-show-data user-show-map"
@@ -28,10 +28,10 @@
 .user-show-side{
   grid-area: user-show-side;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
+  // background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
+  // backdrop-filter: blur(8px);
   // padding: 10px;
 }
 
@@ -50,7 +50,8 @@
 
   img{
     border-radius: 12px;
-    
+    width: 100%;
+    object-fit:cover;
   }
 }
 
@@ -135,6 +136,7 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   display: block;
+  overflow: hidden;
   
   z-index: 10;
 
@@ -454,3 +456,96 @@ display: flex;
     width: 100%;
   }
 }
+
+
+// CSS FOR user SHOW DATA TABLE///////////////////////////
+.user-show-data {
+  grid-area: user-show-data;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+  height: 100%;
+  position: relative;
+}
+
+  .card-user-infos-show{
+    display: block;
+    color: white ;
+   }
+
+ 
+.user-username{
+  padding-top: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.icons-infos-user{
+  padding-left: -10px;
+  position: relative;
+ }
+
+ .user-index-data-inline-show{
+   display: flex;
+   height: 30px;
+   padding-top: 20px;
+   align-content: left;
+   margin-bottom: 20px;
+
+   .user-icon-show {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 70%;
+   
+   }
+   .user-text-show {
+    padding-left: 10px;
+    width: 85%;
+    display: flex;
+    text-align: left;
+    align-content: center;
+   }
+
+   .user-infos-status {
+    padding-left: 20px;
+    width: 85%;
+    display: flex;
+    text-align: left;
+    align-content: center;
+
+    p {
+      font-size: 24px
+    }
+   }
+ }
+
+ .user-show-infos-level{
+   display: flex;
+   text-align: center;
+   justify-content: center;
+   align-content: center;
+   flex-direction: column;
+   .lev-show {
+    text-align: center;
+    font-size: 250%;
+  }
+  p {
+    position: relative;
+    top: -10px;
+  }
+}
+
+.user-index-data-inline-show-lev {
+  display: flex;
+  text-align: right;
+  justify-content: right;
+  padding-right: 30px
+}
+
+ ////////////////////////////////////////////////

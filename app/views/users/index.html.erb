@@ -17,24 +17,52 @@
 </div>
       <div class="users-grid">
         <% @users.each do |user| %>
+          <% if user != current_user %>
             <div class="card-user" data-toggle="modal" data-target="#myModal_<%= user.id %>" data-tilt data-tilt-max="5" data-tilt-axis="y">
               <%= link_to user_path(user, event: @event, group: @group) do %>
+              <% if user.photo.attached?%>
                 <%= cl_image_tag user.photo.key, height: 370, width: 370, crop: :fill %>
+              <% else %>
+                <%= image_tag('profile-pic.jfif') %>
+              <% end %>
                 <%# <img src="https://via.placeholder.com/370"> %>
               <% end %>
               <div class="card-user-infos">
-                
-                  <h2> <%= link_to user.username, user_path(user, event: @event, group: @group) %></h2>
-                  <p> <%= user.email %></p>
+                <div class="card-user-infos-name">
+                  <strong> <h2> <%= link_to user.username, user_path(user, event: @event, group: @group) %></h2></strong>
+                </div>
+                  <div class="card-user-infos-role">
                   <% if user.role %>
-                    <p>role: <%= user.role %> </p>
+                      <p><%=icon('fas', 'praying-hands')%> <%= user.role %> </p>
+                    <% else %>
+                      <p>role not specified</p>
+                    <% end %>
+                  </div>
+
+                  <div class="card-user-infos-status">
+                      <div class = "status-text">
+                        <%= user.status %>
+                      </div>
+                 </div>
+
+                  <div class="card-user-infos-style">
+                  <% if user.style %>
+                    <p><%=icon('fas', 'shoe-prints')%> <%= user.style %> </p>
                   <% else %>
-                    <p>role not specified</p>
+                    <p>style not specified</p>
                   <% end %>
+                </div>
                 
+                <div class="card-user-infos-level">
+                  <div class = "lev">
+                    <%= user.level%>
+                  </div>
+                  <p>lvl</p>
+                </div>
               </div>
             </div>
           <% end %>
+        <% end %>
       </div>
 
       <div id="map"
@@ -43,8 +71,8 @@
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div> 
-
 </div>
+<%# <%= console %> 
 
 
 

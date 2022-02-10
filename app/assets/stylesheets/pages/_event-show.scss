@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.8fr 0.5fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 1.5fr 1fr;
   grid-template-rows: 0.8fr 1.5fr;
   grid-gap: 1vw;
   grid-template-areas: 
@@ -28,10 +28,10 @@
 .event-show-side{
   grid-area: event-show-side;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
+  // background: rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
+  // backdrop-filter: blur(8px);
   // padding: 10px;
   
 }
@@ -50,6 +50,7 @@
   img{
     border-radius: 12px;
     height:100%;
+    width: 100%;
     object-fit:cover;
   }
 }
@@ -64,15 +65,6 @@
   padding: 10px;
 }
 
-.event-show-data {
-  grid-area: event-show-data;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
-  padding: 10px;
-}
 
 .event-show-groups {
   grid-area: event-show-groups;
@@ -224,3 +216,57 @@
 visibility: hidden;
   }
 }
+
+// CSS FOR EVENTS SHOW DATA TABLE///////////////////////////
+.event-show-data {
+  grid-area: event-show-data;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+
+  .card-event-infos-show{
+    display: block;
+    color: white ;
+   }
+  }
+.event-title-show{
+  padding-top: 20px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.icons-infos-show{
+  padding-left: -10px;
+  position: relative;
+ }
+
+ .event-index-data-inline-show{
+   display: flex;
+   height: 40px;
+   align-content: left;
+   margin-bottom: 6px;
+
+   .event-icon-show {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 70%;
+   
+   }
+   .event-text-show {
+    padding-left: 10px;
+    width: 85%;
+    display: flex;
+    text-align: left;
+    align-content: center;
+   }
+ }
+
+ ////////////////////////////////////////////////
+ 
